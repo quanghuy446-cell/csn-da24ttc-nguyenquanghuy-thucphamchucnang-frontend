@@ -1,4 +1,4 @@
-# Website Cua Hang Thuc Pham Chuc Nang
+# Website Cửa Hàng Thực Phẩm Chức Năng
 > **Đồ án cơ sở ngành Công nghệ Thông tin – Đại học Trà Vinh**
 
 ## 📋 THÔNG TIN TÁC GIẢ & GIẢNG VIÊN HƯỚNG DẪN
