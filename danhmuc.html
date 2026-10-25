@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thực Phẩm Chức Năng - Danh Mục Sản Phẩm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="sticky-top shadow-sm">
+        <header class="header-main">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <a href="index.html" class="logo-text">[TÊN THƯƠNG HIỆU]</a>
+                    </div>
+                    <div class="col-md-6">
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Tìm theo tên sản phẩm, vitamin..." aria-label="Search">
+                            <button class="btn btn-success" type="submit">Tìm</button>
+                        </form>
+                    </div>
+                    <div class="col-md-3 text-end">
+                        <a href="#" class="btn btn-outline-success me-1">Giỏ hàng (0)</a>
+                        <a href="#" class="btn btn-success">Tài khoản</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <nav class="nav-menu">
+            <div class="container">
+                <ul class="nav d-flex justify-content-between">
+                    <li class="nav-item"><a class="nav-link active" href="danhmuc.html">Thực Phẩm Chức Năng</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Chăm Sóc Sắc Đẹp</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Hỗ Trợ Xương Khớp</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Chăm Sóc Bé</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Mang Thai & Mẹ Bầu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Giới Thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Liên Hệ</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <main class="container my-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Thực Phẩm Chức Năng</li>
+            </ol>
+        </nav>
+
+        <h1 class="category-heading">Thực Phẩm Chức Năng</h1>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="filter-box">
+                    <div class="filter-title">Thương hiệu</div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="brand1">
+                        <label class="form-check-label" for="brand1">Thương hiệu A</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="brand2">
+                        <label class="form-check-label" for="brand2">Thương hiệu B</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="brand3">
+                        <label class="form-check-label" for="brand3">Thương hiệu C</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="brand4">
+                        <label class="form-check-label" for="brand4">Thương hiệu D</label>
+                    </div>
+                    <a href="#" class="see-more">Xem thêm &or;</a>
+                </div>
+
+                <div class="filter-box">
+                    <div class="filter-title">Mức giá</div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="p1">
+                        <label class="form-check-label" for="p1">Giá dưới 200.000đ</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="p2">
+                        <label class="form-check-label" for="p2">200.000đ - 500.000đ</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="p3">
+                        <label class="form-check-label" for="p3">Trên 500.000đ</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="toolbar-area">
+                    <div class="toolbar-title">Danh sách Thực Phẩm Chức Năng</div>
+                    <div class="d-flex align-items-center">
+                        <span class="me-2 text-muted" style="font-size: 13px;">Sắp xếp:</span>
+                        <select class="form-select form-select-sm" style="width: 140px;">
+                            <option selected>Tên A → Z</option>
+                            <option value="1">Giá tăng dần</option>
+                            <option value="2">Giá giảm dần</option>
+                            <option value="3">Mới nhất</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <img src="https://via.placeholder.com/200x160?text=SP+01" alt="Sản phẩm 01">
+                            <div class="product-name">Sản phẩm 01</div>
+                            <div class="product-price-main">555.000<u>đ</u></div>
+                            <div class="product-stock-info">Hàng có sẵn</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <img src="https://via.placeholder.com/200x160?text=SP+02" alt="Sản phẩm 02">
+                            <div class="product-name">Sản phẩm 02</div>
+                            <div class="product-price-main">272.000<u>đ</u></div>
+                            <div class="product-stock-info">Hàng có sẵn</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <img src="https://via.placeholder.com/200x160?text=SP+03" alt="Sản phẩm 03">
+                            <div class="product-name">Sản phẩm 03</div>
+                            <div class="product-price-main">830.000<u>đ</u></div>
+                            <div class="product-stock-info">Đặt trước từ 1 - 2 tuần</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <img src="https://via.placeholder.com/200x160?text=SP+04" alt="Sản phẩm 04">
+                            <div class="product-name">Sản phẩm 04</div>
+                            <div class="product-price-main">649.000<u>đ</u></div>
+                            <div class="product-stock-info">Đặt trước từ 1 - 2 tuần</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <img src="https://via.placeholder.com/200x160?text=SP+05" alt="Sản phẩm 05">
+                            <div class="product-name">Sản phẩm 05</div>
+                            <div class="product-price-main">525.000<u>đ</u></div>
+                            <div class="product-stock-info">Hàng có sẵn</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <img src="https://via.placeholder.com/200x160?text=SP+06" alt="Sản phẩm 06">
+                            <div class="product-name">Sản phẩm 06</div>
+                            <div class="product-price-main">861.000<u>đ</u></div>
+                            <div class="product-stock-info">Đặt trước từ 1 - 2 tuần</div>
+                        </div>
+                    </div>
+                </div>
+
+                <nav class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled"><a class="page-link" href="#">Trước</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Sau</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <small>&copy; 2026</small>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
