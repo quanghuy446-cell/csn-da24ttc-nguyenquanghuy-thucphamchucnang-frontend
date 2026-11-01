@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm 01 - Chi tiết sản phẩm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sticky-top shadow-sm">
+        <header class="header-main">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <a href="index.html" class="logo-text">[TÊN THƯƠNG HIỆU]</a>
+                    </div>
+                    <div class="col-md-6">
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Tìm theo tên sản phẩm, vitamin..." aria-label="Search">
+                            <button class="btn btn-success" type="submit">Tìm</button>
+                        </form>
+                    </div>
+                    <div class="col-md-3 text-end">
+                        <a href="giohang.html" class="btn btn-outline-success me-1">Giỏ hàng</a>
+                        <a href="#" class="btn btn-success">Tài khoản</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <nav class="nav-menu">
+            <div class="container">
+                <ul class="nav d-flex justify-content-between">
+                    <li class="nav-item"><a class="nav-link" href="danhmuc.html">Thực Phẩm Chức Năng</a></li>
+                    <li class="nav-item"><a class="nav-link" href="danhmuc.html">Chăm Sóc Sắc Đẹp</a></li>
+                    <li class="nav-item"><a class="nav-link" href="danhmuc.html">Hỗ Trợ Xương Khớp</a></li>
+                    <li class="nav-item"><a class="nav-link" href="danhmuc.html">Chăm Sóc Bé</a></li>
+                    <li class="nav-item"><a class="nav-link" href="danhmuc.html">Mang Thai & Mẹ Bầu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Giới Thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Liên Hệ</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <main class="container my-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="danhmuc.html">Thực phẩm chức năng</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Sản phẩm 01</li>
+            </ol>
+        </nav>
+
+        <div class="bg-white p-4 rounded border">
+            <div class="row">
+                <div class="col-lg-5 text-center">
+                    <div class="border rounded p-3 mb-3 bg-light">
+                        <img src="https://via.placeholder.com/450x400?text=SP+01" class="img-fluid rounded" alt="Sản phẩm 01">
+                    </div>
+                    <div class="row g-2">
+                        <div class="col-3"><img src="https://via.placeholder.com/100x100?text=SP1" class="img-fluid rounded border" alt="Thumb"></div>
+                        <div class="col-3"><img src="https://via.placeholder.com/100x100?text=SP2" class="img-fluid rounded border" alt="Thumb"></div>
+                        <div class="col-3"><img src="https://via.placeholder.com/100x100?text=SP3" class="img-fluid rounded border" alt="Thumb"></div>
+                        <div class="col-3"><img src="https://via.placeholder.com/100x100?text=SP4" class="img-fluid rounded border" alt="Thumb"></div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <h2 class="fw-bold mb-2">Sản phẩm 01</h2>
+                    <p class="text-muted small mb-3">Thương hiệu: [Đang cập nhật] | Mã sản phẩm: SP01 | Tình trạng: <span class="text-success fw-bold">Hàng có sẵn</span></p>
+                    
+                    <div class="p-3 bg-light rounded mb-3 border">
+                        <span class="product-price-main fs-2 text-danger fw-bold">555.000<u>đ</u></span>
+                        <span class="text-muted text-decoration-line-through ms-2">650.000<u>đ</u></span>
+                    </div>
+                    
+                    <p class="text-secondary small">Thông tin mô tả ngắn gọn về tính năng, công dụng và đặc điểm nổi bật của Sản phẩm 01.</p>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small">Số lượng:</label>
+                        <div class="input-group" style="max-width: 140px;">
+                            <button class="btn btn-outline-secondary btn-sm" type="button">-</button>
+                            <input type="text" class="form-control form-control-sm text-center" value="1">
+                            <button class="btn btn-outline-secondary btn-sm" type="button">+</button>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2 my-4">
+                        <button type="button" class="btn btn-outline-success btn-lg px-4 flex-fill fs-6 fw-bold" data-bs-toggle="modal" data-bs-target="#cartModal">THÊM VÀO GIỎ</button>
+                        <a href="thanhtoan.html" class="btn btn-success btn-lg px-4 flex-fill fs-6 fw-bold text-center pt-2">MUA NGAY</a>
+                    </div>
+
+                    <div class="row g-2 text-center my-3">
+                        <div class="col-md-4">
+                            <div class="p-2 border rounded bg-light">
+                                <div class="text-success fw-bold small">Giao hàng toàn quốc</div>
+                                <small class="text-muted">Nhận hàng tận nơi</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-2 border rounded bg-light">
+                                <div class="text-success fw-bold small">Tích điểm sản phẩm</div>
+                                <small class="text-muted">Đổi quà ưu đãi</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-2 border rounded bg-light">
+                                <div class="text-success fw-bold small">Cam kết chính hãng</div>
+                                <small class="text-muted">100% chất lượng</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item"><button class="nav-link active fw-bold text-success" id="desc-tab" data-bs-toggle="tab" data-bs-target="#desc" type="button">Mô tả sản phẩm</button></li>
+                    <li class="nav-item"><button class="nav-link fw-bold text-secondary" id="usage-tab" data-bs-toggle="tab" data-bs-target="#usage" type="button">Hướng dẫn sử dụng</button></li>
+                    <li class="nav-item"><button class="nav-link fw-bold text-secondary" id="review-tab" data-bs-toggle="tab" data-bs-target="#review" type="button">Đánh giá (0)</button></li>
+                </ul>
+                <div class="tab-content p-4 border border-top-0 rounded-bottom bg-light" id="myTabContent">
+                    <div class="tab-pane fade show active" id="desc">
+                        <h6 class="fw-bold">Chi tiết sản phẩm 01</h6>
+                        <p class="small text-secondary">Nội dung chi tiết về thành phần, xuất xứ và công dụng đầy đủ của Sản phẩm 01.</p>
+                    </div>
+                    <div class="tab-pane fade" id="usage">
+                        <h6 class="fw-bold">Cách dùng và bảo quản</h6>
+                        <p class="small text-secondary">Hướng dẫn chi tiết liều dùng và cách bảo quản Sản phẩm 01.</p>
+                    </div>
+                    <div class="tab-pane fade" id="review">
+                        <p class="small text-muted mb-0">Chưa có đánh giá nào cho sản phẩm này.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h6 class="modal-title text-success fw-bold">✓ Thêm vào giỏ hàng thành công</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="https://via.placeholder.com/60x60?text=SP01" class="rounded border me-3" alt="SP 01">
+                        <div>
+                            <h6 class="mb-0 fw-bold">Sản phẩm 01</h6>
+                            <small class="text-muted">Số lượng: 1</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-secondary">Giỏ hàng hiện có:</span>
+                        <div class="text-end">
+                            <span class="fw-bold text-danger fs-5">555.000<u>đ</u></span>
+                            <div class="small text-muted">(1) sản phẩm</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex gap-2 border-0 pt-0">
+                    <a href="thanhtoan.html" class="btn btn-warning flex-fill text-white fw-bold py-2 text-center">Thanh toán</a>
+                    <a href="giohang.html" class="btn btn-dark flex-fill fw-bold py-2 text-center">Xem giỏ hàng</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <small>&copy; 2026 [TÊN THƯƠNG HIỆU]</small>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const btnMinus = document.querySelector('.input-group button:first-child');
+        const btnPlus = document.querySelector('.input-group button:last-child');
+        const inputQty = document.querySelector('.input-group input');
+        
+        const modalQtyText = document.querySelector('#cartModal .modal-body small.text-muted');
+        const modalTotalText = document.querySelector('#cartModal .modal-body .text-danger');
+        const modalCountText = document.querySelector('#cartModal .modal-body .small.text-muted:last-child');
+        const btnAddToCart = document.querySelector('button[data-bs-target="#cartModal"]');
+
+        const unitPrice = 555000;
+
+        btnMinus.addEventListener('click', () => {
+            let val = parseInt(inputQty.value) || 1;
+            if (val > 1) {
+                inputQty.value = val - 1;
+            }
+        });
+
+        btnPlus.addEventListener('click', () => {
+            let val = parseInt(inputQty.value) || 1;
+            inputQty.value = val + 1;
+        });
+
+        btnAddToCart.addEventListener('click', () => {
+            let currentQty = parseInt(inputQty.value) || 1;
+            let totalPrice = currentQty * unitPrice;
+
+            localStorage.setItem('cart_qty', currentQty);
+
+            modalQtyText.textContent = `Số lượng: ${currentQty}`;
+            modalTotalText.innerHTML = `${totalPrice.toLocaleString('vi-VN')}<u>đ</u>`;
+            modalCountText.textContent = `(${currentQty}) sản phẩm`;
+        });
+    </script>
+</body>
+</html>
