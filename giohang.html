@@ -12,32 +12,32 @@
         <header class="header-main">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-md-3">
+                    <div class="col-lg-3 col-md-3">
                         <a href="index.html" class="logo-text">[TÊN THƯƠNG HIỆU]</a>
                     </div>
-                    <div class="col-md-6">
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Tìm theo tên sản phẩm, vitamin..." aria-label="Search">
-                            <button class="btn btn-success" type="submit">Tìm</button>
+                    <div class="col-lg-4 col-md-4 search-wrapper">
+                        <form class="d-flex" id="headerSearchForm">
+                            <input class="form-control me-2" id="headerSearchInput" type="search" placeholder="Tìm tên sản phẩm, vitamin..." aria-label="Search" autocomplete="off">
+                            <button class="btn btn-success px-3 text-nowrap" type="submit">Tìm</button>
                         </form>
+                        <div class="search-suggestions" id="searchSuggestions"></div>
                     </div>
-                    <div class="col-md-3 text-end">
-                        <a href="giohang.html" class="btn btn-success me-1" id="cartCountBtn">Giỏ hàng (1)</a>
-                        <a href="#" class="btn btn-outline-success">Tài khoản</a>
-                    </div>
+                    <div class="col-lg-5 col-md-5 d-flex align-items-center justify-content-end gap-2 flex-nowrap" id="authContainer"></div>
                 </div>
             </div>
         </header>
+
         <nav class="nav-menu">
             <div class="container">
                 <ul class="nav d-flex justify-content-between">
-                    <li class="nav-item"><a class="nav-link" href="danhmuc.html">Thực Phẩm Chức Năng</a></li>
-                    <li class="nav-item"><a class="nav-link" href="danhmuc.html">Chăm Sóc Sắc Đẹp</a></li>
-                    <li class="nav-item"><a class="nav-link" href="danhmuc.html">Hỗ Trợ Xương Khớp</a></li>
-                    <li class="nav-item"><a class="nav-link" href="danhmuc.html">Chăm Sóc Bé</a></li>
-                    <li class="nav-item"><a class="nav-link" href="danhmuc.html">Mang Thai & Mẹ Bầu</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Giới Thiệu</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Liên Hệ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Trang Chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gioithieu.html">Giới Thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sanpham.html">Sản Phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=Thực+Phẩm+Chức+Năng">Thực Phẩm Chức Năng</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=Chăm+Sóc+Sắc+Đẹp">Chăm Sóc Sắc Đẹp</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=Hỗ+Trợ+Xương+Khớp">Hỗ Trợ Xương Khớp</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=Chăm+Sóc+Bé">Chăm Sóc Bé</a></li>
+                    <li class="nav-item"><a class="nav-link" href="lienhe.html">Liên Hệ</a></li>
                 </ul>
             </div>
         </nav>
@@ -59,29 +59,10 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr data-price="555000">
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <a href="chitiet.html">
-                                            <img src="https://via.placeholder.com/60x60?text=SP01" class="rounded me-2" alt="SP 01">
-                                        </a>
-                                        <a href="chitiet.html" class="text-decoration-none text-dark fw-bold">Sản phẩm 01</a>
-                                    </div>
-                                </td>
-                                <td>555.000<u>đ</u></td>
-                                <td>
-                                    <input type="number" class="form-control form-control-sm text-center qty-input" value="1" min="1">
-                                </td>
-                                <td class="fw-bold text-success item-total">555.000<u>đ</u></td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-danger btn-remove">Xóa</button>
-                                </td>
-                            </tr>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                     <div class="d-flex justify-content-between mt-3">
-                        <a href="danhmuc.html" class="btn btn-outline-secondary btn-sm">Tiếp tục mua hàng</a>
+                        <a href="sanpham.html" class="btn btn-outline-secondary btn-sm">Tiếp tục mua hàng</a>
                         <button class="btn btn-outline-danger btn-sm" id="btnClearAll">Xóa toàn bộ</button>
                     </div>
                 </div>
@@ -92,16 +73,22 @@
                     <h5 class="fw-bold border-bottom pb-2 mb-3">TÓM TẮT ĐƠN HÀNG</h5>
                     <div class="d-flex justify-content-between mb-2">
                         <span>Tạm tính:</span>
-                        <span class="fw-bold" id="subTotal">555.000<u>đ</u></span>
+                        <span class="fw-bold" id="subTotal">0<u>đ</u></span>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span>Phí vận chuyển:</span>
-                        <span class="text-success fw-bold">Miễn phí</span>
+                        <span id="cartShippingFee" class="text-success fw-bold">Miễn phí</span>
+                    </div>
+                    <div class="p-2 rounded bg-light border mb-3">
+                        <div class="small fw-semibold mb-1" id="freeshipMsg"></div>
+                        <div class="progress" style="height: 6px;">
+                            <div id="freeshipBar" class="progress-bar bg-success" role="progressbar" style="width: 0%;"></div>
+                        </div>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between mb-3 fs-5">
                         <span class="fw-bold">Tổng cộng:</span>
-                        <span class="fw-bold text-danger" id="finalTotal">555.000<u>đ</u></span>
+                        <span class="fw-bold text-danger" id="finalTotal">0<u>đ</u></span>
                     </div>
                     <a href="thanhtoan.html" class="btn btn-success w-100 py-2 fs-6 fw-bold text-center" id="btnCheckout">TIẾN HÀNH THANH TOÁN</a>
                 </div>
@@ -109,9 +96,42 @@
         </div>
     </main>
 
-    <footer>
+    <footer class="pt-5 pb-3">
         <div class="container">
-            <small>&copy; 2026 [TÊN THƯƠNG HIỆU]</small>
+            <div class="row g-4 pb-4 border-bottom">
+                <div class="col-md-4">
+                    <h6 class="fw-bold text-success mb-3">GIỚI THIỆU</h6>
+                    <p class="small text-muted mb-2">[TÊN THƯƠNG HIỆU] chuyên cung cấp thực phẩm chức năng, vitamin và sản phẩm chăm sóc sức khỏe chính hãng.</p>
+                    <ul class="list-unstyled small mb-0">
+                        <li class="mb-1">Điện thoại: <a href="tel:0914636373" class="text-decoration-none text-secondary fw-semibold">0914636373</a></li>
+                        <li class="mb-1">Email: <a href="mailto:110124073@st.tvu.edu.vn" class="text-decoration-none text-secondary fw-semibold">110124073@st.tvu.edu.vn</a></li>
+                        <li class="mb-1"><a href="gioithieu.html" class="text-decoration-none text-secondary">Về chúng tôi</a></li>
+                        <li><a href="lienhe.html" class="text-decoration-none text-secondary">Liên hệ &amp; Hỗ trợ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="fw-bold text-success mb-3">DANH MỤC SẢN PHẨM</h6>
+                    <ul class="list-unstyled small mb-0">
+                        <li class="mb-1"><a href="sanpham.html" class="text-decoration-none text-secondary">Tất cả sản phẩm</a></li>
+                        <li class="mb-1"><a href="sanpham.html?cat=Thực+Phẩm+Chức+Năng" class="text-decoration-none text-secondary">Thực Phẩm Chức Năng</a></li>
+                        <li class="mb-1"><a href="sanpham.html?cat=Chăm+Sóc+Sắc+Đẹp" class="text-decoration-none text-secondary">Chăm Sóc Sắc Đẹp</a></li>
+                        <li class="mb-1"><a href="sanpham.html?cat=Hỗ+Trợ+Xương+Khớp" class="text-decoration-none text-secondary">Hỗ Trợ Xương Khớp</a></li>
+                        <li><a href="sanpham.html?cat=Chăm+Sóc+Bé" class="text-decoration-none text-secondary">Chăm Sóc Bé</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="fw-bold text-success mb-3">CHÍNH SÁCH</h6>
+                    <ul class="list-unstyled small mb-0">
+                        <li class="mb-1"><a href="chinhsach-doitra.html" class="text-decoration-none text-secondary">Chính sách đổi trả</a></li>
+                        <li class="mb-1"><a href="chinhsach-vanchuyen.html" class="text-decoration-none text-secondary">Chính sách vận chuyển</a></li>
+                        <li class="mb-1"><a href="chinhsach-baomat.html" class="text-decoration-none text-secondary">Chính sách bảo mật</a></li>
+                        <li><a href="chinhsach-thanhtoan.html" class="text-decoration-none text-secondary">Chính sách thanh toán</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center pt-3">
+                <small>&copy; 2026 [TÊN THƯƠNG HIỆU]</small>
+            </div>
         </div>
     </footer>
 
@@ -120,67 +140,215 @@
         const tbody = document.querySelector('#cartTable tbody');
         const subTotalEl = document.getElementById('subTotal');
         const finalTotalEl = document.getElementById('finalTotal');
-        const cartCountBtn = document.getElementById('cartCountBtn');
         const btnClearAll = document.getElementById('btnClearAll');
         const cartContainer = document.getElementById('cartContainer');
 
-        let savedQty = parseInt(localStorage.getItem('cart_qty')) || 1;
-        const qtyInput = tbody.querySelector('.qty-input');
-        if(qtyInput) {
-            qtyInput.value = savedQty;
-        }
+        function renderAuthHeader() {
+            let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            let userRole = localStorage.getItem('userRole');
+            let username = localStorage.getItem('username') || 'Khách';
+            let authContainer = document.getElementById('authContainer');
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            let savedQty = cartItems.reduce((sum, item) => sum + (parseInt(item.qty) || 0), 0);
+            localStorage.setItem('cart_qty', savedQty);
 
-        function updateTotals() {
-            let rows = tbody.querySelectorAll('tr');
-            let total = 0;
-            let count = rows.length;
+            let favCount = (JSON.parse(localStorage.getItem('favoriteProducts')) || []).length;
+            const favBtn = `<a href="yeuthich.html" class="btn btn-outline-danger btn-sm me-1" title="Sản phẩm yêu thích">&hearts; (${favCount})</a>`;
 
-            rows.forEach(row => {
-                let price = parseInt(row.getAttribute('data-price'));
-                let qty = parseInt(row.querySelector('.qty-input').value) || 1;
-                
-                localStorage.setItem('cart_qty', qty);
-
-                let itemTotal = price * qty;
-                row.querySelector('.item-total').innerHTML = itemTotal.toLocaleString('vi-VN') + '<u>đ</u>';
-                total += itemTotal;
-            });
-
-            subTotalEl.innerHTML = total.toLocaleString('vi-VN') + '<u>đ</u>';
-            finalTotalEl.innerHTML = total.toLocaleString('vi-VN') + '<u>đ</u>';
-            cartCountBtn.textContent = `Giỏ hàng (${count})`;
-
-            if (count === 0) {
-                localStorage.removeItem('cart_qty');
-                cartContainer.innerHTML = `
-                    <div class="col-12 text-center py-5 bg-white rounded border">
-                        <h5 class="text-muted mb-3">Giỏ hàng của bạn đang trống</h5>
-                        <a href="danhmuc.html" class="btn btn-success fw-bold">Quay lại mua sắm</a>
-                    </div>
+            if (!authContainer) return;
+            if (!isLoggedIn) {
+                authContainer.innerHTML = `${favBtn}<a href="dangnhap.html" class="btn btn-success btn-sm px-3 fw-bold">Đăng nhập</a>`;
+            } else {
+                let adminBtn = (userRole === 'admin') ? `<a href="admin.html" class="btn btn-warning btn-sm fw-bold me-1">Quản Trị</a>` : '';
+                authContainer.innerHTML = `
+                    ${favBtn}
+                    ${adminBtn}
+                    <a href="giohang.html" class="btn btn-outline-success btn-sm me-1">Giỏ hàng (${savedQty})</a>
+                    <span class="fw-bold text-success small me-2">${username}</span>
+                    <button onclick="logout()" class="btn btn-outline-danger btn-sm">Thoát</button>
                 `;
             }
         }
 
-        updateTotals();
+        function renderCart() {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const inventory = JSON.parse(localStorage.getItem('inventoryProducts')) || [];
+
+            if (cartItems.length === 0) {
+                localStorage.setItem('cart_qty', 0);
+                cartContainer.innerHTML = `
+                    <div class="col-12 text-center py-5 bg-white rounded border">
+                        <h5 class="text-muted mb-3">Giỏ hàng của bạn đang trống</h5>
+                        <a href="sanpham.html" class="btn btn-success fw-bold">Quay lại mua sắm</a>
+                    </div>
+                `;
+                renderAuthHeader();
+                return;
+            }
+
+            tbody.innerHTML = '';
+            let total = 0;
+
+            cartItems.forEach((item, index) => {
+                const matchedProd = inventory.find(p => p.id === item.id || p.name === item.name);
+                const maxStock = matchedProd ? (parseInt(matchedProd.stock) || 0) : 999;
+                let qty = parseInt(item.qty) || 1;
+                if (maxStock > 0 && qty > maxStock) {
+                    qty = maxStock;
+                    cartItems[index].qty = qty;
+                }
+                const price = parseInt(item.price) || 0;
+                const itemTotal = price * qty;
+                total += itemTotal;
+
+                tbody.innerHTML += `
+                    <tr data-index="${index}">
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="${item.img}" class="rounded me-2" width="60" alt="${item.name}">
+                                <div>
+                                    <a href="chitiet.html?id=${encodeURIComponent(item.id)}" class="fw-bold text-dark text-decoration-none d-block">${item.name}</a>
+                                    <small class="text-muted">Còn ${maxStock} trong kho</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${price.toLocaleString('vi-VN')}<u>đ</u></td>
+                        <td>
+                            <input type="number" class="form-control form-control-sm text-center qty-input" value="${qty}" min="1" max="${maxStock > 0 ? maxStock : 1}" data-index="${index}" data-max="${maxStock}">
+                        </td>
+                        <td class="fw-bold text-success item-total">${itemTotal.toLocaleString('vi-VN')}<u>đ</u></td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-danger btn-remove" data-index="${index}">Xóa</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            const shippingFee = (total > 0 && total < 500000) ? 30000 : 0;
+            const grandTotal = total + shippingFee;
+            subTotalEl.innerHTML = total.toLocaleString('vi-VN') + '<u>đ</u>';
+            const shipEl = document.getElementById('cartShippingFee');
+            if (shipEl) {
+                shipEl.textContent = shippingFee === 0 ? 'Miễn phí' : shippingFee.toLocaleString('vi-VN') + 'đ';
+                shipEl.className = shippingFee === 0 ? 'text-success fw-bold' : 'text-dark fw-bold';
+            }
+            const barEl = document.getElementById('freeshipBar');
+            const msgEl = document.getElementById('freeshipMsg');
+            if (barEl && msgEl) {
+                const pct = Math.min(100, Math.round((total / 500000) * 100));
+                barEl.style.width = pct + '%';
+                if (total >= 500000) {
+                    msgEl.innerHTML = '<span class="text-success">Bạn đã đủ điều kiện Miễn phí vận chuyển!</span>';
+                } else {
+                    msgEl.innerHTML = `Mua thêm <strong class="text-success">${(500000 - total).toLocaleString('vi-VN')}đ</strong> để được Freeship`;
+                }
+            }
+            finalTotalEl.innerHTML = grandTotal.toLocaleString('vi-VN') + '<u>đ</u>';
+            renderAuthHeader();
+        }
+
+        renderCart();
 
         tbody.addEventListener('click', function(e) {
             if (e.target.classList.contains('btn-remove')) {
-                e.target.closest('tr').remove();
-                updateTotals();
+                const idx = parseInt(e.target.getAttribute('data-index'));
+                let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                cartItems.splice(idx, 1);
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                renderCart();
             }
         });
 
+        function showSiteToast(msg, isError = false) {
+            document.querySelectorAll('.site-toast').forEach(el => el.remove());
+            const t = document.createElement('div');
+            t.className = 'site-toast' + (isError ? ' toast-error' : '');
+            t.textContent = msg;
+            document.body.appendChild(t);
+            setTimeout(() => { t.remove(); }, 2800);
+        }
+
         tbody.addEventListener('input', function(e) {
             if (e.target.classList.contains('qty-input')) {
-                if (e.target.value < 1) e.target.value = 1;
-                updateTotals();
+                const idx = parseInt(e.target.getAttribute('data-index'));
+                const maxStock = parseInt(e.target.getAttribute('data-max')) || 999;
+                let val = parseInt(e.target.value) || 1;
+                if (val < 1) val = 1;
+                if (maxStock > 0 && val > maxStock) {
+                    val = maxStock;
+                    showSiteToast(`Kho chỉ còn ${maxStock} sản phẩm!`, true);
+                }
+                let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                if (cartItems[idx]) {
+                    cartItems[idx].qty = val;
+                    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                }
+                renderCart();
             }
         });
 
         btnClearAll.addEventListener('click', function() {
-            tbody.innerHTML = '';
-            updateTotals();
+            localStorage.removeItem('cartItems');
+            localStorage.setItem('cart_qty', 0);
+            renderCart();
+            showSiteToast('Đã xóa toàn bộ sản phẩm trong giỏ hàng!');
         });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            renderAuthHeader();
+            const searchInput = document.getElementById('headerSearchInput');
+            const suggestionsBox = document.getElementById('searchSuggestions');
+            const searchForm = document.getElementById('headerSearchForm');
+            if (searchInput && suggestionsBox) {
+                const renderSuggestions = () => {
+                    const kw = searchInput.value.trim().toLowerCase();
+                    if (!kw) { suggestionsBox.style.display = 'none'; suggestionsBox.innerHTML = ''; return; }
+                    const list = JSON.parse(localStorage.getItem('inventoryProducts')) || [];
+                    const matches = list.filter(p =>
+                        (p.name || '').toLowerCase().includes(kw) ||
+                        (p.id || '').toLowerCase().includes(kw) ||
+                        (p.category || '').toLowerCase().includes(kw)
+                    ).slice(0, 6);
+                    if (matches.length === 0) {
+                        suggestionsBox.innerHTML = `<div class="p-3 small text-muted text-center">Không tìm thấy sản phẩm phù hợp</div>`;
+                        suggestionsBox.style.display = 'block';
+                        return;
+                    }
+                    suggestionsBox.innerHTML = matches.map(p => `
+                        <a href="chitiet.html?id=${encodeURIComponent(p.id)}" class="search-suggestion-item">
+                            <img src="${p.img}" alt="${p.name}">
+                            <div class="flex-grow-1">
+                                <div class="fw-semibold small">${p.name}</div>
+                                <div class="text-muted" style="font-size: 11px;">${p.category} • ${p.stock > 0 ? 'Còn ' + p.stock : 'Hết hàng'}</div>
+                            </div>
+                            <span class="fw-bold text-success small">${(parseInt(p.price) || 0).toLocaleString('vi-VN')}đ</span>
+                        </a>
+                    `).join('');
+                    suggestionsBox.style.display = 'block';
+                };
+                searchInput.addEventListener('input', renderSuggestions);
+                searchInput.addEventListener('focus', renderSuggestions);
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('.search-wrapper')) suggestionsBox.style.display = 'none';
+                });
+            }
+            if (searchForm) {
+                searchForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const kw = document.getElementById('headerSearchInput').value.trim();
+                    window.location.href = kw ? `sanpham.html?q=${encodeURIComponent(kw)}` : 'sanpham.html';
+                });
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userRole');
+            localStorage.removeItem('username');
+            showSiteToast('Đã đăng xuất tài khoản!');
+            setTimeout(() => { window.location.href = 'index.html'; }, 800);
+        }
     </script>
 </body>
 </html>

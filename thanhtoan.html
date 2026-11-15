@@ -5,38 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thanh Toán Đơn Hàng - [TÊN THƯƠNG HIỆU]</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        .ts-control {
-            padding: 8px 12px !important;
-            border: 1px solid #dee2e6 !important;
-            border-radius: 0.375rem !important;
-            box-shadow: none !important;
-        }
-        .ts-control input {
-            font-size: 14px !important;
-            color: #212529 !important;
-        }
-        .ts-control input::placeholder {
-            color: #6c757d !important;
-            opacity: 1 !important;
-        }
-    </style>
 </head>
 <body>
     <div class="sticky-top shadow-sm">
         <header class="header-main">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-3">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-md-5">
                         <a href="index.html" class="logo-text">[TÊN THƯƠNG HIỆU]</a>
+                        <span class="text-muted ms-2 fs-6">| Thanh toán đơn hàng</span>
                     </div>
-                    <div class="col-md-6 text-center">
-                        <span class="fs-5 fw-bold text-success">THANH TOÁN ĐƠN HÀNG</span>
-                    </div>
-                    <div class="col-md-3 text-end">
-                        <a href="giohang.html" class="btn btn-outline-secondary btn-sm">Quay lại giỏ hàng</a>
+                    <div class="col-md-4 text-end">
+                        <a href="giohang.html" class="btn btn-outline-success btn-sm">&larr; Quay lại giỏ hàng</a>
                     </div>
                 </div>
             </div>
@@ -44,54 +25,68 @@
     </div>
 
     <main class="container my-4">
+        <div id="checkoutAlert" class="alert alert-danger d-none mb-4" role="alert"></div>
+
         <div class="row g-4">
             <div class="col-lg-7">
                 <div class="bg-white p-4 rounded border mb-4">
                     <h5 class="fw-bold mb-3 text-success">1. Thông tin giao hàng</h5>
+
+                    <!-- SỔ ĐỊA CHỈ ĐÃ LƯU -->
+                    <div id="savedAddressWrapper" class="mb-3" style="display: none;">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <label class="form-label small fw-bold m-0 text-dark">Địa chỉ đã lưu</label>
+                            <button type="button" class="btn btn-link btn-sm p-0 text-success text-decoration-none fw-semibold" onclick="clearAddressForm()">+ Nhập địa chỉ mới</button>
+                        </div>
+                        <div id="savedAddressList" class="d-flex flex-column gap-2"></div>
+                        <hr class="my-3">
+                    </div>
+
                     <form id="checkoutForm">
                         <div class="mb-3">
-                            <label class="form-label small fw-bold">Họ và tên người nhận</label>
-                            <input type="text" class="form-control" placeholder="Nhập họ và tên đầy đủ" required>
+                            <label class="form-label small fw-bold">Họ và tên người nhận <span class="text-danger">*</span></label>
+                            <input type="text" id="cusName" class="form-control" placeholder="Nhập họ và tên đầy đủ" required>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label small fw-bold">Số điện thoại</label>
-                                <input type="tel" class="form-control" placeholder="Nhập số điện thoại" required>
+                                <label class="form-label small fw-bold">Số điện thoại <span class="text-danger">*</span></label>
+                                <input type="tel" id="cusPhone" class="form-control" placeholder="Ví dụ: 0914636373" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label small fw-bold">Email nhận hóa đơn</label>
-                                <input type="email" class="form-control" placeholder="Nhập địa chỉ email">
+                                <label class="form-label small fw-bold">Email</label>
+                                <input type="email" id="cusEmail" class="form-control" placeholder="Nhập email (nếu có)">
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <label class="form-label small fw-bold">Tỉnh / Thành phố</label>
-                                <select id="city" placeholder="Gõ tìm Tỉnh/Thành..." autocomplete="off" required>
-                                    <option value="">Chọn Tỉnh/Thành</option>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label small fw-bold">Tỉnh / Thành phố <span class="text-danger">*</span></label>
+                                <select id="provinceSelect" class="form-select" required>
+                                    <option value="">-- Chọn Tỉnh / Thành phố --</option>
                                 </select>
                             </div>
-                            <div class="col-md-4 mb-3">
-                                <label class="form-label small fw-bold">Quận / Huyện</label>
-                                <select id="district" placeholder="Gõ tìm Quận/Huyện..." autocomplete="off" required>
-                                    <option value="">Chọn Quận/Huyện</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label class="form-label small fw-bold">Phường / Xã</label>
-                                <select id="ward" placeholder="Gõ tìm Phường/Xã..." autocomplete="off" required>
-                                    <option value="">Chọn Phường/Xã</option>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label small fw-bold">Phường / Xã <span class="text-danger">*</span></label>
+                                <select id="wardSelect" class="form-select" disabled required>
+                                    <option value="">-- Chọn Phường / Xã --</option>
                                 </select>
                             </div>
                         </div>
+                        <div id="apiErrorText" class="text-danger small mb-2" style="display: none;"></div>
 
                         <div class="mb-3">
-                            <label class="form-label small fw-bold">Địa chỉ chi tiết (Số nhà, tên đường...)</label>
-                            <input type="text" class="form-control" placeholder="Ví dụ: Số 123 đường Nguyễn Thị Minh Khai..." required>
+                            <label class="form-label small fw-bold">Địa chỉ chi tiết (Số nhà, tên đường, ấp/khóm) <span class="text-danger">*</span></label>
+                            <input type="text" id="streetAddress" class="form-control" placeholder="Số nhà, tên đường..." required>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold">Ghi chú đơn hàng (Tùy chọn)</label>
-                            <textarea class="form-control" rows="2" placeholder="Ví dụ: Giao giờ hành chính, gọi trước khi giao..."></textarea>
+
+                        <div class="pt-2 border-top">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="saveAddressCheck" checked onchange="toggleAddressLabel()">
+                                <label class="form-check-label small fw-semibold" for="saveAddressCheck">Lưu thông tin giao hàng này cho lần sau</label>
+                            </div>
+                            <div id="addressLabelWrapper" class="mt-2">
+                                <input type="text" id="addressLabel" class="form-control form-control-sm" placeholder="Tên gợi nhớ (ví dụ: Nhà riêng, Nhà ba mẹ, Công ty...)">
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -99,18 +94,18 @@
                 <div class="bg-white p-4 rounded border">
                     <h5 class="fw-bold mb-3 text-success">2. Phương thức thanh toán</h5>
                     <div class="form-check border p-3 rounded mb-2 bg-light">
-                        <input class="form-check-input" type="radio" name="paymentMethod" id="cod" checked>
-                        <label class="form-check-label fw-bold ms-2" for="cod">
-                            Thanh toán khi giao hàng (COD)
-                        </label>
-                        <div class="small text-muted ms-4 mt-1">Thanh toán bằng tiền mặt khi nhận hàng trực tiếp từ shipper.</div>
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="cod" checked onchange="toggleBankInfo()">
+                        <label class="form-check-label fw-bold ms-2" for="cod">Thanh toán khi nhận hàng (COD)</label>
                     </div>
                     <div class="form-check border p-3 rounded bg-light">
-                        <input class="form-check-input" type="radio" name="paymentMethod" id="bank">
-                        <label class="form-check-label fw-bold ms-2" for="bank">
-                            Chuyển khoản qua ngân hàng (QR Code)
-                        </label>
-                        <div class="small text-muted ms-4 mt-1">Quét mã QR qua ứng dụng ngân hàng để thanh toán trước nhanh chóng.</div>
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="bank" onchange="toggleBankInfo()">
+                        <label class="form-check-label fw-bold ms-2" for="bank">Chuyển khoản ngân hàng</label>
+                    </div>
+                    <div id="bankInfoBox" class="alert alert-light border mt-3 mb-0 small" style="display: none;">
+                        <div class="fw-bold text-success mb-1">Thông tin chuyển khoản:</div>
+                        <div>Ngân hàng: <strong>MB Bank / Sacombank</strong></div>
+                        <div>Nội dung chuyển khoản: <strong>[Họ tên] + [Số điện thoại]</strong></div>
+                        <div class="text-muted mt-1">Đơn hàng sẽ được xử lý sau khi cửa hàng xác nhận đã nhận được tiền.</div>
                     </div>
                 </div>
             </div>
@@ -118,31 +113,18 @@
             <div class="col-lg-5">
                 <div class="bg-white p-4 rounded border">
                     <h5 class="fw-bold border-bottom pb-2 mb-3">Tóm tắt đơn hàng</h5>
-                    
-                    <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
-                        <img src="https://via.placeholder.com/60x60?text=SP01" class="rounded border me-3" alt="SP 01">
-                        <div class="flex-grow-1">
-                            <h6 class="mb-0 fw-bold">Sản phẩm 01</h6>
-                            <small class="text-muted" id="summaryQty">Số lượng: 1</small>
-                        </div>
-                        <span class="fw-bold text-danger" id="summaryPrice">555.000<u>đ</u></span>
-                    </div>
+                    <div id="summaryItemsList"></div>
 
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Tạm tính:</span>
-                        <span class="fw-bold" id="summarySubTotal">555.000<u>đ</u></span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-2">
+                    <div class="d-flex justify-content-between mb-2 small text-muted">
                         <span>Phí vận chuyển:</span>
-                        <span class="text-success fw-bold">Miễn phí (Freeship)</span>
+                        <span id="shippingFeeText" class="fw-semibold text-success">Miễn phí</span>
                     </div>
-                    <hr>
-                    <div class="d-flex justify-content-between mb-4 fs-5">
+                    <div class="d-flex justify-content-between mb-3 fs-5 pt-2 border-top">
                         <span class="fw-bold">Tổng thanh toán:</span>
-                        <span class="fw-bold text-danger" id="summaryFinalTotal">555.000<u>đ</u></span>
+                        <span class="fw-bold text-danger" id="summaryFinalTotal">0<u>đ</u></span>
                     </div>
 
-                    <button type="button" class="btn btn-success w-100 py-3 fs-6 fw-bold shadow-sm" data-bs-toggle="modal" data-bs-target="#successModal">
+                    <button type="button" id="btnSubmitOrder" class="btn btn-success w-100 py-3 fs-6 fw-bold shadow-sm" onclick="submitOrder()">
                         ĐẶT HÀNG NGAY
                     </button>
                 </div>
@@ -150,86 +132,393 @@
         </div>
     </main>
 
-    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+    <!-- MODAL THÔNG BÁO ĐẶT HÀNG THÀNH CÔNG -->
+    <div class="modal fade" id="orderSuccessModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-center p-4">
-                <div class="mb-3">
-                    <span class="text-success display-4">✓</span>
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="modal-body p-4 p-md-5 text-center">
+                    <div class="mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle" style="width: 72px; height: 72px; background-color: #ecfdf5; color: #0f4c3a; font-size: 2rem;">
+                        &#10003;
+                    </div>
+                    <h4 class="fw-bold text-success mb-2">Đặt Hàng Thành Công!</h4>
+                    <p class="text-muted small mb-4">Cảm ơn bạn đã tin tưởng mua sắm tại [TÊN THƯƠNG HIỆU]. Đơn hàng của bạn đang được xử lý.</p>
+
+                    <div class="bg-light rounded-3 p-3 text-start small mb-4 border">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="text-muted">Mã đơn hàng:</span>
+                            <strong id="modalOrderCode" class="text-dark">#DH01</strong>
+                        </div>
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="text-muted">Người nhận:</span>
+                            <strong id="modalCustomerName" class="text-dark"></strong>
+                        </div>
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="text-muted">Số điện thoại:</span>
+                            <strong id="modalCustomerPhone" class="text-dark"></strong>
+                        </div>
+                        <div class="mb-1">
+                            <span class="text-muted">Địa chỉ giao hàng:</span>
+                            <div id="modalOrderAddress" class="fw-semibold text-dark mt-1"></div>
+                        </div>
+                        <div class="d-flex justify-content-between pt-2 mt-2 border-top">
+                            <span class="text-muted">Tổng thanh toán:</span>
+                            <strong id="modalOrderTotal" class="text-danger fs-6"></strong>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <a href="donhang.html" id="modalTrackOrderBtn" class="btn btn-outline-success flex-fill fw-semibold py-2">Theo dõi đơn hàng</a>
+                        <a href="sanpham.html" class="btn btn-success flex-fill fw-semibold py-2">Tiếp tục mua sắm</a>
+                    </div>
                 </div>
-                <h4 class="fw-bold text-success mb-2">ĐẶT HÀNG THÀNH CÔNG!</h4>
-                <p class="text-muted small mb-4">Cảm ơn bạn đã mua hàng. Mã đơn hàng của bạn là <strong>#DH2026</strong>. Chúng tôi sẽ liên hệ xác nhận và giao hàng trong thời gian sớm nhất.</p>
-                <a href="index.html" class="btn btn-success py-2 fw-bold">VỀ TRANG CHỦ</a>
             </div>
         </div>
     </div>
 
-    <footer>
-        <div class="container text-center py-3">
-            <small>&copy; 2026 [TÊN THƯƠNG HIỆU]</small>
+    <footer class="pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4 pb-4 border-bottom">
+                <div class="col-md-4">
+                    <h6 class="fw-bold text-success mb-3">GIỚI THIỆU</h6>
+                    <p class="small text-muted mb-2">[TÊN THƯƠNG HIỆU] chuyên cung cấp thực phẩm chức năng, vitamin và sản phẩm chăm sóc sức khỏe chính hãng.</p>
+                    <ul class="list-unstyled small mb-0">
+                        <li class="mb-1">Điện thoại: <a href="tel:0914636373" class="text-decoration-none text-secondary fw-semibold">0914636373</a></li>
+                        <li class="mb-1">Email: <a href="mailto:110124073@st.tvu.edu.vn" class="text-decoration-none text-secondary fw-semibold">110124073@st.tvu.edu.vn</a></li>
+                        <li class="mb-1"><a href="gioithieu.html" class="text-decoration-none text-secondary">Về chúng tôi</a></li>
+                        <li class="mb-1"><a href="donhang.html" class="text-decoration-none text-secondary">Tra cứu đơn hàng</a></li>
+                        <li><a href="lienhe.html" class="text-decoration-none text-secondary">Liên hệ &amp; Hỗ trợ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="fw-bold text-success mb-3">DANH MỤC SẢN PHẨM</h6>
+                    <ul class="list-unstyled small mb-0">
+                        <li class="mb-1"><a href="sanpham.html" class="text-decoration-none text-secondary">Tất cả sản phẩm</a></li>
+                        <li class="mb-1"><a href="sanpham.html?cat=Thực+Phẩm+Chức+Năng" class="text-decoration-none text-secondary">Thực Phẩm Chức Năng</a></li>
+                        <li class="mb-1"><a href="sanpham.html?cat=Chăm+Sóc+Sắc+Đẹp" class="text-decoration-none text-secondary">Chăm Sóc Sắc Đẹp</a></li>
+                        <li class="mb-1"><a href="sanpham.html?cat=Hỗ+Trợ+Xương+Khớp" class="text-decoration-none text-secondary">Hỗ Trợ Xương Khớp</a></li>
+                        <li><a href="sanpham.html?cat=Chăm+Sóc+Bé" class="text-decoration-none text-secondary">Chăm Sóc Bé</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="fw-bold text-success mb-3">CHÍNH SÁCH</h6>
+                    <ul class="list-unstyled small mb-0">
+                        <li class="mb-1"><a href="chinhsach-doitra.html" class="text-decoration-none text-secondary">Chính sách đổi trả</a></li>
+                        <li class="mb-1"><a href="chinhsach-vanchuyen.html" class="text-decoration-none text-secondary">Chính sách vận chuyển</a></li>
+                        <li class="mb-1"><a href="chinhsach-baomat.html" class="text-decoration-none text-secondary">Chính sách bảo mật</a></li>
+                        <li><a href="chinhsach-thanhtoan.html" class="text-decoration-none text-secondary">Chính sách thanh toán</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center pt-3">
+                <small>&copy; 2026 [TÊN THƯƠNG HIỆU]</small>
+            </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
-    
     <script>
-        let savedQty = parseInt(localStorage.getItem('cart_qty')) || 1;
-        let unitPrice = 555000;
-        let totalPrice = savedQty * unitPrice;
+        const API_V2_BASE = 'https://provinces.open-api.vn/api/v2';
+        const provinceSelect = document.getElementById('provinceSelect');
+        const wardSelect = document.getElementById('wardSelect');
+        const apiErrorText = document.getElementById('apiErrorText');
+        const checkoutAlert = document.getElementById('checkoutAlert');
+        let selectedAddressIdx = -1;
 
-        document.getElementById('summaryQty').textContent = `Số lượng: ${savedQty}`;
-        document.getElementById('summaryPrice').innerHTML = `${totalPrice.toLocaleString('vi-VN')}<u>đ</u>`;
-        document.getElementById('summarySubTotal').innerHTML = `${totalPrice.toLocaleString('vi-VN')}<u>đ</u>`;
-        document.getElementById('summaryFinalTotal').innerHTML = `${totalPrice.toLocaleString('vi-VN')}<u>đ</u>`;
+        function showCheckoutError(msg) {
+            checkoutAlert.textContent = msg;
+            checkoutAlert.classList.remove('d-none');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-        const cityTs = new TomSelect("#city", { create: false, sortField: { field: "text", order: "asc" } });
-        const districtTs = new TomSelect("#district", { create: false, sortField: { field: "text", order: "asc" } });
-        const wardTs = new TomSelect("#ward", { create: false, sortField: { field: "text", order: "asc" } });
+        function hideCheckoutError() {
+            checkoutAlert.classList.add('d-none');
+        }
 
-        districtTs.disable();
-        wardTs.disable();
+        function toggleBankInfo() {
+            document.getElementById('bankInfoBox').style.display = document.getElementById('bank').checked ? 'block' : 'none';
+        }
 
-        fetch('https://provinces.open-api.vn/api/p/')
-            .then(res => res.json())
-            .then(data => {
-                data.forEach(city => {
-                    cityTs.addOption({ value: city.code, text: city.name });
+        function toggleAddressLabel() {
+            document.getElementById('addressLabelWrapper').style.display = document.getElementById('saveAddressCheck').checked ? 'block' : 'none';
+        }
+
+        async function loadProvincesV2() {
+            try {
+                apiErrorText.style.display = 'none';
+                const res = await fetch(`${API_V2_BASE}/p/`);
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const provinces = await res.json();
+
+                provinceSelect.innerHTML = '<option value="">-- Chọn Tỉnh / Thành phố --</option>';
+                provinces.forEach(p => {
+                    const opt = document.createElement('option');
+                    opt.value = p.code;
+                    opt.textContent = p.name;
+                    provinceSelect.appendChild(opt);
                 });
+            } catch (err) {
+                apiErrorText.textContent = 'Không thể tải danh sách Tỉnh/Thành phố, vui lòng kiểm tra kết nối mạng.';
+                apiErrorText.style.display = 'block';
+            }
+        }
+
+        async function loadWardsByProvince(provinceCode, preselectWardCode) {
+            wardSelect.innerHTML = '<option value="">-- Chọn Phường / Xã --</option>';
+            wardSelect.disabled = true;
+            apiErrorText.style.display = 'none';
+            if (!provinceCode) return;
+
+            try {
+                let wards = [];
+                const res = await fetch(`${API_V2_BASE}/p/${provinceCode}?depth=2`);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (Array.isArray(data.wards)) wards = data.wards;
+                }
+                if (wards.length === 0) {
+                    const resW = await fetch(`${API_V2_BASE}/w/?province=${provinceCode}`);
+                    if (resW.ok) wards = await resW.json();
+                }
+
+                wards.forEach(w => {
+                    const opt = document.createElement('option');
+                    opt.value = w.code;
+                    opt.textContent = w.name;
+                    wardSelect.appendChild(opt);
+                });
+                wardSelect.disabled = false;
+                if (preselectWardCode) {
+                    wardSelect.value = preselectWardCode;
+                }
+            } catch (err) {
+                apiErrorText.textContent = 'Không thể tải danh sách Phường/Xã, vui lòng thử lại.';
+                apiErrorText.style.display = 'block';
+            }
+        }
+
+        provinceSelect.addEventListener('change', function () {
+            loadWardsByProvince(this.value, '');
+        });
+
+        function renderSavedAddresses() {
+            const saved = JSON.parse(localStorage.getItem('savedAddresses')) || [];
+            const wrapper = document.getElementById('savedAddressWrapper');
+            const listEl = document.getElementById('savedAddressList');
+
+            if (saved.length === 0) {
+                wrapper.style.display = 'none';
+                return;
+            }
+            wrapper.style.display = 'block';
+            listEl.innerHTML = '';
+
+            saved.forEach((addr, idx) => {
+                const isActive = idx === selectedAddressIdx;
+                listEl.innerHTML += `
+                    <div class="border rounded p-2 px-3 d-flex justify-content-between align-items-center ${isActive ? 'border-success bg-light' : ''}" style="cursor: pointer;" onclick="applySavedAddress(${idx})">
+                        <div class="small">
+                            <span class="badge bg-success me-1">${addr.label || 'Địa chỉ ' + (idx + 1)}</span>
+                            <strong>${addr.name}</strong> • ${addr.phone}
+                            <div class="text-muted mt-1">${addr.street}, ${addr.wardName}, ${addr.provinceName}</div>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline-danger ms-2" onclick="deleteSavedAddress(${idx}, event)" title="Xóa địa chỉ">&times;</button>
+                    </div>
+                `;
             });
+        }
 
-        cityTs.on('change', function(val) {
-            districtTs.clearOptions();
-            wardTs.clearOptions();
-            districtTs.disable();
-            wardTs.disable();
+        async function applySavedAddress(idx) {
+            const saved = JSON.parse(localStorage.getItem('savedAddresses')) || [];
+            const addr = saved[idx];
+            if (!addr) return;
 
-            if (val) {
-                fetch(`https://provinces.open-api.vn/api/p/${val}?depth=2`)
-                    .then(res => res.json())
-                    .then(data => {
-                        districtTs.enable();
-                        data.districts.forEach(district => {
-                            districtTs.addOption({ value: district.code, text: district.name });
-                        });
-                    });
+            selectedAddressIdx = idx;
+            document.getElementById('cusName').value = addr.name || '';
+            document.getElementById('cusPhone').value = addr.phone || '';
+            document.getElementById('cusEmail').value = addr.email || '';
+            document.getElementById('streetAddress').value = addr.street || '';
+            document.getElementById('saveAddressCheck').checked = false;
+            toggleAddressLabel();
+
+            if (addr.provinceCode) {
+                provinceSelect.value = addr.provinceCode;
+                await loadWardsByProvince(addr.provinceCode, addr.wardCode);
+            }
+            renderSavedAddresses();
+        }
+
+        function deleteSavedAddress(idx, event) {
+            if (event) event.stopPropagation();
+            let saved = JSON.parse(localStorage.getItem('savedAddresses')) || [];
+            saved.splice(idx, 1);
+            localStorage.setItem('savedAddresses', JSON.stringify(saved));
+            if (selectedAddressIdx === idx) selectedAddressIdx = -1;
+            renderSavedAddresses();
+        }
+
+        function clearAddressForm() {
+            selectedAddressIdx = -1;
+            document.getElementById('cusName').value = '';
+            document.getElementById('cusPhone').value = '';
+            document.getElementById('cusEmail').value = '';
+            document.getElementById('streetAddress').value = '';
+            provinceSelect.value = '';
+            wardSelect.innerHTML = '<option value="">-- Chọn Phường / Xã --</option>';
+            wardSelect.disabled = true;
+            document.getElementById('saveAddressCheck').checked = true;
+            document.getElementById('addressLabel').value = '';
+            toggleAddressLabel();
+            renderSavedAddresses();
+        }
+
+        document.addEventListener('DOMContentLoaded', async function () {
+            await loadProvincesV2();
+            renderSavedAddresses();
+            const saved = JSON.parse(localStorage.getItem('savedAddresses')) || [];
+            if (saved.length > 0) {
+                await applySavedAddress(0);
             }
         });
 
-        districtTs.on('change', function(val) {
-            wardTs.clearOptions();
-            wardTs.disable();
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const summaryList = document.getElementById('summaryItemsList');
+        const btnSubmitOrder = document.getElementById('btnSubmitOrder');
+        let subTotal = 0;
 
-            if (val) {
-                fetch(`https://provinces.open-api.vn/api/d/${val}?depth=2`)
-                    .then(res => res.json())
-                    .then(data => {
-                        wardTs.enable();
-                        data.wards.forEach(ward => {
-                            wardTs.addOption({ value: ward.code, text: ward.name });
-                        });
-                    });
+        if (cartItems.length === 0) {
+            summaryList.innerHTML = `<p class="text-muted small">Chưa có sản phẩm nào trong giỏ hàng. <a href="sanpham.html" class="fw-semibold text-success">Chọn mua ngay</a></p>`;
+            btnSubmitOrder.disabled = true;
+        } else {
+            cartItems.forEach(item => {
+                const qty = parseInt(item.qty) || 1;
+                const price = parseInt(item.price) || 0;
+                const lineTotal = qty * price;
+                subTotal += lineTotal;
+
+                summaryList.innerHTML += `
+                    <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
+                        <img src="${item.img}" class="rounded border me-3" alt="${item.name}" width="60">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-0 fw-bold">${item.name}</h6>
+                            <small class="text-muted">Số lượng: ${qty}</small>
+                        </div>
+                        <span class="fw-bold text-danger">${lineTotal.toLocaleString('vi-VN')}<u>đ</u></span>
+                    </div>
+                `;
+            });
+        }
+
+        const shippingFee = (subTotal > 0 && subTotal < 500000) ? 30000 : 0;
+        const grandTotal = subTotal + shippingFee;
+        document.getElementById('shippingFeeText').textContent = shippingFee === 0 ? 'Miễn phí' : shippingFee.toLocaleString('vi-VN') + 'đ';
+        document.getElementById('summaryFinalTotal').innerHTML = `${grandTotal.toLocaleString('vi-VN')}<u>đ</u>`;
+
+        function submitOrder() {
+            hideCheckoutError();
+            if (cartItems.length === 0) {
+                showCheckoutError('Giỏ hàng đang trống, vui lòng chọn sản phẩm trước khi đặt hàng!');
+                return;
             }
-        });
+            const customerName = document.getElementById('cusName').value.trim();
+            const phone = document.getElementById('cusPhone').value.trim();
+            const email = document.getElementById('cusEmail').value.trim();
+            const provinceOpt = provinceSelect.options[provinceSelect.selectedIndex];
+            const wardOpt = wardSelect.options[wardSelect.selectedIndex];
+            const street = document.getElementById('streetAddress').value.trim();
+
+            if (!customerName || !phone) {
+                showCheckoutError('Vui lòng nhập đầy đủ họ tên và số điện thoại người nhận!');
+                return;
+            }
+            if (!provinceSelect.value || !wardSelect.value || !street) {
+                showCheckoutError('Vui lòng chọn đầy đủ Tỉnh/Thành phố, Phường/Xã và nhập địa chỉ chi tiết!');
+                return;
+            }
+
+            if (document.getElementById('saveAddressCheck').checked) {
+                let saved = JSON.parse(localStorage.getItem('savedAddresses')) || [];
+                const label = document.getElementById('addressLabel').value.trim() || `Địa chỉ ${saved.length + 1}`;
+                const newAddr = {
+                    label,
+                    name: customerName,
+                    phone,
+                    email,
+                    provinceCode: provinceSelect.value,
+                    provinceName: provinceOpt.textContent,
+                    wardCode: wardSelect.value,
+                    wardName: wardOpt.textContent,
+                    street
+                };
+                const duplicate = saved.some(a => a.phone === phone && a.street === street && a.wardCode === wardSelect.value);
+                if (!duplicate) {
+                    saved.unshift(newAddr);
+                    localStorage.setItem('savedAddresses', JSON.stringify(saved));
+                }
+            }
+
+            const fullAddress = `${street}, ${wardOpt.textContent}, ${provinceOpt.textContent}`;
+
+            let inventory = JSON.parse(localStorage.getItem('inventoryProducts')) || [];
+            for (const item of cartItems) {
+                const prodIdx = inventory.findIndex(p => p.id === item.id || p.name === item.name);
+                if (prodIdx !== -1) {
+                    const currentStock = parseInt(inventory[prodIdx].stock) || 0;
+                    if (currentStock < item.qty) {
+                        showCheckoutError(`Xin lỗi! Sản phẩm "${inventory[prodIdx].name}" chỉ còn ${currentStock} sản phẩm trong kho.`);
+                        return;
+                    }
+                }
+            }
+
+            let totalQty = 0;
+            let productNames = [];
+            cartItems.forEach(item => {
+                const qty = parseInt(item.qty) || 1;
+                totalQty += qty;
+                productNames.push(`${item.name} (x${qty})`);
+                const prodIdx = inventory.findIndex(p => p.id === item.id || p.name === item.name);
+                if (prodIdx !== -1) {
+                    inventory[prodIdx].stock = (parseInt(inventory[prodIdx].stock) || 0) - qty;
+                    inventory[prodIdx].sold = (parseInt(inventory[prodIdx].sold) || 0) + qty;
+                }
+            });
+            localStorage.setItem('inventoryProducts', JSON.stringify(inventory));
+
+            const isCod = document.getElementById('cod').checked;
+            const paymentMethod = isCod ? 'Thanh toán khi nhận hàng (COD)' : 'Chuyển khoản ngân hàng';
+
+            let orderData = {
+                customerName: customerName,
+                phone: phone,
+                address: fullAddress,
+                items: cartItems,
+                productName: productNames.join(', '),
+                qty: totalQty,
+                total: grandTotal,
+                paymentMethod: paymentMethod,
+                paymentStatus: isCod ? 'Chưa thanh toán' : 'Chờ xác nhận CK',
+                orderStatus: 'Chờ xác nhận',
+                status: 'Chờ xác nhận'
+            };
+
+            let orders = JSON.parse(localStorage.getItem('ordersList')) || [];
+            orders.push(orderData);
+            localStorage.setItem('ordersList', JSON.stringify(orders));
+
+            localStorage.removeItem('cartItems');
+            localStorage.setItem('cart_qty', 0);
+
+            const orderCode = '#DH0' + orders.length;
+            document.getElementById('modalOrderCode').textContent = orderCode;
+            document.getElementById('modalTrackOrderBtn').href = 'donhang.html?code=' + encodeURIComponent(orderCode);
+            document.getElementById('modalCustomerName').textContent = customerName;
+            document.getElementById('modalCustomerPhone').textContent = phone;
+            document.getElementById('modalOrderAddress').textContent = fullAddress;
+            document.getElementById('modalOrderTotal').innerHTML = grandTotal.toLocaleString('vi-VN') + '<u>đ</u>';
+
+            const successModal = new bootstrap.Modal(document.getElementById('orderSuccessModal'));
+            successModal.show();
+        }
     </script>
 </body>
 </html>

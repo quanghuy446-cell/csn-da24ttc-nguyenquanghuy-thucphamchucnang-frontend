@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập Tài Khoản - [TÊN THƯƠNG HIỆU]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-wrapper {
+            min-height: calc(100vh - 120px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .auth-box {
+            width: 100%;
+            max-width: 480px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 36px;
+        }
+        /* Dòng báo lỗi trực tiếp không xài alert */
+        .error-message {
+            display: none;
+            background-color: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            margin-bottom: 16px;
+        }
+        .success-message {
+            display: none;
+            background-color: #f0fdf4;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            margin-bottom: 16px;
+        }
+        .captcha-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        #captchaCanvas {
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            background-color: #f8f9fa;
+            cursor: pointer;
+            user-select: none;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <div class="auth-wrapper">
+        <div class="auth-box shadow-sm">
+            
+            <!-- DÒNG BÁO LỖI / THÀNH CÔNG TRỰC TIẾP TRÊN FORM -->
+            <div id="errMsg" class="error-message"></div>
+            <div id="sucMsg" class="success-message"></div>
+
+            <!-- 1. KHUNG ĐĂNG NHẬP -->
+            <div id="loginSection">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold mb-2 text-dark" style="font-size: 1.65rem; letter-spacing: -0.5px;">ĐĂNG NHẬP TÀI KHOẢN</h2>
+                    <p class="text-muted small m-0">Bạn chưa có tài khoản ? <a href="#" onclick="switchForm('register')" class="text-primary text-decoration-underline fw-semibold">Đăng ký tại đây</a></p>
+                </div>
+
+                <form onsubmit="handleLogin(event)">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small text-dark">Email <span class="text-danger">*</span></label>
+                        <input type="email" id="loginEmail" class="form-control" placeholder="Email" required>
+                        <div class="form-text text-muted" style="font-size: 11px;">(Admin test: <b>admin@gmail.com</b> / Mật khẩu: <b>123456</b>)</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small text-dark">Mật khẩu <span class="text-danger">*</span></label>
+                        <input type="password" id="loginPass" class="form-control" placeholder="Mật khẩu" required>
+                    </div>
+                    <div class="mb-4">
+                        <span class="text-muted small">Quên mật khẩu? <a href="#" onclick="switchForm('forgot'); return false;" class="text-primary text-decoration-underline fw-semibold">Nhấn vào đây</a></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100 py-2 fs-6 fw-bold">Đăng nhập</button>
+                </form>
+            </div>
+
+            <!-- 2. KHUNG ĐĂNG KÝ -->
+            <div id="registerSection" style="display: none;">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold mb-2 text-dark" style="font-size: 1.65rem; letter-spacing: -0.5px;">ĐĂNG KÝ TÀI KHOẢN</h2>
+                    <p class="text-muted small m-0">Đã có tài khoản ? <a href="#" onclick="switchForm('login')" class="text-primary text-decoration-underline fw-semibold">Đăng nhập ngay</a></p>
+                </div>
+
+                <form onsubmit="handleRegister(event)">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small text-dark">Họ và tên <span class="text-danger">*</span></label>
+                        <input type="text" id="regName" class="form-control" placeholder="Nhập họ và tên" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small text-dark">Email <span class="text-danger">*</span></label>
+                        <input type="email" id="regEmail" class="form-control" placeholder="Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small text-dark">Mật khẩu <span class="text-danger">*</span></label>
+                        <input type="password" id="regPass" class="form-control" placeholder="Tạo mật khẩu" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold small text-dark">Mã xác nhận (CAPTCHA) <span class="text-danger">*</span></label>
+                        <div class="captcha-box mb-2">
+                            <canvas id="captchaCanvas" width="160" height="46" title="Nhấn để đổi mã khác" onclick="generateCaptcha()"></canvas>
+                            <button type="button" class="btn btn-outline-secondary btn-sm px-3 py-2" onclick="generateCaptcha()" title="Đổi mã xác nhận">&#8635; Đổi mã</button>
+                        </div>
+                        <input type="text" id="regCaptcha" class="form-control" placeholder="Nhập mã xác nhận ở trên" autocomplete="off" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100 py-2 fs-6 fw-bold">Đăng ký</button>
+                </form>
+            </div>
+
+            <!-- 3. KHUNG QUÊN MẬT KHẨU -->
+            <div id="forgotSection" style="display: none;">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold mb-2 text-dark" style="font-size: 1.65rem; letter-spacing: -0.5px;">KHÔI PHỤC MẬT KHẨU</h2>
+                    <p class="text-muted small m-0">Nhớ lại mật khẩu? <a href="#" onclick="switchForm('login'); return false;" class="text-primary text-decoration-underline fw-semibold">Quay lại đăng nhập</a></p>
+                </div>
+
+                <!-- Bước 1: Xác minh Email & CAPTCHA -->
+                <form id="forgotStep1Form" onsubmit="handleForgotStep1(event)">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small text-dark">Email đã đăng ký <span class="text-danger">*</span></label>
+                        <input type="email" id="forgotEmail" class="form-control" placeholder="Nhập email tài khoản của bạn" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold small text-dark">Mã xác nhận (CAPTCHA) <span class="text-danger">*</span></label>
+                        <div class="captcha-box mb-2">
+                            <canvas id="forgotCaptchaCanvas" width="160" height="46" class="border rounded bg-light" style="cursor: pointer;" title="Nhấn để đổi mã khác" onclick="generateForgotCaptcha()"></canvas>
+                            <button type="button" class="btn btn-outline-secondary btn-sm px-3 py-2" onclick="generateForgotCaptcha()" title="Đổi mã xác nhận">&#8635; Đổi mã</button>
+                        </div>
+                        <input type="text" id="forgotCaptcha" class="form-control" placeholder="Nhập mã xác nhận ở trên" autocomplete="off" required>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100 py-2 fs-6 fw-bold">Gửi mã xác nhận OTP</button>
+                </form>
+
+                <!-- Bước 2: Nhập OTP & Mật khẩu mới -->
+                <form id="forgotStep2Form" onsubmit="handleForgotStep2(event)" style="display: none;">
+                    <div id="otpNoticeBox" class="alert alert-info py-2 px-3 small mb-3"></div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small text-dark">Mã OTP (6 chữ số) <span class="text-danger">*</span></label>
+                        <input type="text" id="forgotOtpInput" class="form-control" placeholder="Nhập mã OTP 6 số" maxlength="6" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small text-dark">Mật khẩu mới <span class="text-danger">*</span></label>
+                        <input type="password" id="forgotNewPass" class="form-control" placeholder="Tối thiểu 6 ký tự" minlength="6" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold small text-dark">Xác nhận mật khẩu mới <span class="text-danger">*</span></label>
+                        <input type="password" id="forgotConfirmPass" class="form-control" placeholder="Nhập lại mật khẩu mới" minlength="6" required>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-outline-secondary py-2 fw-semibold" onclick="resetForgotFlow()">Nhập lại Email</button>
+                        <button type="submit" class="btn btn-success flex-grow-1 py-2 fs-6 fw-bold">Đặt lại mật khẩu</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="text-center mt-4 border-top pt-3">
+                <a href="index.html" class="text-decoration-none text-secondary small">&larr; Quay lại trang chủ cửa hàng</a>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function hideMessages() {
+            document.getElementById('errMsg').style.display = 'none';
+            document.getElementById('sucMsg').style.display = 'none';
+        }
+
+        function showError(msg) {
+            hideMessages();
+            let err = document.getElementById('errMsg');
+            err.textContent = msg;
+            err.style.display = 'block';
+        }
+
+        function showSuccess(msg) {
+            hideMessages();
+            let suc = document.getElementById('sucMsg');
+            suc.textContent = msg;
+            suc.style.display = 'block';
+        }
+
+        let currentCaptcha = '';
+
+        function generateCaptcha() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let code = '';
+            for (let i = 0; i < 6; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            currentCaptcha = code;
+
+            const canvas = document.getElementById('captchaCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            // Nền nhiễu nhẹ
+            ctx.fillStyle = '#f8f9fa';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Vẽ các đường nhiễu ngẫu nhiên
+            for (let i = 0; i < 5; i++) {
+                ctx.strokeStyle = `rgba(${Math.floor(Math.random()*150)}, ${Math.floor(Math.random()*150)}, ${Math.floor(Math.random()*150)}, 0.45)`;
+                ctx.lineWidth = 1.2;
+                ctx.beginPath();
+                ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+                ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
+                ctx.stroke();
+            }
+
+            // Vẽ các chấm nhiễu
+            for (let i = 0; i < 35; i++) {
+                ctx.fillStyle = `rgba(${Math.floor(Math.random()*180)}, ${Math.floor(Math.random()*180)}, ${Math.floor(Math.random()*180)}, 0.5)`;
+                ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 2, 2);
+            }
+
+            // Vẽ từng ký tự với góc xoay nhẹ và màu khác nhau
+            const colors = ['#198754', '#0d6efd', '#dc3545', '#6f42c1', '#212529'];
+            ctx.font = 'bold 24px monospace';
+            ctx.textBaseline = 'middle';
+            for (let i = 0; i < code.length; i++) {
+                ctx.save();
+                const x = 16 + i * 22;
+                const y = canvas.height / 2 + (Math.random() * 6 - 3);
+                const angle = (Math.random() - 0.5) * 0.4;
+                ctx.translate(x, y);
+                ctx.rotate(angle);
+                ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+                ctx.fillText(code[i], 0, 0);
+                ctx.restore();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', generateCaptcha);
+
+        let forgotCaptchaCode = '';
+        let generatedOtp = '';
+        let forgotTargetEmail = '';
+
+        function drawCaptchaOnCanvas(canvasId) {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let code = '';
+            for (let i = 0; i < 6; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return code;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#f8f9fa';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < 5; i++) {
+                ctx.strokeStyle = `rgba(${Math.floor(Math.random()*150)}, ${Math.floor(Math.random()*150)}, ${Math.floor(Math.random()*150)}, 0.45)`;
+                ctx.lineWidth = 1.2;
+                ctx.beginPath();
+                ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+                ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
+                ctx.stroke();
+            }
+            for (let i = 0; i < 35; i++) {
+                ctx.fillStyle = `rgba(${Math.floor(Math.random()*180)}, ${Math.floor(Math.random()*180)}, ${Math.floor(Math.random()*180)}, 0.5)`;
+                ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 2, 2);
+            }
+            const colors = ['#198754', '#0d6efd', '#dc3545', '#6f42c1', '#212529'];
+            ctx.font = 'bold 24px monospace';
+            ctx.textBaseline = 'middle';
+            for (let i = 0; i < code.length; i++) {
+                ctx.save();
+                ctx.translate(16 + i * 22, canvas.height / 2 + (Math.random() * 6 - 3));
+                ctx.rotate((Math.random() - 0.5) * 0.4);
+                ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+                ctx.fillText(code[i], 0, 0);
+                ctx.restore();
+            }
+            return code;
+        }
+
+        function generateForgotCaptcha() {
+            forgotCaptchaCode = drawCaptchaOnCanvas('forgotCaptchaCanvas');
+        }
+
+        function resetForgotFlow() {
+            hideMessages();
+            generatedOtp = '';
+            forgotTargetEmail = '';
+            document.getElementById('forgotStep1Form').style.display = 'block';
+            document.getElementById('forgotStep2Form').style.display = 'none';
+            document.getElementById('forgotCaptcha').value = '';
+            document.getElementById('forgotOtpInput').value = '';
+            document.getElementById('forgotNewPass').value = '';
+            document.getElementById('forgotConfirmPass').value = '';
+            generateForgotCaptcha();
+        }
+
+        function switchForm(type) {
+            hideMessages();
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('registerSection').style.display = 'none';
+            document.getElementById('forgotSection').style.display = 'none';
+            if (type === 'register') {
+                document.getElementById('registerSection').style.display = 'block';
+                document.getElementById('regCaptcha').value = '';
+                generateCaptcha();
+            } else if (type === 'forgot') {
+                document.getElementById('forgotSection').style.display = 'block';
+                resetForgotFlow();
+            } else {
+                document.getElementById('loginSection').style.display = 'block';
+            }
+        }
+
+        function handleForgotStep1(e) {
+            e.preventDefault();
+            hideMessages();
+            const email = document.getElementById('forgotEmail').value.trim();
+            const captchaInput = document.getElementById('forgotCaptcha').value.trim().toUpperCase();
+
+            if (captchaInput !== forgotCaptchaCode) {
+                showError('Mã xác nhận (CAPTCHA) không đúng, vui lòng thử lại!');
+                document.getElementById('forgotCaptcha').value = '';
+                generateForgotCaptcha();
+                return;
+            }
+
+            if (email === 'admin@gmail.com') {
+                showError('Tài khoản quản trị mặc định không hỗ trợ đặt lại tại đây.');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('usersList')) || [];
+            const userExists = users.some(u => u.email.toLowerCase() === email.toLowerCase());
+            if (!userExists) {
+                showError('Email này chưa được đăng ký trên hệ thống!');
+                document.getElementById('forgotCaptcha').value = '';
+                generateForgotCaptcha();
+                return;
+            }
+
+            forgotTargetEmail = email;
+            generatedOtp = String(Math.floor(100000 + Math.random() * 900000));
+            document.getElementById('otpNoticeBox').innerHTML = `Mã OTP xác thực (mô phỏng gửi về <b>${email}</b>): <strong class="text-danger fs-6">${generatedOtp}</strong>`;
+            document.getElementById('forgotStep1Form').style.display = 'none';
+            document.getElementById('forgotStep2Form').style.display = 'block';
+        }
+
+        function handleForgotStep2(e) {
+            e.preventDefault();
+            hideMessages();
+            const otp = document.getElementById('forgotOtpInput').value.trim();
+            const newPass = document.getElementById('forgotNewPass').value.trim();
+            const confirmPass = document.getElementById('forgotConfirmPass').value.trim();
+
+            if (otp !== generatedOtp) {
+                showError('Mã OTP không chính xác, vui lòng kiểm tra lại!');
+                return;
+            }
+            if (newPass.length < 6) {
+                showError('Mật khẩu mới phải có ít nhất 6 ký tự!');
+                return;
+            }
+            if (newPass !== confirmPass) {
+                showError('Mật khẩu xác nhận không khớp!');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('usersList')) || [];
+            const idx = users.findIndex(u => u.email.toLowerCase() === forgotTargetEmail.toLowerCase());
+            if (idx === -1) {
+                showError('Không tìm thấy tài khoản để cập nhật!');
+                return;
+            }
+            users[idx].password = newPass;
+            localStorage.setItem('usersList', JSON.stringify(users));
+
+            document.getElementById('loginEmail').value = users[idx].email;
+            switchForm('login');
+            showSuccess('Đặt lại mật khẩu thành công! Bạn có thể đăng nhập bằng mật khẩu mới.');
+        }
+
+        // XỬ LÝ ĐĂNG KÝ (Bắt buộc nhập dữ liệu chuẩn + kiểm tra CAPTCHA)
+        function handleRegister(e) {
+            e.preventDefault();
+            hideMessages();
+            let name = document.getElementById('regName').value.trim();
+            let email = document.getElementById('regEmail').value.trim();
+            let pass = document.getElementById('regPass').value.trim();
+            let captchaInput = document.getElementById('regCaptcha').value.trim().toUpperCase();
+
+            if (captchaInput !== currentCaptcha) {
+                showError('Mã xác nhận (CAPTCHA) không đúng, vui lòng thử lại!');
+                document.getElementById('regCaptcha').value = '';
+                generateCaptcha();
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('usersList')) || [];
+            let exist = users.some(u => u.email === email);
+
+            if (exist || email === 'admin@gmail.com') {
+                showError('Email này đã được đăng ký trên hệ thống, vui lòng dùng email khác!');
+                document.getElementById('regCaptcha').value = '';
+                generateCaptcha();
+                return;
+            }
+
+            users.push({ username: name, email: email, password: pass, role: 'customer' });
+            localStorage.setItem('usersList', JSON.stringify(users));
+
+            document.getElementById('loginEmail').value = email;
+            switchForm('login');
+            showSuccess('Đăng ký tài khoản thành công! Bạn có thể đăng nhập ngay.');
+        }
+
+        // XỬ LÝ ĐĂNG NHẬP (Chỉ cho vào nếu đúng tài khoản đã Đăng ký hoặc Admin)
+        function handleLogin(e) {
+            e.preventDefault();
+            hideMessages();
+            let email = document.getElementById('loginEmail').value.trim();
+            let pass = document.getElementById('loginPass').value.trim();
+
+            // 1. Kiểm tra tài khoản Admin cứng
+            if (email === 'admin@gmail.com' && pass === '123456') {
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userRole', 'admin');
+                localStorage.setItem('username', 'Quản Trị Viên');
+                window.location.href = 'admin.html';
+                return;
+            }
+
+            // 2. Kiểm tra trong danh sách người dùng đã đăng ký
+            let users = JSON.parse(localStorage.getItem('usersList')) || [];
+            let validUser = users.find(u => u.email === email && u.password === pass);
+
+            if (validUser) {
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userRole', 'customer');
+                localStorage.setItem('username', validUser.username);
+                window.location.href = 'index.html';
+            } else {
+                showError('Tài khoản hoặc mật khẩu không chính xác! Vui lòng đăng ký nếu chưa có tài khoản.');
+            }
+        }
+    </script>
+</body>
+</html>
