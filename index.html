@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[TÊN THƯƠNG HIỆU] - Thực Phẩm Chức Năng</title>
+    <title>An Tâm Mart - Thực Phẩm Chức Năng Chính Hãng</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="src/giaodien.css">
 </head>
 <body>
     <div class="sticky-top shadow-sm">
@@ -13,7 +13,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-3">
-                        <a href="index.html" class="logo-text">[TÊN THƯƠNG HIỆU]</a>
+                        <a href="index.html" class="logo-text">An Tâm Mart</a>
                     </div>
                     <div class="col-lg-4 col-md-4 search-wrapper">
                         <form class="d-flex" id="headerSearchForm">
@@ -22,9 +22,7 @@
                         </form>
                         <div class="search-suggestions" id="searchSuggestions"></div>
                     </div>
-                    <div class="col-lg-5 col-md-5 d-flex align-items-center justify-content-end gap-2 flex-nowrap" id="authContainer">
-                        <!-- Script tự động render -->
-                    </div>
+                    <div class="col-lg-5 col-md-5 d-flex align-items-center justify-content-end gap-2 flex-nowrap" id="authContainer"></div>
                 </div>
             </div>
         </header>
@@ -35,10 +33,10 @@
                     <li class="nav-item"><a class="nav-link active" href="index.html">Trang Chủ</a></li>
                     <li class="nav-item"><a class="nav-link" href="gioithieu.html">Giới Thiệu</a></li>
                     <li class="nav-item"><a class="nav-link" href="sanpham.html">Sản Phẩm</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=Thực+Phẩm+Chức+Năng">Thực Phẩm Chức Năng</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=Chăm+Sóc+Sắc+Đẹp">Chăm Sóc Sắc Đẹp</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=Hỗ+Trợ+Xương+Khớp">Hỗ Trợ Xương Khớp</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=Chăm+Sóc+Bé">Chăm Sóc Bé</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=T%C4%83ng%20%C4%91%E1%BB%81%20kh%C3%A1ng%20v%C3%A0%20Mi%E1%BB%85n%20d%E1%BB%8Bch">Tăng đề kháng</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=%C4%90%E1%BA%B9p%20da%2C%20T%C3%B3c%20v%C3%A0%20M%C3%B3ng">Đẹp da, Tóc, Móng</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=X%C6%B0%C6%A1ng%20kh%E1%BB%9Bp%20v%C3%A0%20C%C6%A1%20b%E1%BA%AFp">Xương khớp</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=M%E1%BA%B9%20b%E1%BA%A7u%20v%C3%A0%20Em%20b%C3%A9">Mẹ bầu và Em bé</a></li>
                     <li class="nav-item"><a class="nav-link" href="lienhe.html">Liên Hệ</a></li>
                 </ul>
             </div>
@@ -46,356 +44,609 @@
     </div>
 
     <main class="container my-4">
-        <!-- SLIDESHOW 3 ẢNH CHUYỂN ĐỘNG MỖI 4 GIÂY -->
-        <div id="mainBannerCarousel" class="carousel slide mb-5 overflow-hidden shadow-sm" data-bs-ride="carousel" data-bs-interval="4000" style="border-radius: 18px;">
+        <!-- SLIDESHOW 3 ẢNH BANNER THỰC PHẨM CHỨC NĂNG CHÍNH HÃNG -->
+        <div id="mainBannerCarousel" class="carousel slide mb-4 overflow-hidden shadow-sm" data-bs-ride="carousel" data-bs-interval="4500" style="border-radius: 18px;">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#mainBannerCarousel" data-bs-slide-to="0" class="active"></button>
                 <button type="button" data-bs-target="#mainBannerCarousel" data-bs-slide-to="1"></button>
                 <button type="button" data-bs-target="#mainBannerCarousel" data-bs-slide-to="2"></button>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="4000">
-                    <img src="https://i.etsystatic.com/33109327/r/il/a53262/3869921903/il_fullxfull.3869921903_4qg4.jpg" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Vitamin & Khoáng Chất Chính Hãng">
-                    <div class="carousel-caption d-none d-md-block carousel-caption-custom">
-                        <span class="hero-badge mb-2">Chính Hãng 100%</span>
-                        <h3 class="fw-bold text-white mb-1">VITAMIN &amp; KHOÁNG CHẤT THIẾT YẾU</h3>
-                        <p class="text-white mb-3">Miễn phí vận chuyển toàn quốc cho đơn hàng từ 500.000đ</p>
-                        <a href="sanpham.html?cat=Thực+Phẩm+Chức+Năng" class="btn btn-warning btn-sm px-4 fw-bold rounded-pill text-dark">Khám phá ngay</a>
+                <div class="carousel-item active" data-bs-interval="4500">
+                    <div class="hero-photo-slide hero-slide-1">
+                        <img src="images/banner-1.jpg" class="hero-photo-bg" alt="Vitamin C tăng đề kháng và Bổ não chính hãng" onload="this.parentElement.classList.add('has-custom-photo')" onerror="this.style.display='none'">
+                        <div class="hero-photo-scrim"></div>
+                        <div class="row align-items-center w-100 g-3 position-relative" style="z-index: 3;">
+                            <div class="col-lg-7">
+                                <div class="hero-photo-content">
+                                    <span class="hero-badge mb-2">Chính Hãng 100% · Đủ 11 Danh Mục</span>
+                                    <h2 class="fw-bold text-white mb-2">TĂNG ĐỀ KHÁNG VÀ BỔ NÃO MỖI NGÀY</h2>
+                                    <p class="text-white mb-3 opacity-90">Vitamin C, Kẽm, Ginkgo Biloba từ Blackmores, DHC, Ecogreen. Miễn phí giao hàng toàn quốc đơn từ 500.000đ.</p>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <a href="sanpham.html?cat=T%C4%83ng%20%C4%91%E1%BB%81%20kh%C3%A1ng%20v%C3%A0%20Mi%E1%BB%85n%20d%E1%BB%8Bch" class="btn btn-warning px-4 fw-bold rounded-pill text-dark">Xem nhóm Đề kháng</a>
+                                        <a href="sanpham.html?cat=B%E1%BB%95%20n%C3%A3o%20v%C3%A0%20T%C4%83ng%20c%C6%B0%E1%BB%9Dng%20tr%C3%AD%20nh%E1%BB%9B" class="btn btn-outline-light px-4 fw-semibold rounded-pill">Xem nhóm Bổ não</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 hero-fallback-visual">
+                                <div class="hero-slide-showcase" id="heroShowcase0"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="https://ybclondon.com/cdn/shop/files/IMG-7933.png?v=1780937044&width=1946" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Collagen & Chăm Sóc Sắc Đẹp">
-                    <div class="carousel-caption d-none d-md-block carousel-caption-custom">
-                        <span class="hero-badge mb-2">Chăm Sóc Sắc Đẹp</span>
-                        <h3 class="fw-bold text-white mb-1">COLLAGEN &amp; DƯỠNG DA TỪ BÊN TRONG</h3>
-                        <p class="text-white mb-3">Sản phẩm kiểm định nghiêm ngặt, an toàn cho sức khỏe lâu dài</p>
-                        <a href="sanpham.html?cat=Chăm+Sóc+Sắc+Đẹp" class="btn btn-warning btn-sm px-4 fw-bold rounded-pill text-dark">Xem sản phẩm</a>
+                <div class="carousel-item" data-bs-interval="4500">
+                    <div class="hero-photo-slide hero-slide-2">
+                        <img src="images/banner-2.jpg" class="hero-photo-bg" alt="Collagen Peptide và Tinh dầu hoa anh thảo dưỡng da" onload="this.parentElement.classList.add('has-custom-photo')" onerror="this.style.display='none'">
+                        <div class="hero-photo-scrim"></div>
+                        <div class="row align-items-center w-100 g-3 position-relative" style="z-index: 3;">
+                            <div class="col-lg-7">
+                                <div class="hero-photo-content">
+                                    <span class="hero-badge mb-2">Đẹp Da, Tóc và Móng · Nhập Khẩu</span>
+                                    <h2 class="fw-bold text-white mb-2">COLLAGEN PEPTIDE VÀ DƯỠNG DA TỪ BÊN TRONG</h2>
+                                    <p class="text-white mb-3 opacity-90">Tinh dầu hoa anh thảo Blackmores, Collagen Elasten Đức, Alfe Taisho Nhật Bản minh bạch thành phần nhà sản xuất.</p>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <a href="sanpham.html?cat=%C4%90%E1%BA%B9p%20da%2C%20T%C3%B3c%20v%C3%A0%20M%C3%B3ng" class="btn btn-warning px-4 fw-bold rounded-pill text-dark">Khám phá Làm đẹp</a>
+                                        <a href="sanpham.html?cat=B%E1%BB%95%20m%E1%BA%AFt%20v%C3%A0%20S%E1%BB%A9c%20kh%E1%BB%8Fe%20th%E1%BB%8B%20l%E1%BB%B1c" class="btn btn-outline-light px-4 fw-semibold rounded-pill">Xem nhóm Bổ mắt</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 hero-fallback-visual">
+                                <div class="hero-slide-showcase" id="heroShowcase1"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="https://www.planetorganic.com/cdn/shop/files/Easy_Swallow_Mini_Lifestyle_NEW.jpg?v=1766496913" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Omega 3 & Hỗ Trợ Xương Khớp">
-                    <div class="carousel-caption d-none d-md-block carousel-caption-custom">
-                        <span class="hero-badge mb-2">Sức Khỏe Gia Đình</span>
-                        <h3 class="fw-bold text-white mb-1">OMEGA 3 &amp; HỖ TRỢ XƯƠNG KHỚP</h3>
-                        <p class="text-white mb-3">Hỗ trợ tim mạch, trí não và vận động dẻo dai mỗi ngày</p>
-                        <a href="#wellnessFinder" class="btn btn-warning btn-sm px-4 fw-bold rounded-pill text-dark">Gợi ý dinh dưỡng &darr;</a>
+                <div class="carousel-item" data-bs-interval="4500">
+                    <div class="hero-photo-slide hero-slide-3">
+                        <img src="images/banner-3.jpg" class="hero-photo-bg" alt="Omega-3, Xương khớp và Sức khỏe gia đình" onload="this.parentElement.classList.add('has-custom-photo')" onerror="this.style.display='none'">
+                        <div class="hero-photo-scrim"></div>
+                        <div class="row align-items-center w-100 g-3 position-relative" style="z-index: 3;">
+                            <div class="col-lg-7">
+                                <div class="hero-photo-content">
+                                    <span class="hero-badge mb-2">Chăm Sóc Gia Đình Toàn Diện</span>
+                                    <h2 class="fw-bold text-white mb-2">OMEGA-3, XƯƠNG KHỚP VÀ MẸ BẦU, EM BÉ</h2>
+                                    <p class="text-white mb-3 opacity-90">Dầu cá Omega-3, Glucosamine, Elevit, LineaBon K2+D3 chính hãng cùng công cụ dự toán liệu trình thông minh.</p>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <a href="sanpham.html?cat=Tim%20m%E1%BA%A1ch%20v%C3%A0%20Tu%E1%BA%A7n%20ho%C3%A0n" class="btn btn-warning px-4 fw-bold rounded-pill text-dark">Xem Tim mạch</a>
+                                        <a href="#coursePlannerSection" class="btn btn-outline-light px-4 fw-semibold rounded-pill">Dự toán liệu trình &darr;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 hero-fallback-visual">
+                                <div class="hero-slide-showcase" id="heroShowcase2"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#mainBannerCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon bg-dark rounded-circle p-2"></span>
+            <button class="carousel-control-prev" type="button" data-bs-target="#mainBannerCarousel" data-bs-slide="prev" style="width: 44px;">
+                <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded-circle p-2"></span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#mainBannerCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon bg-dark rounded-circle p-2"></span>
+            <button class="carousel-control-next" type="button" data-bs-target="#mainBannerCarousel" data-bs-slide="next" style="width: 44px;">
+                <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded-circle p-2"></span>
             </button>
         </div>
 
-        <!-- SẢN PHẨM NỔI BẬT -->
-        <div class="mb-5">
-            <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">
+        <!-- TRỌNG TÂM TRANG CHỦ: SẢN PHẨM ĐƯỢC TÌM MUA NHIỀU NHẤT + TAB LỌC NHANH -->
+        <section class="mb-5">
+            <div class="d-flex flex-wrap justify-content-between align-items-center border-bottom pb-2 mb-3 gap-2">
+                <h4 class="text-success fw-bold m-0">SẢN PHẨM ĐƯỢC TÌM MUA NHIỀU NHẤT</h4>
+                <a href="sanpham.html" id="featuredViewAllLink" class="text-success text-decoration-none small fw-semibold">Xem tất cả 82 sản phẩm &rarr;</a>
+            </div>
+            <div class="home-prod-tabs mb-3" id="homeProductTabs"></div>
+            <div class="row g-3" id="featuredProductsGrid"></div>
+        </section>
+
+        <!-- SẢN PHẨM NỔI BẬT (TỰ ĐỘNG CHẤM ĐIỂM ẨN THEO CLICK, LƯỢT MUA, ĐÁNH GIÁ) -->
+        <section class="mb-5">
+            <div class="d-flex flex-wrap justify-content-between align-items-center border-bottom pb-2 mb-3 gap-2">
                 <h4 class="text-success fw-bold m-0">SẢN PHẨM NỔI BẬT</h4>
                 <a href="sanpham.html" class="text-success text-decoration-none small fw-semibold">Xem tất cả &rarr;</a>
             </div>
-            <div class="row g-3" id="featuredProductsGrid">
-                <!-- Script tự động render từ kho hàng -->
-            </div>
-        </div>
+            <div class="row g-3" id="spotlightProductsGrid"></div>
+        </section>
 
-        <!-- TRỢ LÝ GỢI Ý DINH DƯỠNG -->
-        <section id="wellnessFinder" class="wellness-finder-box mb-4">
+        <!-- DEAL TỐT HÔM NAY VÀ MÃ GIẢM GIÁ -->
+        <section class="mb-5">
+            <div class="d-flex flex-wrap justify-content-between align-items-center border-bottom pb-2 mb-3 gap-2">
+                <div>
+                    <h4 class="text-success fw-bold m-0">ƯU ĐÃI GIÁ TỐT HÔM NAY</h4>
+                    <p class="text-muted small m-0">Lưu mã giảm giá bên dưới để tự động áp dụng trong giỏ hàng</p>
+                </div>
+                <a href="giohang.html" class="text-success text-decoration-none small fw-semibold">Dùng mã ở giỏ hàng &rarr;</a>
+            </div>
+            <div class="row g-2 mb-3" id="homeVouchersGrid"></div>
+            <div class="row g-3" id="hotDealsProductsGrid"></div>
+        </section>
+
+        <!-- SẢN PHẨM ĐÃ XEM GẦN ĐÂY -->
+        <section id="recentlyViewedSection" class="mb-5" style="display: none;">
+            <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">
+                <h4 class="text-success fw-bold m-0">SẢN PHẨM BẠN ĐÃ XEM GẦN ĐÂY</h4>
+                <a href="sanpham.html" class="text-success text-decoration-none small fw-semibold">Xem thêm &rarr;</a>
+            </div>
+            <div class="row g-3" id="recentlyViewedGrid"></div>
+        </section>
+
+        <!-- DỰ TOÁN LIỆU TRÌNH, CHI PHÍ MỖI NGÀY VÀ NGÀY HẾT HỘP -->
+        <section id="coursePlannerSection" class="wellness-finder-box mb-4">
             <div class="row g-4 align-items-center">
                 <div class="col-lg-5">
-                    <h3 class="fw-bold text-success mb-2">Trợ Lý Gợi Ý Dinh Dưỡng</h3>
-                    <p class="text-muted small mb-3">Chọn mục tiêu sức khỏe hoặc nhập chiều cao/cân nặng để tính BMI và nhận gợi ý sản phẩm phù hợp nhất.</p>
+                    <h3 class="fw-bold text-success mb-2">Dự Toán Liệu Trình Và Nhắc Ngày Hết Hộp</h3>
+                    <p class="text-muted small mb-3">
+                        Chọn sản phẩm, số người dùng và thời gian liệu trình để tính số hộp cần mua, chi phí mỗi ngày và ngày dự kiến hết hộp.
+                    </p>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">Sản phẩm</label>
+                        <input type="hidden" id="plannerProduct">
+                        <div class="planner-picker-wrap" id="plannerPickerWrap">
+                            <button type="button" class="planner-picker-trigger" id="plannerPickerBtn" onclick="togglePlannerPicker()">
+                                <img src="" alt="" id="plannerPickerThumb" class="planner-picker-thumb">
+                                <div class="flex-grow-1 min-w-0">
+                                    <div class="small fw-semibold text-dark text-truncate" id="plannerPickerName">Đang tải...</div>
+                                    <div class="text-danger fw-bold" style="font-size: 12px;" id="plannerPickerPrice">0đ</div>
+                                </div>
+                                <span class="text-muted small">&#9662;</span>
+                            </button>
+                            <div class="planner-picker-dropdown" id="plannerPickerDropdown">
+                                <div class="planner-picker-search-box">
+                                    <input type="text" id="plannerPickerSearch" class="form-control form-control-sm" placeholder="Gõ tên sản phẩm hoặc thương hiệu..." oninput="filterPlannerProducts(this.value)" autocomplete="off">
+                                </div>
+                                <div class="planner-picker-list" id="plannerPickerList"></div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row g-2 mb-3">
                         <div class="col-4">
-                            <input type="number" id="bmiHeight" class="form-control form-control-sm" placeholder="Cao (cm)" min="80" max="230">
+                            <label for="plannerPeople" class="form-label small fw-bold">Số người</label>
+                            <select id="plannerPeople" class="form-select form-select-sm" onchange="updateCoursePlanner()">
+                                <option value="1">1 người</option>
+                                <option value="2">2 người</option>
+                                <option value="3">3 người</option>
+                                <option value="4">4 người</option>
+                            </select>
                         </div>
                         <div class="col-4">
-                            <input type="number" id="bmiWeight" class="form-control form-control-sm" placeholder="Nặng (kg)" min="10" max="200">
+                            <label for="plannerDailyDose" class="form-label small fw-bold">Liều / ngày</label>
+                            <select id="plannerDailyDose" class="form-select form-select-sm" onchange="updateCoursePlanner()">
+                                <option value="1">1 viên / ngày</option>
+                                <option value="2" selected>2 viên / ngày</option>
+                                <option value="3">3 viên / ngày</option>
+                            </select>
                         </div>
                         <div class="col-4">
-                            <button type="button" class="btn btn-outline-success btn-sm w-100 fw-semibold" onclick="calculateBMI()">Tính BMI</button>
+                            <label for="plannerDays" class="form-label small fw-bold">Thời gian</label>
+                            <select id="plannerDays" class="form-select form-select-sm" onchange="updateCoursePlanner()">
+                                <option value="30">30 ngày</option>
+                                <option value="60">60 ngày</option>
+                                <option value="90" selected>90 ngày</option>
+                                <option value="180">180 ngày</option>
+                            </select>
                         </div>
-                        <div class="col-12" id="bmiResultText" style="display: none;"></div>
                     </div>
-                    <div class="row g-2" id="goalButtons">
-                        <div class="col-6"><button type="button" class="goal-pill active" onclick="selectWellnessGoal('Thực Phẩm Chức Năng', this)">Tăng đề kháng &amp; Vitamin</button></div>
-                        <div class="col-6"><button type="button" class="goal-pill" onclick="selectWellnessGoal('Chăm Sóc Sắc Đẹp', this)">Làm đẹp da &amp; Collagen</button></div>
-                        <div class="col-6"><button type="button" class="goal-pill" onclick="selectWellnessGoal('Hỗ Trợ Xương Khớp', this)">Xương khớp dẻo dai</button></div>
-                        <div class="col-6"><button type="button" class="goal-pill" onclick="selectWellnessGoal('Chăm Sóc Bé', this)">Dinh dưỡng cho bé</button></div>
+                    <div class="small text-muted" id="plannerPackagingNote">Quy cách tự động nhận diện theo từng sản phẩm.</div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="p-4 rounded-4 border bg-light">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="fw-bold text-dark m-0">Bảng dự toán liệu trình cá nhân</h6>
+                            <span class="badge bg-success" id="plannerBoxBadge">0 hộp</span>
+                        </div>
+
+                        <div class="row g-2 mb-3">
+                            <div class="col-sm-6">
+                                <div class="bg-white rounded-3 border p-3 h-100">
+                                    <div class="small text-muted">Chi phí trung bình mỗi ngày</div>
+                                    <div class="fs-5 fw-bold text-success" id="plannerCostPerDay">0đ / ngày</div>
+                                    <div class="text-muted" style="font-size: 11px;" id="plannerPerBoxDays">Mỗi hộp dùng được 0 ngày</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="bg-white rounded-3 border p-3 h-100">
+                                    <div class="small text-muted">Ngày dự kiến hết hộp đầu tiên</div>
+                                    <div class="fs-5 fw-bold text-dark" id="plannerFirstBoxEnd">--/--/----</div>
+                                    <div class="text-muted" style="font-size: 11px;" id="plannerCourseEnd">Hoàn thành liệu trình: --/--/----</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-3 border p-3 mb-3">
+                            <div class="d-flex justify-content-between small mb-1">
+                                <span class="text-muted">Tổng giá trị liệu trình:</span>
+                                <strong id="plannerRawTotal" class="text-dark">0đ</strong>
+                            </div>
+                            <div class="d-flex justify-content-between small mb-1" id="plannerVoucherRow">
+                                <span class="text-success fw-semibold" id="plannerVoucherLabel">Mã giảm giá tối ưu:</span>
+                                <strong id="plannerVoucherDiscount" class="text-success">-0đ</strong>
+                            </div>
+                            <div class="d-flex justify-content-between pt-2 mt-2 border-top">
+                                <span class="fw-bold">Chi phí dự kiến sau ưu đãi:</span>
+                                <strong class="fs-5 text-danger" id="plannerFinalTotal">0đ</strong>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-wrap gap-2">
+                            <button type="button" class="btn btn-success fw-bold flex-fill py-2" onclick="addPlannedCourseToCart()">
+                                Thêm trọn liệu trình vào giỏ hàng
+                            </button>
+                            <a href="giohang.html" class="btn btn-outline-success fw-semibold py-2">Xem giỏ hàng</a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-7">
-                    <div class="p-3 rounded-4 border bg-light">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-bold small text-success" id="wellnessAdviceTitle">Gợi ý cho mục tiêu: Tăng đề kháng &amp; Vitamin</span>
-                            <a href="sanpham.html" id="wellnessViewAllLink" class="small text-decoration-none fw-semibold text-success">Xem thêm &rarr;</a>
-                        </div>
-                        <p class="small text-muted mb-3" id="wellnessAdviceDesc">Nên bổ sung vào buổi sáng sau ăn 30 phút và uống đủ 1.5–2 lít nước mỗi ngày để hấp thu tối ưu.</p>
-                        <div class="row g-2" id="wellnessResultGrid"></div>
+            </div>
+        </section>
+
+        <!-- CAM KẾT DỊCH VỤ GỌN GÀNG CUỐI TRANG -->
+        <section class="row g-3 mb-4">
+            <div class="col-lg-3 col-sm-6">
+                <div class="trust-bar-card">
+                    <div class="trust-bar-icon">&#10003;</div>
+                    <div>
+                        <div class="fw-bold small text-dark">Chính hãng 100%</div>
+                        <div class="text-muted" style="font-size: 12px;">Tem niêm phong, nguồn gốc rõ ràng</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="trust-bar-card">
+                    <div class="trust-bar-icon">&#9733;</div>
+                    <div>
+                        <div class="fw-bold small text-dark">Miễn phí vận chuyển</div>
+                        <div class="text-muted" style="font-size: 12px;">Cho mọi đơn hàng từ 500.000đ</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="trust-bar-card">
+                    <div class="trust-bar-icon">&#8635;</div>
+                    <div>
+                        <div class="fw-bold small text-dark">Đổi trả trong 7 ngày</div>
+                        <div class="text-muted" style="font-size: 12px;">Hỗ trợ nhanh nếu lỗi bao bì</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="trust-bar-card">
+                    <div class="trust-bar-icon">&#9742;</div>
+                    <div>
+                        <div class="fw-bold small text-dark">Tư vấn tận tâm</div>
+                        <div class="text-muted" style="font-size: 12px;">Hotline 0914 636 373 mỗi ngày</div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="pt-5 pb-3">
-        <div class="container">
-            <div class="row g-4 pb-4 border-bottom">
-                <div class="col-md-4">
-                    <h6 class="fw-bold text-success mb-3">GIỚI THIỆU</h6>
-                    <p class="small text-muted mb-2">[TÊN THƯƠNG HIỆU] chuyên cung cấp thực phẩm chức năng, vitamin và sản phẩm chăm sóc sức khỏe chính hãng.</p>
-                    <ul class="list-unstyled small mb-0">
-                        <li class="mb-1">Điện thoại: <a href="tel:0914636373" class="text-decoration-none text-secondary fw-semibold">0914636373</a></li>
-                        <li class="mb-1">Email: <a href="mailto:110124073@st.tvu.edu.vn" class="text-decoration-none text-secondary fw-semibold">110124073@st.tvu.edu.vn</a></li>
-                        <li class="mb-1"><a href="gioithieu.html" class="text-decoration-none text-secondary">Về chúng tôi</a></li>
-                        <li class="mb-1"><a href="donhang.html" class="text-decoration-none text-secondary">Tra cứu đơn hàng</a></li>
-                        <li><a href="lienhe.html" class="text-decoration-none text-secondary">Liên hệ &amp; Hỗ trợ</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h6 class="fw-bold text-success mb-3">DANH MỤC SẢN PHẨM</h6>
-                    <ul class="list-unstyled small mb-0">
-                        <li class="mb-1"><a href="sanpham.html" class="text-decoration-none text-secondary">Tất cả sản phẩm</a></li>
-                        <li class="mb-1"><a href="sanpham.html?cat=Thực+Phẩm+Chức+Năng" class="text-decoration-none text-secondary">Thực Phẩm Chức Năng</a></li>
-                        <li class="mb-1"><a href="sanpham.html?cat=Chăm+Sóc+Sắc+Đẹp" class="text-decoration-none text-secondary">Chăm Sóc Sắc Đẹp</a></li>
-                        <li class="mb-1"><a href="sanpham.html?cat=Hỗ+Trợ+Xương+Khớp" class="text-decoration-none text-secondary">Hỗ Trợ Xương Khớp</a></li>
-                        <li><a href="sanpham.html?cat=Chăm+Sóc+Bé" class="text-decoration-none text-secondary">Chăm Sóc Bé</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h6 class="fw-bold text-success mb-3">CHÍNH SÁCH</h6>
-                    <ul class="list-unstyled small mb-0">
-                        <li class="mb-1"><a href="chinhsach-doitra.html" class="text-decoration-none text-secondary">Chính sách đổi trả</a></li>
-                        <li class="mb-1"><a href="chinhsach-vanchuyen.html" class="text-decoration-none text-secondary">Chính sách vận chuyển</a></li>
-                        <li class="mb-1"><a href="chinhsach-baomat.html" class="text-decoration-none text-secondary">Chính sách bảo mật</a></li>
-                        <li><a href="chinhsach-thanhtoan.html" class="text-decoration-none text-secondary">Chính sách thanh toán</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="text-center pt-3">
-                <small>&copy; 2026 [TÊN THƯƠNG HIỆU]</small>
-            </div>
-        </div>
-    </footer>
+    <footer></footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="src/dulieu-sanpham.js"></script>
+    <script src="src/dungchung.js"></script>
     <script>
-        function initInventory() {
-            let inventory = JSON.parse(localStorage.getItem('inventoryProducts'));
-            if (!Array.isArray(inventory) || inventory.length === 0) {
-                inventory = [
-                    { id: 'SP01', name: 'Sản phẩm 01', brand: 'Chính hãng', category: 'Thực Phẩm Chức Năng', price: 555000, stock: 45, sold: 178, img: 'https://via.placeholder.com/200x160?text=SP+01', description: 'Thực phẩm chức năng hỗ trợ tăng cường sức khỏe toàn diện.' },
-                    { id: 'SP02', name: 'Sản phẩm 02', brand: 'Chính hãng', category: 'Thực Phẩm Chức Năng', price: 272000, stock: 30, sold: 170, img: 'https://via.placeholder.com/200x160?text=SP+02', description: 'Bổ sung vitamin và khoáng chất thiết yếu mỗi ngày.' },
-                    { id: 'SP03', name: 'Sản phẩm 03', brand: 'Chính hãng', category: 'Chăm Sóc Sắc Đẹp', price: 830000, stock: 12, sold: 182, img: 'https://via.placeholder.com/200x160?text=SP+03', description: 'Hỗ trợ làm đẹp da, bổ sung collagen và dưỡng chất.' },
-                    { id: 'SP04', name: 'Sản phẩm 04', brand: 'Chính hãng', category: 'Hỗ Trợ Xương Khớp', price: 649000, stock: 5, sold: 174, img: 'https://via.placeholder.com/200x160?text=SP+04', description: 'Hỗ trợ bôi trơn khớp, giúp xương khớp chắc khỏe.' }
-                ];
-                localStorage.setItem('inventoryProducts', JSON.stringify(inventory));
-            }
-            return inventory;
-        }
+        const HOME_TABS = [
+            { key: 'bestseller', label: 'Bán chạy nhất', cat: '' },
+            { key: 'Tăng đề kháng và Miễn dịch', label: 'Tăng đề kháng', cat: 'Tăng đề kháng và Miễn dịch' },
+            { key: 'Bổ não và Tăng cường trí nhớ', label: 'Bổ não', cat: 'Bổ não và Tăng cường trí nhớ' },
+            { key: 'Bổ mắt và Sức khỏe thị lực', label: 'Bổ mắt', cat: 'Bổ mắt và Sức khỏe thị lực' },
+            { key: 'Đẹp da, Tóc và Móng', label: 'Đẹp da, Tóc, Móng', cat: 'Đẹp da, Tóc và Móng' },
+            { key: 'Tim mạch và Tuần hoàn', label: 'Tim mạch', cat: 'Tim mạch và Tuần hoàn' },
+            { key: 'Xương khớp và Cơ bắp', label: 'Xương khớp', cat: 'Xương khớp và Cơ bắp' },
+            { key: 'Mẹ bầu và Em bé', label: 'Mẹ bầu và Em bé', cat: 'Mẹ bầu và Em bé' },
+            { key: 'Thể thao và Kiểm soát cân nặng', label: 'Thể thao', cat: 'Thể thao và Kiểm soát cân nặng' }
+        ];
+        let activeHomeTab = 'bestseller';
 
-        function getFavorites() {
-            return JSON.parse(localStorage.getItem('favoriteProducts')) || [];
-        }
-
-        function toggleFavorite(prodId, event) {
-            if (event) { event.preventDefault(); event.stopPropagation(); }
-            let favs = getFavorites();
-            if (favs.includes(prodId)) favs = favs.filter(id => id !== prodId);
-            else favs.push(prodId);
-            localStorage.setItem('favoriteProducts', JSON.stringify(favs));
+        function selectHomeTab(key) {
+            activeHomeTab = key;
+            renderHomeProductTabs();
             renderFeaturedProducts();
-            renderAuthHeader();
         }
 
-        function renderAuthHeader() {
-            let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-            let userRole = localStorage.getItem('userRole');
-            let username = localStorage.getItem('username') || 'Khách';
-            let authContainer = document.getElementById('authContainer');
-            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-            let savedQty = cartItems.reduce((sum, item) => sum + (parseInt(item.qty) || 0), 0);
-            const favBtn = `<a href="yeuthich.html" class="btn btn-outline-danger btn-sm me-1" title="Sản phẩm yêu thích">&hearts; (${getFavorites().length})</a>`;
-
-            if (!authContainer) return;
-            if (!isLoggedIn) {
-                authContainer.innerHTML = `${favBtn}<a href="dangnhap.html" class="btn btn-success btn-sm px-3 fw-bold">Đăng nhập</a>`;
-            } else {
-                let adminBtn = (userRole === 'admin') ? `<a href="admin.html" class="btn btn-warning btn-sm fw-bold me-1">Quản Trị</a>` : '';
-                authContainer.innerHTML = `
-                    ${favBtn}
-                    ${adminBtn}
-                    <a href="giohang.html" class="btn btn-outline-success btn-sm me-1">Giỏ hàng (${savedQty})</a>
-                    <span class="fw-bold text-success small me-2">${username}</span>
-                    <button onclick="logout()" class="btn btn-outline-danger btn-sm">Thoát</button>
-                `;
-            }
+        function renderHomeProductTabs() {
+            const bar = document.getElementById('homeProductTabs');
+            if (!bar) return;
+            bar.innerHTML = HOME_TABS.map(t => `
+                <button type="button" class="home-prod-tab ${activeHomeTab === t.key ? 'active' : ''}" onclick="selectHomeTab('${t.key}')">${t.label}</button>
+            `).join('');
         }
 
         function renderFeaturedProducts() {
             const grid = document.getElementById('featuredProductsGrid');
-            const products = initInventory();
-            const favs = getFavorites();
-            grid.innerHTML = '';
+            const viewAll = document.getElementById('featuredViewAllLink');
+            const products = initInventoryCommon();
+            let list;
+            if (activeHomeTab === 'bestseller') {
+                list = products.slice().sort((a, b) => (parseInt(b.sold) || 0) - (parseInt(a.sold) || 0)).slice(0, 8);
+                if (viewAll) viewAll.href = 'sanpham.html';
+            } else {
+                list = products.filter(p => p.category === activeHomeTab).slice(0, 8);
+                if (viewAll) viewAll.href = 'sanpham.html?cat=' + encodeURIComponent(activeHomeTab);
+            }
+            grid.innerHTML = list.map(item => renderProductCardHtml(item, { colClass: 'col-md-3 col-sm-6', onFavCb: 'renderFeaturedProducts' })).join('');
+        }
 
-            products.forEach(item => {
-                const isFav = favs.includes(item.id);
-                const stockText = item.stock > 0
-                    ? `<span class="text-success small fw-semibold">Còn ${item.stock} sản phẩm</span>`
-                    : `<span class="text-danger small fw-bold">Hết hàng</span>`;
+        function renderSpotlightProducts() {
+            const grid = document.getElementById('spotlightProductsGrid');
+            if (!grid) return;
 
-                grid.innerHTML += `
-                    <div class="col-md-3 col-sm-6">
-                        <div class="product-card">
-                            <button type="button" class="btn-wishlist ${isFav ? 'active' : ''}" onclick="toggleFavorite('${item.id}', event)" title="${isFav ? 'Bỏ yêu thích' : 'Thêm vào yêu thích'}">&hearts;</button>
-                            <a href="chitiet.html?id=${encodeURIComponent(item.id)}" class="text-decoration-none">
-                                <img src="${item.img}" alt="${item.name}">
-                                <div class="product-name">${item.name}</div>
-                            </a>
-                            <div>
-                                <div class="product-price-main">${(parseInt(item.price) || 0).toLocaleString('vi-VN')}<u>đ</u></div>
-                                <div class="product-stock-info mt-1">${stockText}</div>
-                                <div class="product-bottom-line text-muted small">Đã bán ${item.sold || 0} sản phẩm</div>
+            const products = initInventoryCommon().map(p => {
+                const clicks = getProductClickCount(p.id);
+                const sold = parseInt(p.sold) || 0;
+                const realReviews = getProductReviews(p.id).length;
+                const reviews = realReviews > 0 ? realReviews : (parseInt(p.reviewCount) || 0);
+                const score = clicks * 3 + sold * 2 + reviews * 5;
+                return { ...p, _score: score };
+            });
+
+            products.sort((a, b) => b._score - a._score);
+            const top4 = products.slice(0, 4);
+            grid.innerHTML = top4.map(item => renderProductCardHtml(item, { colClass: 'col-md-3 col-sm-6', onFavCb: 'renderSpotlightProducts' })).join('');
+        }
+
+        function renderHotDealsProducts() {
+            const grid = document.getElementById('hotDealsProductsGrid');
+            if (!grid) return;
+            const deals = initInventoryCommon()
+                .slice()
+                .sort((a, b) => (parseInt(b.discountPercent) || 0) - (parseInt(a.discountPercent) || 0))
+                .slice(0, 4);
+            grid.innerHTML = deals.map(item => renderProductCardHtml(item, { colClass: 'col-md-3 col-sm-6', onFavCb: 'renderHotDealsProducts' })).join('');
+        }
+
+        function renderHomeCategories() {
+            const grid = document.getElementById('homeCategoriesGrid');
+            if (!grid) return;
+            const products = initInventoryCommon();
+            grid.innerHTML = PRODUCT_CATEGORIES.map(c => {
+                const count = products.filter(p => p.category === c.name).length;
+                return `
+                    <a href="sanpham.html?cat=${encodeURIComponent(c.name)}" class="health-need-pill">
+                        <span>${c.name}</span>
+                        <span class="pill-count">${count}</span>
+                    </a>
+                `;
+            }).join('');
+        }
+
+        function renderHomeVouchers() {
+            const grid = document.getElementById('homeVouchersGrid');
+            if (!grid) return;
+            const currentCode = getAppliedVoucherCode();
+            grid.innerHTML = VOUCHERS_LIST.map(v => {
+                const isSaved = currentCode === v.code;
+                return `
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="voucher-chip h-100">
+                            <div class="min-w-0">
+                                <div class="fw-bold text-success small">${v.code}</div>
+                                <div class="text-muted" style="font-size: 11px;">${v.desc}</div>
                             </div>
+                            <button type="button" class="btn ${isSaved ? 'btn-success' : 'btn-outline-success'} btn-sm text-nowrap fw-semibold" onclick="claimHomeVoucher('${v.code}')">
+                                ${isSaved ? 'Đã lưu' : 'Lưu mã'}
+                            </button>
                         </div>
                     </div>
                 `;
-            });
+            }).join('');
         }
 
-        function showSiteToast(msg, isError = false) {
-            document.querySelectorAll('.site-toast').forEach(el => el.remove());
-            const t = document.createElement('div');
-            t.className = 'site-toast' + (isError ? ' toast-error' : '');
-            t.textContent = msg;
-            document.body.appendChild(t);
-            setTimeout(() => { t.remove(); }, 2800);
+        function claimHomeVoucher(code) {
+            setAppliedVoucherCode(code);
+            renderHomeVouchers();
+            showSiteToast(`Đã lưu mã ${code}. Mã sẽ tự động áp dụng trong giỏ hàng.`);
         }
 
-        function calculateBMI() {
-            const h = parseFloat(document.getElementById('bmiHeight').value);
-            const w = parseFloat(document.getElementById('bmiWeight').value);
-            const resEl = document.getElementById('bmiResultText');
-            if (!h || !w || h <= 0 || w <= 0) {
-                showSiteToast('Vui lòng nhập chiều cao (cm) và cân nặng (kg) hợp lệ!', true);
+        function renderRecentlyViewed() {
+            const section = document.getElementById('recentlyViewedSection');
+            const grid = document.getElementById('recentlyViewedGrid');
+            if (!section || !grid) return;
+            const recent = getRecentlyViewedProducts();
+            if (recent.length === 0) {
+                section.style.display = 'none';
                 return;
             }
-            const bmi = (w / ((h / 100) * (h / 100))).toFixed(1);
-            let status = 'Bình thường';
-            let tip = 'Duy trì bổ sung vitamin & khoáng chất hàng ngày.';
-            if (bmi < 18.5) { status = 'Thiếu cân'; tip = 'Ưu tiên nhóm Thực Phẩm Chức Năng tăng cường hấp thu dinh dưỡng.'; }
-            else if (bmi >= 25) { status = 'Thừa cân'; tip = 'Ưu tiên nhóm hỗ trợ chuyển hóa & bảo vệ xương khớp.'; }
-
-            resEl.innerHTML = `<div class="small p-2 rounded bg-light border text-success fw-semibold">BMI: ${bmi} (${status}) — ${tip}</div>`;
-            resEl.style.display = 'block';
+            section.style.display = 'block';
+            grid.innerHTML = recent.map(item => renderProductCardHtml(item, { colClass: 'col-md-3 col-sm-6', onFavCb: 'renderRecentlyViewed' })).join('');
         }
 
-        const WELLNESS_ADVICE = {
-            'Thực Phẩm Chức Năng': {
-                title: 'Gợi ý cho mục tiêu: Tăng đề kháng & Vitamin',
-                desc: 'Nên bổ sung vào buổi sáng sau ăn 30 phút và uống đủ 1.5–2 lít nước mỗi ngày để hấp thu tối ưu.'
-            },
-            'Chăm Sóc Sắc Đẹp': {
-                title: 'Gợi ý cho mục tiêu: Làm đẹp da & Collagen',
-                desc: 'Ưu tiên dùng buổi tối trước khi ngủ hoặc sáng sớm lúc bụng nhẹ để cơ thể tổng hợp collagen tốt nhất.'
-            },
-            'Hỗ Trợ Xương Khớp': {
-                title: 'Gợi ý cho mục tiêu: Xương khớp dẻo dai',
-                desc: 'Dùng đều đặn sau bữa ăn chính kết hợp vận động nhẹ giúp tăng dịch khớp và giảm khô cứng.'
-            },
-            'Chăm Sóc Bé': {
-                title: 'Gợi ý cho mục tiêu: Dinh dưỡng cho bé',
-                desc: 'Chọn sản phẩm đúng độ tuổi, ưu tiên dạng siro/viên nhai dễ uống và dùng vào ban ngày.'
+        let latestCoursePlan = null;
+
+        function formatDateAfterDays(days) {
+            const d = new Date();
+            d.setDate(d.getDate() + days);
+            const dd = String(d.getDate()).padStart(2, '0');
+            const mm = String(d.getMonth() + 1).padStart(2, '0');
+            const yyyy = d.getFullYear();
+            return `${dd}/${mm}/${yyyy}`;
+        }
+
+        function togglePlannerPicker() {
+            const dropdown = document.getElementById('plannerPickerDropdown');
+            const btn = document.getElementById('plannerPickerBtn');
+            const isOpen = dropdown.classList.contains('open');
+            dropdown.classList.toggle('open', !isOpen);
+            btn.classList.toggle('open', !isOpen);
+            if (!isOpen) {
+                const searchEl = document.getElementById('plannerPickerSearch');
+                searchEl.value = '';
+                filterPlannerProducts('');
+                setTimeout(() => searchEl.focus(), 40);
             }
-        };
+        }
 
-        function selectWellnessGoal(category, btnEl) {
-            document.querySelectorAll('#goalButtons .goal-pill').forEach(b => b.classList.remove('active'));
-            if (btnEl) btnEl.classList.add('active');
-
-            const advice = WELLNESS_ADVICE[category] || WELLNESS_ADVICE['Thực Phẩm Chức Năng'];
-            document.getElementById('wellnessAdviceTitle').textContent = advice.title;
-            document.getElementById('wellnessAdviceDesc').textContent = advice.desc;
-            document.getElementById('wellnessViewAllLink').href = `sanpham.html?cat=${encodeURIComponent(category)}`;
-
-            const grid = document.getElementById('wellnessResultGrid');
-            const products = initInventory().filter(p => p.category === category);
-            const list = products.length > 0 ? products.slice(0, 2) : initInventory().slice(0, 2);
-
-            grid.innerHTML = list.map(item => `
-                <div class="col-md-6">
-                    <a href="chitiet.html?id=${encodeURIComponent(item.id)}" class="text-decoration-none">
-                        <div class="bg-white rounded-3 border p-2 d-flex align-items-center gap-3 h-100">
-                            <img src="${item.img}" alt="${item.name}" style="width: 56px; height: 56px; object-fit: contain;" class="rounded bg-light p-1">
-                            <div class="flex-grow-1 overflow-hidden">
-                                <div class="fw-semibold text-dark text-truncate small">${item.name}</div>
-                                <div class="fw-bold text-success small">${(parseInt(item.price) || 0).toLocaleString('vi-VN')}đ</div>
-                                <div class="text-muted" style="font-size: 11px;">${item.stock > 0 ? 'Còn ' + item.stock + ' sản phẩm' : 'Hết hàng'}</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+        function filterPlannerProducts(keyword) {
+            const listEl = document.getElementById('plannerPickerList');
+            if (!listEl) return;
+            const products = initInventoryCommon();
+            const currentId = document.getElementById('plannerProduct').value;
+            const q = normalizeSearchText(keyword);
+            const filtered = q
+                ? products.filter(p => normalizeSearchText(`${p.name || ''} ${p.brand || ''} ${p.category || ''}`).includes(q))
+                : products;
+            if (filtered.length === 0) {
+                listEl.innerHTML = '<div class="p-3 text-center text-muted small">Không tìm thấy sản phẩm phù hợp.</div>';
+                return;
+            }
+            listEl.innerHTML = filtered.map(p => `
+                <button type="button" class="planner-picker-item ${p.id === currentId ? 'active' : ''}" onclick="selectPlannerProduct('${p.id}')">
+                    <img src="${p.img}" alt="" class="planner-picker-thumb">
+                    <div class="flex-grow-1 min-w-0">
+                        <div class="small fw-semibold text-dark text-truncate">${p.name}</div>
+                        <div class="text-muted" style="font-size: 11px;">${p.packaging || ''} &bull; <span class="text-danger fw-bold">${(parseInt(p.price) || 0).toLocaleString('vi-VN')}đ</span></div>
+                    </div>
+                </button>
             `).join('');
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            renderFeaturedProducts();
-            renderAuthHeader();
-            selectWellnessGoal('Thực Phẩm Chức Năng', document.querySelector('#goalButtons .goal-pill.active'));
+        function selectPlannerProduct(prodId) {
+            const products = initInventoryCommon();
+            const product = products.find(p => p.id === prodId) || products[0];
+            if (!product) return;
+            document.getElementById('plannerProduct').value = product.id;
+            document.getElementById('plannerPickerThumb').src = product.img;
+            document.getElementById('plannerPickerName').textContent = product.name;
+            document.getElementById('plannerPickerPrice').textContent = (parseInt(product.price) || 0).toLocaleString('vi-VN') + 'đ';
+            document.getElementById('plannerPickerDropdown').classList.remove('open');
+            document.getElementById('plannerPickerBtn').classList.remove('open');
+            updateCoursePlanner();
+        }
 
-            const searchInput = document.getElementById('headerSearchInput');
-            const suggestionsBox = document.getElementById('searchSuggestions');
-            const searchForm = document.getElementById('headerSearchForm');
-            if (searchInput && suggestionsBox) {
-                const renderSuggestions = () => {
-                    const kw = searchInput.value.trim().toLowerCase();
-                    if (!kw) { suggestionsBox.style.display = 'none'; suggestionsBox.innerHTML = ''; return; }
-                    const matches = initInventory().filter(p =>
-                        (p.name || '').toLowerCase().includes(kw) ||
-                        (p.id || '').toLowerCase().includes(kw) ||
-                        (p.category || '').toLowerCase().includes(kw)
-                    ).slice(0, 6);
-                    if (matches.length === 0) {
-                        suggestionsBox.innerHTML = `<div class="p-3 small text-muted text-center">Không tìm thấy sản phẩm phù hợp</div>`;
-                        suggestionsBox.style.display = 'block';
-                        return;
-                    }
-                    suggestionsBox.innerHTML = matches.map(p => `
-                        <a href="chitiet.html?id=${encodeURIComponent(p.id)}" class="search-suggestion-item">
-                            <img src="${p.img}" alt="${p.name}">
-                            <div class="flex-grow-1">
-                                <div class="fw-semibold small">${p.name}</div>
-                                <div class="text-muted" style="font-size: 11px;">${p.category} • ${p.stock > 0 ? 'Còn ' + p.stock : 'Hết hàng'}</div>
-                            </div>
-                            <span class="fw-bold text-success small">${(parseInt(p.price) || 0).toLocaleString('vi-VN')}đ</span>
-                        </a>
-                    `).join('');
-                    suggestionsBox.style.display = 'block';
-                };
-                searchInput.addEventListener('input', renderSuggestions);
-                searchInput.addEventListener('focus', renderSuggestions);
-                document.addEventListener('click', (e) => {
-                    if (!e.target.closest('.search-wrapper')) suggestionsBox.style.display = 'none';
-                });
-            }
-            if (searchForm) {
-                searchForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const kw = document.getElementById('headerSearchInput').value.trim();
-                    window.location.href = kw ? `sanpham.html?q=${encodeURIComponent(kw)}` : 'sanpham.html';
-                });
+        document.addEventListener('click', function (e) {
+            const wrap = document.getElementById('plannerPickerWrap');
+            if (wrap && !wrap.contains(e.target)) {
+                document.getElementById('plannerPickerDropdown')?.classList.remove('open');
+                document.getElementById('plannerPickerBtn')?.classList.remove('open');
             }
         });
 
-        function logout() {
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('userRole');
-            localStorage.removeItem('username');
-            showSiteToast('Đã đăng xuất tài khoản!');
-            setTimeout(() => { window.location.href = 'index.html'; }, 800);
+        function initCoursePlanner() {
+            const products = initInventoryCommon();
+            if (products.length > 0) {
+                selectPlannerProduct(products[0].id);
+            }
         }
+
+        function updateCoursePlanner() {
+            const products = initInventoryCommon();
+            const prodId = document.getElementById('plannerProduct').value;
+            const product = products.find(p => p.id === prodId) || products[0];
+            if (!product) return;
+
+            const people = parseInt(document.getElementById('plannerPeople').value) || 1;
+            const dailyDose = parseInt(document.getElementById('plannerDailyDose').value) || 2;
+            const days = parseInt(document.getElementById('plannerDays').value) || 90;
+            const pkgText = (product.packaging || product.name || '').toLowerCase();
+            const pkgMatch = pkgText.match(/(\d+)\s*(viên|gói|ống|chai|lần dùng)/);
+            const pillsPerBox = pkgMatch ? Math.max(10, parseInt(pkgMatch[1])) : 60;
+            const unitName = pkgMatch ? pkgMatch[2] : 'viên';
+            const noteEl = document.getElementById('plannerPackagingNote');
+            if (noteEl) noteEl.textContent = `Quy cách áp dụng: ${pillsPerBox} ${unitName} / hộp (${product.packaging || 'Hộp tiêu chuẩn'}).`;
+
+            const totalPillsNeeded = people * dailyDose * days;
+            const boxesNeeded = Math.max(1, Math.ceil(totalPillsNeeded / pillsPerBox));
+            const daysPerBox = Math.max(1, Math.floor(pillsPerBox / (people * dailyDose)));
+
+            const price = parseInt(product.price) || 0;
+            const rawTotal = boxesNeeded * price;
+            const bestVoucher = getBestVoucherForAmount(rawTotal);
+            const discount = bestVoucher ? bestVoucher.discount : 0;
+            const finalTotal = Math.max(0, rawTotal - discount);
+            const costPerDay = Math.round(finalTotal / days);
+
+            latestCoursePlan = { product, boxesNeeded, bestVoucher };
+
+            document.getElementById('plannerBoxBadge').textContent = `Cần ${boxesNeeded} hộp`;
+            document.getElementById('plannerCostPerDay').textContent = `${costPerDay.toLocaleString('vi-VN')}đ / ngày`;
+            document.getElementById('plannerPerBoxDays').textContent = `1 hộp dùng được khoảng ${daysPerBox} ngày (${people} người)`;
+            document.getElementById('plannerFirstBoxEnd').textContent = formatDateAfterDays(daysPerBox);
+            document.getElementById('plannerCourseEnd').textContent = `Hoàn thành liệu trình ${days} ngày: ${formatDateAfterDays(days)}`;
+            document.getElementById('plannerRawTotal').textContent = `${rawTotal.toLocaleString('vi-VN')}đ`;
+
+            if (bestVoucher) {
+                document.getElementById('plannerVoucherRow').style.display = 'flex';
+                document.getElementById('plannerVoucherLabel').textContent = `Mã giảm giá tối ưu (${bestVoucher.voucher.code}):`;
+                document.getElementById('plannerVoucherDiscount').textContent = `-${discount.toLocaleString('vi-VN')}đ`;
+            } else {
+                document.getElementById('plannerVoucherRow').style.display = 'none';
+            }
+            document.getElementById('plannerFinalTotal').textContent = `${finalTotal.toLocaleString('vi-VN')}đ`;
+        }
+
+        function addPlannedCourseToCart() {
+            if (localStorage.getItem('isLoggedIn') !== 'true') {
+                showSiteToast('Vui lòng đăng nhập để thêm liệu trình vào giỏ hàng!', true);
+                return;
+            }
+            if (!latestCoursePlan) return;
+            const { product, boxesNeeded, bestVoucher } = latestCoursePlan;
+            const stock = parseInt(product.stock) || 0;
+            if (stock <= 0) {
+                showSiteToast('Sản phẩm này hiện đã hết hàng.', true);
+                return;
+            }
+
+            let cartItems = getCartItems();
+            const idx = cartItems.findIndex(c => c.id === product.id);
+            const existingQty = idx !== -1 ? (parseInt(cartItems[idx].qty) || 0) : 0;
+            if (existingQty + boxesNeeded > stock) {
+                showSiteToast(`Kho chỉ còn ${stock} hộp cho sản phẩm này.`, true);
+                return;
+            }
+
+            if (idx !== -1) {
+                cartItems[idx].qty = existingQty + boxesNeeded;
+            } else {
+                cartItems.push({
+                    id: product.id,
+                    name: product.name,
+                    price: parseInt(product.price) || 0,
+                    qty: boxesNeeded,
+                    img: product.img
+                });
+            }
+            saveCartItems(cartItems);
+            if (bestVoucher) {
+                setAppliedVoucherCode(bestVoucher.voucher.code);
+            }
+            renderCommonAuthHeader();
+            showSiteToast(`Đã thêm liệu trình ${boxesNeeded} hộp "${product.name}" vào giỏ hàng.`);
+        }
+
+        function renderHeroShowcases() {
+            const products = initInventoryCommon();
+            const groups = [
+                ['SP01', 'SP06', 'SP04'],
+                ['SP28', 'SP27', 'SP22'],
+                ['SP32', 'SP41', 'SP36']
+            ];
+            groups.forEach((ids, idx) => {
+                const box = document.getElementById('heroShowcase' + idx);
+                if (!box) return;
+                const picked = ids.map(id => products.find(p => p.id === id)).filter(Boolean);
+                box.innerHTML = picked.map(p => `
+                    <a href="chitiet.html?id=${encodeURIComponent(p.id)}" class="hero-prod-pedestal">
+                        <img src="${p.img}" alt="${p.name}">
+                        <div class="hero-prod-pedestal-name">${p.name}</div>
+                        <div class="hero-prod-pedestal-price">${(parseInt(p.price) || 0).toLocaleString('vi-VN')}đ</div>
+                    </a>
+                `).join('');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderHeroShowcases();
+            renderHomeCategories();
+            renderHomeProductTabs();
+            renderFeaturedProducts();
+            renderSpotlightProducts();
+            renderHomeVouchers();
+            renderHotDealsProducts();
+            renderRecentlyViewed();
+            initCoursePlanner();
+        });
     </script>
 </body>
 </html>

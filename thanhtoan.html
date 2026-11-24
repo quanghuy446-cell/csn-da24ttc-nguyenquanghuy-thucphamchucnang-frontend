@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thanh Toán Đơn Hàng - [TÊN THƯƠNG HIỆU]</title>
+    <title>Thanh Toán Đơn Hàng - An Tâm Mart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="src/giaodien.css">
 </head>
 <body>
     <div class="sticky-top shadow-sm">
         <header class="header-main">
             <div class="container">
                 <div class="row align-items-center justify-content-between">
-                    <div class="col-md-5">
-                        <a href="index.html" class="logo-text">[TÊN THƯƠNG HIỆU]</a>
-                        <span class="text-muted ms-2 fs-6">| Thanh toán đơn hàng</span>
+                    <div class="col-md-6 d-flex align-items-center">
+                        <a href="index.html" class="logo-text">An Tâm Mart</a>
+                        <span class="text-muted ms-3 fs-6">| Thanh toán đơn hàng</span>
                     </div>
                     <div class="col-md-4 text-end">
                         <a href="giohang.html" class="btn btn-outline-success btn-sm">&larr; Quay lại giỏ hàng</a>
@@ -32,7 +32,7 @@
                 <div class="bg-white p-4 rounded border mb-4">
                     <h5 class="fw-bold mb-3 text-success">1. Thông tin giao hàng</h5>
 
-                    <!-- SỔ ĐỊA CHỈ ĐÃ LƯU -->
+                    <!-- SỔ ĐỊA CHỈ ĐÃ LƯU (RIÊNG THEO TỪNG TÀI KHOẢN) -->
                     <div id="savedAddressWrapper" class="mb-3" style="display: none;">
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <label class="form-label small fw-bold m-0 text-dark">Địa chỉ đã lưu</label>
@@ -42,7 +42,7 @@
                         <hr class="my-3">
                     </div>
 
-                    <form id="checkoutForm">
+                    <form id="checkoutForm" novalidate>
                         <div class="mb-3">
                             <label class="form-label small fw-bold">Họ và tên người nhận <span class="text-danger">*</span></label>
                             <input type="text" id="cusName" class="form-control" placeholder="Nhập họ và tên đầy đủ" required>
@@ -50,11 +50,11 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label small fw-bold">Số điện thoại <span class="text-danger">*</span></label>
-                                <input type="tel" id="cusPhone" class="form-control" placeholder="Ví dụ: 0914636373" required>
+                                <input type="tel" id="cusPhone" class="form-control" placeholder="Nhập số điện thoại" maxlength="10" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label small fw-bold">Email</label>
-                                <input type="email" id="cusEmail" class="form-control" placeholder="Nhập email (nếu có)">
+                                <label class="form-label small fw-bold">Email <span class="text-danger">*</span></label>
+                                <input type="email" id="cusEmail" class="form-control" placeholder="Nhập địa chỉ email" required>
                             </div>
                         </div>
 
@@ -76,7 +76,7 @@
 
                         <div class="mb-3">
                             <label class="form-label small fw-bold">Địa chỉ chi tiết (Số nhà, tên đường, ấp/khóm) <span class="text-danger">*</span></label>
-                            <input type="text" id="streetAddress" class="form-control" placeholder="Số nhà, tên đường..." required>
+                            <input type="text" id="streetAddress" class="form-control" placeholder="Nhập số nhà, tên đường" required>
                         </div>
 
                         <div class="pt-2 border-top">
@@ -85,7 +85,7 @@
                                 <label class="form-check-label small fw-semibold" for="saveAddressCheck">Lưu thông tin giao hàng này cho lần sau</label>
                             </div>
                             <div id="addressLabelWrapper" class="mt-2">
-                                <input type="text" id="addressLabel" class="form-control form-control-sm" placeholder="Tên gợi nhớ (ví dụ: Nhà riêng, Nhà ba mẹ, Công ty...)">
+                                <input type="text" id="addressLabel" class="form-control form-control-sm" placeholder="Tên gợi nhớ (Nhà riêng, Công ty...)">
                             </div>
                         </div>
                     </form>
@@ -102,19 +102,62 @@
                         <label class="form-check-label fw-bold ms-2" for="bank">Chuyển khoản ngân hàng</label>
                     </div>
                     <div id="bankInfoBox" class="alert alert-light border mt-3 mb-0 small" style="display: none;">
-                        <div class="fw-bold text-success mb-1">Thông tin chuyển khoản:</div>
-                        <div>Ngân hàng: <strong>MB Bank / Sacombank</strong></div>
-                        <div>Nội dung chuyển khoản: <strong>[Họ tên] + [Số điện thoại]</strong></div>
-                        <div class="text-muted mt-1">Đơn hàng sẽ được xử lý sau khi cửa hàng xác nhận đã nhận được tiền.</div>
+                        <div class="row g-3 align-items-center">
+                            <div class="col-sm-5 text-center">
+                                <div class="bg-white border rounded-3 p-2 d-inline-block shadow-sm">
+                                    <img id="vietQrImg" src="images/qr-thanhtoan.jpg" alt="Mã QR chuyển khoản Sacombank" style="width: 190px; max-width: 100%; height: auto; border-radius: 8px;" onload="this.style.display='inline-block'; document.getElementById('qrFallbackText').style.display='none';" onerror="this.style.display='none'; document.getElementById('qrFallbackText').style.display='block';">
+                                    <div id="qrFallbackText" class="text-muted small p-2" style="display: none;">Quét QR qua app ngân hàng hoặc chuyển khoản theo thông tin bên cạnh.</div>
+                                </div>
+                                <div class="text-muted mt-1" style="font-size: 11px;">Quét VietQR / Napas 247 tự động điền số tiền</div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="fw-bold text-success">Thông tin chuyển khoản</span>
+                                    <button type="button" class="btn btn-outline-success btn-sm py-0 px-2" style="font-size: 11px;" onclick="copyBankAccount()">Sao chép STK</button>
+                                </div>
+                                <div class="mb-1">Ngân hàng: <strong>Sacombank</strong></div>
+                                <div class="mb-1">Số tài khoản: <strong class="text-dark">04005544744006</strong></div>
+                                <div class="mb-1">Chủ tài khoản: <strong>NGUYEN QUANG HUY</strong></div>
+                                <div class="mb-1">Số tiền: <strong class="text-danger" id="bankTransferAmount">0đ</strong></div>
+                                <div class="mb-1">Nội dung CK: <strong class="text-success" id="bankTransferContent">THANHTOAN</strong></div>
+                                <div class="text-muted mt-2" style="font-size: 12px;">Đơn hàng sẽ được xử lý ngay sau khi cửa hàng xác nhận đã nhận được tiền.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHẦN GHI CHÚ DƯỚI PHƯƠNG THỨC THANH TOÁN -->
+                    <div class="mt-4 pt-3 border-top">
+                        <label for="orderNote" class="form-label fw-bold small text-dark">Ghi chú đơn hàng (tùy chọn)</label>
+                        <textarea id="orderNote" class="form-control" rows="3" placeholder="Nhập ghi chú giao hàng nếu cần"></textarea>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-5">
                 <div class="bg-white p-4 rounded border">
-                    <h5 class="fw-bold border-bottom pb-2 mb-3">Tóm tắt đơn hàng</h5>
-                    <div id="summaryItemsList"></div>
+                    <h5 class="fw-bold border-bottom pb-2 mb-3 d-flex justify-content-between align-items-center">
+                        <span>Tóm tắt đơn hàng</span>
+                        <span class="badge bg-success-subtle text-success rounded-pill" style="font-size: 12px;" id="summaryItemCount">0 SP</span>
+                    </h5>
+                    <div id="summaryItemsList" style="max-height: 290px; overflow-y: auto; padding-right: 6px;"></div>
 
+                    <div class="mb-3 pt-2">
+                        <label class="form-label small fw-bold">Mã giảm giá</label>
+                        <div class="input-group input-group-sm">
+                            <input type="text" id="checkoutVoucherInput" class="form-control text-uppercase" placeholder="Nhập mã giảm giá">
+                            <button type="button" class="btn btn-outline-success fw-semibold" onclick="applyCheckoutVoucher()">Áp dụng</button>
+                        </div>
+                        <div id="checkoutVoucherMsg" class="small mt-1"></div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-2 small text-muted">
+                        <span>Tạm tính:</span>
+                        <span id="summarySubTotal" class="fw-semibold text-dark">0đ</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2 small text-success" id="checkoutDiscountRow" style="display: none;">
+                        <span>Giảm giá voucher:</span>
+                        <span id="checkoutDiscountText" class="fw-bold">-0đ</span>
+                    </div>
                     <div class="d-flex justify-content-between mb-2 small text-muted">
                         <span>Phí vận chuyển:</span>
                         <span id="shippingFeeText" class="fw-semibold text-success">Miễn phí</span>
@@ -132,6 +175,50 @@
         </div>
     </main>
 
+    <!-- MODAL XÁC NHẬN CHUYỂN KHOẢN QR -->
+    <div class="modal fade" id="bankPaymentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="modal-header bg-success text-white border-0 py-3 px-4">
+                    <h5 class="modal-title fw-bold fs-6 m-0">Thanh Toán Chuyển Khoản Ngân Hàng</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body p-4 text-center">
+                    <p class="small text-muted mb-3">Vui lòng quét mã QR bên dưới bằng ứng dụng ngân hàng để thanh toán, sau đó nhấn xác nhận.</p>
+                    <div class="bg-white border rounded-3 p-2 d-inline-block shadow-sm mb-3">
+                        <img src="images/qr-thanhtoan.jpg" alt="Mã QR Sacombank" style="width: 210px; max-width: 100%; height: auto; border-radius: 8px;">
+                    </div>
+                    <div class="bg-light rounded-3 p-3 text-start small border mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="text-muted">Ngân hàng:</span>
+                            <strong class="text-dark">Sacombank</strong>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <span class="text-muted">Số tài khoản:</span>
+                            <span><strong class="text-dark">04005544744006</strong> <button type="button" class="btn btn-outline-success btn-sm py-0 px-2 ms-1" style="font-size: 11px;" onclick="copyBankAccount()">Sao chép</button></span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="text-muted">Chủ tài khoản:</span>
+                            <strong class="text-dark">NGUYEN QUANG HUY</strong>
+                        </div>
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="text-muted">Số tiền cần chuyển:</span>
+                            <strong class="text-danger fs-6" id="qrModalAmount">0đ</strong>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-muted">Nội dung CK:</span>
+                            <strong class="text-success" id="qrModalContent">THANHTOAN</strong>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-outline-secondary flex-fill fw-semibold py-2" data-bs-dismiss="modal">Quay lại</button>
+                        <button type="button" class="btn btn-success flex-fill fw-bold py-2" onclick="confirmBankTransferDone()">Tôi đã chuyển khoản xong</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- MODAL THÔNG BÁO ĐẶT HÀNG THÀNH CÔNG -->
     <div class="modal fade" id="orderSuccessModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -141,7 +228,7 @@
                         &#10003;
                     </div>
                     <h4 class="fw-bold text-success mb-2">Đặt Hàng Thành Công!</h4>
-                    <p class="text-muted small mb-4">Cảm ơn bạn đã tin tưởng mua sắm tại [TÊN THƯƠNG HIỆU]. Đơn hàng của bạn đang được xử lý.</p>
+                    <p class="text-muted small mb-4">Cảm ơn bạn đã tin tưởng mua sắm tại An Tâm Mart. Đơn hàng của bạn đang được xử lý.</p>
 
                     <div class="bg-light rounded-3 p-3 text-start small mb-4 border">
                         <div class="d-flex justify-content-between mb-1">
@@ -160,6 +247,10 @@
                             <span class="text-muted">Địa chỉ giao hàng:</span>
                             <div id="modalOrderAddress" class="fw-semibold text-dark mt-1"></div>
                         </div>
+                        <div class="mb-1" id="modalNoteWrap" style="display: none;">
+                            <span class="text-muted">Ghi chú:</span>
+                            <div id="modalOrderNote" class="text-dark mt-1"></div>
+                        </div>
                         <div class="d-flex justify-content-between pt-2 mt-2 border-top">
                             <span class="text-muted">Tổng thanh toán:</span>
                             <strong id="modalOrderTotal" class="text-danger fs-6"></strong>
@@ -167,7 +258,7 @@
                     </div>
 
                     <div class="d-flex gap-2">
-                        <a href="donhang.html" id="modalTrackOrderBtn" class="btn btn-outline-success flex-fill fw-semibold py-2">Theo dõi đơn hàng</a>
+                        <a href="donhang.html" id="modalTrackOrderBtn" class="btn btn-outline-success flex-fill fw-semibold py-2">Đơn hàng của tôi</a>
                         <a href="sanpham.html" class="btn btn-success flex-fill fw-semibold py-2">Tiếp tục mua sắm</a>
                     </div>
                 </div>
@@ -175,47 +266,11 @@
         </div>
     </div>
 
-    <footer class="pt-5 pb-3">
-        <div class="container">
-            <div class="row g-4 pb-4 border-bottom">
-                <div class="col-md-4">
-                    <h6 class="fw-bold text-success mb-3">GIỚI THIỆU</h6>
-                    <p class="small text-muted mb-2">[TÊN THƯƠNG HIỆU] chuyên cung cấp thực phẩm chức năng, vitamin và sản phẩm chăm sóc sức khỏe chính hãng.</p>
-                    <ul class="list-unstyled small mb-0">
-                        <li class="mb-1">Điện thoại: <a href="tel:0914636373" class="text-decoration-none text-secondary fw-semibold">0914636373</a></li>
-                        <li class="mb-1">Email: <a href="mailto:110124073@st.tvu.edu.vn" class="text-decoration-none text-secondary fw-semibold">110124073@st.tvu.edu.vn</a></li>
-                        <li class="mb-1"><a href="gioithieu.html" class="text-decoration-none text-secondary">Về chúng tôi</a></li>
-                        <li class="mb-1"><a href="donhang.html" class="text-decoration-none text-secondary">Tra cứu đơn hàng</a></li>
-                        <li><a href="lienhe.html" class="text-decoration-none text-secondary">Liên hệ &amp; Hỗ trợ</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h6 class="fw-bold text-success mb-3">DANH MỤC SẢN PHẨM</h6>
-                    <ul class="list-unstyled small mb-0">
-                        <li class="mb-1"><a href="sanpham.html" class="text-decoration-none text-secondary">Tất cả sản phẩm</a></li>
-                        <li class="mb-1"><a href="sanpham.html?cat=Thực+Phẩm+Chức+Năng" class="text-decoration-none text-secondary">Thực Phẩm Chức Năng</a></li>
-                        <li class="mb-1"><a href="sanpham.html?cat=Chăm+Sóc+Sắc+Đẹp" class="text-decoration-none text-secondary">Chăm Sóc Sắc Đẹp</a></li>
-                        <li class="mb-1"><a href="sanpham.html?cat=Hỗ+Trợ+Xương+Khớp" class="text-decoration-none text-secondary">Hỗ Trợ Xương Khớp</a></li>
-                        <li><a href="sanpham.html?cat=Chăm+Sóc+Bé" class="text-decoration-none text-secondary">Chăm Sóc Bé</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h6 class="fw-bold text-success mb-3">CHÍNH SÁCH</h6>
-                    <ul class="list-unstyled small mb-0">
-                        <li class="mb-1"><a href="chinhsach-doitra.html" class="text-decoration-none text-secondary">Chính sách đổi trả</a></li>
-                        <li class="mb-1"><a href="chinhsach-vanchuyen.html" class="text-decoration-none text-secondary">Chính sách vận chuyển</a></li>
-                        <li class="mb-1"><a href="chinhsach-baomat.html" class="text-decoration-none text-secondary">Chính sách bảo mật</a></li>
-                        <li><a href="chinhsach-thanhtoan.html" class="text-decoration-none text-secondary">Chính sách thanh toán</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="text-center pt-3">
-                <small>&copy; 2026 [TÊN THƯƠNG HIỆU]</small>
-            </div>
-        </div>
-    </footer>
+    <footer></footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="src/dulieu-sanpham.js"></script>
+    <script src="src/dungchung.js"></script>
     <script>
         const API_V2_BASE = 'https://provinces.open-api.vn/api/v2';
         const provinceSelect = document.getElementById('provinceSelect');
@@ -223,6 +278,20 @@
         const apiErrorText = document.getElementById('apiErrorText');
         const checkoutAlert = document.getElementById('checkoutAlert');
         let selectedAddressIdx = -1;
+        let currentGrandTotal = 0;
+
+        function getAddressStorageKey() {
+            const key = getUserStorageKey('savedAddresses');
+            return key || 'savedAddresses_guest';
+        }
+
+        function getSavedAddressesForAccount() {
+            return JSON.parse(localStorage.getItem(getAddressStorageKey())) || [];
+        }
+
+        function saveAddressesForAccount(list) {
+            localStorage.setItem(getAddressStorageKey(), JSON.stringify(list));
+        }
 
         function showCheckoutError(msg) {
             checkoutAlert.textContent = msg;
@@ -234,8 +303,38 @@
             checkoutAlert.classList.add('d-none');
         }
 
+        function updateBankTransferNote() {
+            const phone = (document.getElementById('cusPhone')?.value || '').trim();
+            const name = (document.getElementById('cusName')?.value || '').trim();
+            const el = document.getElementById('bankTransferContent');
+            const amtEl = document.getElementById('bankTransferAmount');
+            const qrImg = document.getElementById('vietQrImg');
+            let noteText = 'THANHTOAN DON HANG';
+            if (phone) {
+                noteText = `THANHTOAN ${phone}`;
+            } else if (name) {
+                noteText = `THANHTOAN ${name.toUpperCase()}`;
+            }
+            if (el) el.textContent = noteText;
+            if (amtEl) amtEl.textContent = currentGrandTotal.toLocaleString('vi-VN') + 'đ';
+            if (qrImg && !qrImg.getAttribute('src')) {
+                qrImg.src = 'images/qr-thanhtoan.jpg';
+            }
+        }
+
+        function copyBankAccount() {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText('04005544744006').catch(() => {});
+            }
+            showSiteToast('Đã sao chép số tài khoản 04005544744006.');
+        }
+
         function toggleBankInfo() {
-            document.getElementById('bankInfoBox').style.display = document.getElementById('bank').checked ? 'block' : 'none';
+            updateBankTransferNote();
+            const isBank = document.getElementById('bank').checked;
+            document.getElementById('bankInfoBox').style.display = isBank ? 'block' : 'none';
+            const btn = document.getElementById('btnSubmitOrder');
+            if (btn) btn.textContent = isBank ? 'TIẾP TỤC QUÉT QR THANH TOÁN' : 'ĐẶT HÀNG NGAY';
         }
 
         function toggleAddressLabel() {
@@ -301,7 +400,7 @@
         });
 
         function renderSavedAddresses() {
-            const saved = JSON.parse(localStorage.getItem('savedAddresses')) || [];
+            const saved = getSavedAddressesForAccount();
             const wrapper = document.getElementById('savedAddressWrapper');
             const listEl = document.getElementById('savedAddressList');
 
@@ -328,7 +427,7 @@
         }
 
         async function applySavedAddress(idx) {
-            const saved = JSON.parse(localStorage.getItem('savedAddresses')) || [];
+            const saved = getSavedAddressesForAccount();
             const addr = saved[idx];
             if (!addr) return;
 
@@ -349,9 +448,9 @@
 
         function deleteSavedAddress(idx, event) {
             if (event) event.stopPropagation();
-            let saved = JSON.parse(localStorage.getItem('savedAddresses')) || [];
+            const saved = getSavedAddressesForAccount();
             saved.splice(idx, 1);
-            localStorage.setItem('savedAddresses', JSON.stringify(saved));
+            saveAddressesForAccount(saved);
             if (selectedAddressIdx === idx) selectedAddressIdx = -1;
             renderSavedAddresses();
         }
@@ -360,7 +459,7 @@
             selectedAddressIdx = -1;
             document.getElementById('cusName').value = '';
             document.getElementById('cusPhone').value = '';
-            document.getElementById('cusEmail').value = '';
+            document.getElementById('cusEmail').value = getCurrentUserEmail() || '';
             document.getElementById('streetAddress').value = '';
             provinceSelect.value = '';
             wardSelect.innerHTML = '<option value="">-- Chọn Phường / Xã --</option>';
@@ -371,52 +470,107 @@
             renderSavedAddresses();
         }
 
-        document.addEventListener('DOMContentLoaded', async function () {
-            await loadProvincesV2();
-            renderSavedAddresses();
-            const saved = JSON.parse(localStorage.getItem('savedAddresses')) || [];
-            if (saved.length > 0) {
-                await applySavedAddress(0);
-            }
-        });
-
-        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        let cartItems = [];
         const summaryList = document.getElementById('summaryItemsList');
         const btnSubmitOrder = document.getElementById('btnSubmitOrder');
         let subTotal = 0;
 
-        if (cartItems.length === 0) {
-            summaryList.innerHTML = `<p class="text-muted small">Chưa có sản phẩm nào trong giỏ hàng. <a href="sanpham.html" class="fw-semibold text-success">Chọn mua ngay</a></p>`;
-            btnSubmitOrder.disabled = true;
-        } else {
-            cartItems.forEach(item => {
-                const qty = parseInt(item.qty) || 1;
-                const price = parseInt(item.price) || 0;
-                const lineTotal = qty * price;
-                subTotal += lineTotal;
+        function renderCheckoutSummary() {
+            cartItems = getCartItems();
+            subTotal = 0;
+            summaryList.innerHTML = '';
+            const totalCountQty = cartItems.reduce((s, it) => s + (parseInt(it.qty) || 1), 0);
+            const countBadge = document.getElementById('summaryItemCount');
+            if (countBadge) countBadge.textContent = `${cartItems.length} loại (${totalCountQty} hộp)`;
+            if (cartItems.length === 0) {
+                summaryList.innerHTML = `<p class="text-muted small">Chưa có sản phẩm nào trong giỏ hàng. <a href="sanpham.html" class="fw-semibold text-success">Chọn mua ngay</a></p>`;
+                btnSubmitOrder.disabled = true;
+            } else {
+                btnSubmitOrder.disabled = false;
+                cartItems.forEach(item => {
+                    const qty = parseInt(item.qty) || 1;
+                    const price = parseInt(item.price) || 0;
+                    const lineTotal = qty * price;
+                    subTotal += lineTotal;
 
-                summaryList.innerHTML += `
-                    <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
-                        <img src="${item.img}" class="rounded border me-3" alt="${item.name}" width="60">
-                        <div class="flex-grow-1">
-                            <h6 class="mb-0 fw-bold">${item.name}</h6>
-                            <small class="text-muted">Số lượng: ${qty}</small>
+                    summaryList.innerHTML += `
+                        <div class="d-flex align-items-center mb-2 pb-2 border-bottom">
+                            <img src="${item.img}" class="rounded border me-2 bg-white flex-shrink-0" alt="${item.name}" style="width: 46px; height: 46px; object-fit: contain;">
+                            <div class="flex-grow-1 min-w-0 me-2">
+                                <div class="small fw-semibold text-dark" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.3;" title="${item.name}">${item.name}</div>
+                                <div class="text-muted" style="font-size: 11px;">SL: ${qty}</div>
+                            </div>
+                            <span class="fw-bold text-danger small text-nowrap">${lineTotal.toLocaleString('vi-VN')}<u>đ</u></span>
                         </div>
-                        <span class="fw-bold text-danger">${lineTotal.toLocaleString('vi-VN')}<u>đ</u></span>
-                    </div>
-                `;
-            });
+                    `;
+                });
+            }
+
+            const code = getAppliedVoucherCode();
+            const voucherInput = document.getElementById('checkoutVoucherInput');
+            const voucherMsg = document.getElementById('checkoutVoucherMsg');
+            const discRow = document.getElementById('checkoutDiscountRow');
+            let discount = 0;
+
+            if (code) {
+                if (!voucherInput.value) voucherInput.value = code;
+                const res = calculateVoucherDiscount(code, subTotal);
+                if (res.valid) {
+                    discount = res.discount;
+                    voucherMsg.className = 'small mt-1 text-success fw-semibold';
+                    voucherMsg.textContent = res.message;
+                    discRow.style.display = 'flex';
+                    document.getElementById('checkoutDiscountText').textContent = `-${discount.toLocaleString('vi-VN')}đ`;
+                } else {
+                    voucherMsg.className = 'small mt-1 text-danger';
+                    voucherMsg.textContent = res.message;
+                    discRow.style.display = 'none';
+                }
+            } else {
+                discRow.style.display = 'none';
+                voucherMsg.textContent = '';
+            }
+
+            const afterDiscount = Math.max(0, subTotal - discount);
+            const shippingFee = (afterDiscount > 0 && afterDiscount < 500000) ? 30000 : 0;
+            currentGrandTotal = afterDiscount + shippingFee;
+
+            document.getElementById('summarySubTotal').textContent = subTotal.toLocaleString('vi-VN') + 'đ';
+            document.getElementById('shippingFeeText').textContent = shippingFee === 0 ? 'Miễn phí' : shippingFee.toLocaleString('vi-VN') + 'đ';
+            document.getElementById('summaryFinalTotal').innerHTML = `${currentGrandTotal.toLocaleString('vi-VN')}<u>đ</u>`;
+            updateBankTransferNote();
         }
 
-        const shippingFee = (subTotal > 0 && subTotal < 500000) ? 30000 : 0;
-        const grandTotal = subTotal + shippingFee;
-        document.getElementById('shippingFeeText').textContent = shippingFee === 0 ? 'Miễn phí' : shippingFee.toLocaleString('vi-VN') + 'đ';
-        document.getElementById('summaryFinalTotal').innerHTML = `${grandTotal.toLocaleString('vi-VN')}<u>đ</u>`;
+        function applyCheckoutVoucher() {
+            const code = (document.getElementById('checkoutVoucherInput').value || '').trim().toUpperCase();
+            if (!code) {
+                clearAppliedVoucherCode();
+            } else {
+                setAppliedVoucherCode(code);
+            }
+            renderCheckoutSummary();
+        }
+
+        document.addEventListener('DOMContentLoaded', async function () {
+            renderCheckoutSummary();
+            await loadProvincesV2();
+            renderSavedAddresses();
+            const saved = getSavedAddressesForAccount();
+            if (saved.length > 0) {
+                await applySavedAddress(0);
+            } else {
+                const loggedEmail = getCurrentUserEmail();
+                if (loggedEmail) document.getElementById('cusEmail').value = loggedEmail;
+            }
+            document.getElementById('cusPhone')?.addEventListener('input', updateBankTransferNote);
+            document.getElementById('cusName')?.addEventListener('input', updateBankTransferNote);
+            updateBankTransferNote();
+        });
 
         function submitOrder() {
             hideCheckoutError();
             if (cartItems.length === 0) {
-                showCheckoutError('Giỏ hàng đang trống, vui lòng chọn sản phẩm trước khi đặt hàng!');
+                showCheckoutError('Giỏ hàng đang trống, vui lòng chọn sản phẩm trước khi đặt hàng.');
                 return;
             }
             const customerName = document.getElementById('cusName').value.trim();
@@ -425,18 +579,27 @@
             const provinceOpt = provinceSelect.options[provinceSelect.selectedIndex];
             const wardOpt = wardSelect.options[wardSelect.selectedIndex];
             const street = document.getElementById('streetAddress').value.trim();
+            const orderNote = document.getElementById('orderNote').value.trim();
 
-            if (!customerName || !phone) {
-                showCheckoutError('Vui lòng nhập đầy đủ họ tên và số điện thoại người nhận!');
+            if (customerName.length < 2) {
+                showCheckoutError('Vui lòng nhập họ và tên người nhận.');
+                return;
+            }
+            if (!isValidVietnamPhone10(phone)) {
+                showCheckoutError('Vui lòng nhập đủ 10 số.');
+                return;
+            }
+            if (!isValidEmailStrict(email)) {
+                showCheckoutError('Vui lòng nhập email hợp lệ.');
                 return;
             }
             if (!provinceSelect.value || !wardSelect.value || !street) {
-                showCheckoutError('Vui lòng chọn đầy đủ Tỉnh/Thành phố, Phường/Xã và nhập địa chỉ chi tiết!');
+                showCheckoutError('Vui lòng chọn đầy đủ Tỉnh/Thành phố, Phường/Xã và nhập địa chỉ chi tiết.');
                 return;
             }
 
             if (document.getElementById('saveAddressCheck').checked) {
-                let saved = JSON.parse(localStorage.getItem('savedAddresses')) || [];
+                const saved = getSavedAddressesForAccount();
                 const label = document.getElementById('addressLabel').value.trim() || `Địa chỉ ${saved.length + 1}`;
                 const newAddr = {
                     label,
@@ -452,19 +615,69 @@
                 const duplicate = saved.some(a => a.phone === phone && a.street === street && a.wardCode === wardSelect.value);
                 if (!duplicate) {
                     saved.unshift(newAddr);
-                    localStorage.setItem('savedAddresses', JSON.stringify(saved));
+                    saveAddressesForAccount(saved);
                 }
             }
 
             const fullAddress = `${street}, ${wardOpt.textContent}, ${provinceOpt.textContent}`;
 
-            let inventory = JSON.parse(localStorage.getItem('inventoryProducts')) || [];
+            let inventory = initInventoryCommon();
             for (const item of cartItems) {
                 const prodIdx = inventory.findIndex(p => p.id === item.id || p.name === item.name);
                 if (prodIdx !== -1) {
                     const currentStock = parseInt(inventory[prodIdx].stock) || 0;
                     if (currentStock < item.qty) {
-                        showCheckoutError(`Xin lỗi! Sản phẩm "${inventory[prodIdx].name}" chỉ còn ${currentStock} sản phẩm trong kho.`);
+                        showCheckoutError(`Sản phẩm "${inventory[prodIdx].name}" chỉ còn ${currentStock} sản phẩm trong kho.`);
+                        return;
+                    }
+                }
+            }
+
+            const isCod = document.getElementById('cod').checked;
+            const transferNote = (document.getElementById('bankTransferContent')?.textContent || 'THANHTOAN').trim();
+            const payload = {
+                customerName,
+                phone,
+                email,
+                fullAddress,
+                orderNote,
+                isCod,
+                transferNote
+            };
+
+            if (isCod) {
+                finalizeOrderSubmission(payload);
+            } else {
+                pendingBankOrderPayload = payload;
+                document.getElementById('qrModalAmount').textContent = currentGrandTotal.toLocaleString('vi-VN') + 'đ';
+                document.getElementById('qrModalContent').textContent = transferNote;
+                if (!bankPaymentModalInstance) {
+                    bankPaymentModalInstance = new bootstrap.Modal(document.getElementById('bankPaymentModal'));
+                }
+                bankPaymentModalInstance.show();
+            }
+        }
+
+        let pendingBankOrderPayload = null;
+        let bankPaymentModalInstance = null;
+
+        function confirmBankTransferDone() {
+            if (!pendingBankOrderPayload) return;
+            if (bankPaymentModalInstance) bankPaymentModalInstance.hide();
+            const payload = pendingBankOrderPayload;
+            pendingBankOrderPayload = null;
+            finalizeOrderSubmission(payload);
+        }
+
+        function finalizeOrderSubmission(payload) {
+            const { customerName, phone, email, fullAddress, orderNote, isCod, transferNote } = payload;
+            let inventory = initInventoryCommon();
+            for (const item of cartItems) {
+                const prodIdx = inventory.findIndex(p => p.id === item.id || p.name === item.name);
+                if (prodIdx !== -1) {
+                    const currentStock = parseInt(inventory[prodIdx].stock) || 0;
+                    if (currentStock < item.qty) {
+                        showCheckoutError(`Sản phẩm "${inventory[prodIdx].name}" chỉ còn ${currentStock} sản phẩm trong kho.`);
                         return;
                     }
                 }
@@ -484,29 +697,43 @@
             });
             localStorage.setItem('inventoryProducts', JSON.stringify(inventory));
 
-            const isCod = document.getElementById('cod').checked;
             const paymentMethod = isCod ? 'Thanh toán khi nhận hàng (COD)' : 'Chuyển khoản ngân hàng';
-
+            const nowStr = new Date().toLocaleString('vi-VN');
             let orderData = {
+                userEmail: getCurrentUserEmail() || email.toLowerCase(),
                 customerName: customerName,
                 phone: phone,
+                email: email,
                 address: fullAddress,
+                note: orderNote,
+                voucherCode: getAppliedVoucherCode(),
                 items: cartItems,
                 productName: productNames.join(', '),
                 qty: totalQty,
-                total: grandTotal,
+                total: currentGrandTotal,
                 paymentMethod: paymentMethod,
-                paymentStatus: isCod ? 'Chưa thanh toán' : 'Chờ xác nhận CK',
+                paymentStatus: isCod ? 'Chưa thanh toán' : 'Đã chuyển khoản (Chờ đối soát)',
                 orderStatus: 'Chờ xác nhận',
-                status: 'Chờ xác nhận'
+                status: 'Chờ xác nhận',
+                createdAt: nowStr,
+                carrier: '',
+                trackingCode: '',
+                timeline: [
+                    {
+                        time: nowStr,
+                        title: isCod ? 'Đặt hàng thành công' : 'Đã chuyển khoản & đặt hàng thành công',
+                        note: isCod
+                            ? 'Đơn hàng mới tạo, đang chờ cửa hàng xác nhận.'
+                            : `Khách xác nhận đã chuyển khoản (${transferNote}), đang chờ cửa hàng đối soát.`
+                    }
+                ]
             };
 
             let orders = JSON.parse(localStorage.getItem('ordersList')) || [];
             orders.push(orderData);
             localStorage.setItem('ordersList', JSON.stringify(orders));
 
-            localStorage.removeItem('cartItems');
-            localStorage.setItem('cart_qty', 0);
+            clearCartItems();
 
             const orderCode = '#DH0' + orders.length;
             document.getElementById('modalOrderCode').textContent = orderCode;
@@ -514,7 +741,13 @@
             document.getElementById('modalCustomerName').textContent = customerName;
             document.getElementById('modalCustomerPhone').textContent = phone;
             document.getElementById('modalOrderAddress').textContent = fullAddress;
-            document.getElementById('modalOrderTotal').innerHTML = grandTotal.toLocaleString('vi-VN') + '<u>đ</u>';
+            if (orderNote) {
+                document.getElementById('modalNoteWrap').style.display = 'block';
+                document.getElementById('modalOrderNote').textContent = orderNote;
+            } else {
+                document.getElementById('modalNoteWrap').style.display = 'none';
+            }
+            document.getElementById('modalOrderTotal').innerHTML = currentGrandTotal.toLocaleString('vi-VN') + '<u>đ</u>';
 
             const successModal = new bootstrap.Modal(document.getElementById('orderSuccessModal'));
             successModal.show();

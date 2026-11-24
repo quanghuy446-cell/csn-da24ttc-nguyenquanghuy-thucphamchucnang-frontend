@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh Mục Sản Phẩm - [TÊN THƯƠNG HIỆU]</title>
+    <title>Danh Mục Sản Phẩm - An Tâm Mart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="src/giaodien.css">
 </head>
 <body>
     <div class="sticky-top shadow-sm">
@@ -13,7 +13,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-3">
-                        <a href="index.html" class="logo-text">[TÊN THƯƠNG HIỆU]</a>
+                        <a href="index.html" class="logo-text">An Tâm Mart</a>
                     </div>
                     <div class="col-lg-4 col-md-4 search-wrapper">
                         <form class="d-flex" id="headerSearchForm">
@@ -22,9 +22,7 @@
                         </form>
                         <div class="search-suggestions" id="searchSuggestions"></div>
                     </div>
-                    <div class="col-lg-5 col-md-5 d-flex align-items-center justify-content-end gap-2 flex-nowrap" id="authContainer">
-                        <!-- Script tự động render -->
-                    </div>
+                    <div class="col-lg-5 col-md-5 d-flex align-items-center justify-content-end gap-2 flex-nowrap" id="authContainer"></div>
                 </div>
             </div>
         </header>
@@ -35,236 +33,342 @@
                     <li class="nav-item"><a class="nav-link" href="index.html">Trang Chủ</a></li>
                     <li class="nav-item"><a class="nav-link" href="gioithieu.html">Giới Thiệu</a></li>
                     <li class="nav-item"><a class="nav-link" href="sanpham.html">Sản Phẩm</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="danhmuc.html?cat=Thực+Phẩm+Chức+Năng">Thực Phẩm Chức Năng</a></li>
-                    <li class="nav-item"><a class="nav-link" href="danhmuc.html?cat=Chăm+Sóc+Sắc+Đẹp">Chăm Sóc Sắc Đẹp</a></li>
-                    <li class="nav-item"><a class="nav-link" href="danhmuc.html?cat=Hỗ+Trợ+Xương+Khớp">Hỗ Trợ Xương Khớp</a></li>
-                    <li class="nav-item"><a class="nav-link" href="danhmuc.html?cat=Chăm+Sóc+Bé">Chăm Sóc Bé</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="danhmuc.html?cat=T%C4%83ng%20%C4%91%E1%BB%81%20kh%C3%A1ng%20v%C3%A0%20Mi%E1%BB%85n%20d%E1%BB%8Bch">Tăng đề kháng</a></li>
+                    <li class="nav-item"><a class="nav-link" href="danhmuc.html?cat=%C4%90%E1%BA%B9p%20da%2C%20T%C3%B3c%20v%C3%A0%20M%C3%B3ng">Đẹp da, Tóc, Móng</a></li>
+                    <li class="nav-item"><a class="nav-link" href="danhmuc.html?cat=X%C6%B0%C6%A1ng%20kh%E1%BB%9Bp%20v%C3%A0%20C%C6%A1%20b%E1%BA%AFp">Xương khớp</a></li>
+                    <li class="nav-item"><a class="nav-link" href="danhmuc.html?cat=M%E1%BA%B9%20b%E1%BA%A7u%20v%C3%A0%20Em%20b%C3%A9">Mẹ bầu và Em bé</a></li>
                     <li class="nav-item"><a class="nav-link" href="lienhe.html">Liên Hệ</a></li>
                 </ul>
             </div>
         </nav>
     </div>
 
-    <main class="container my-3">
+    <main class="container my-4">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
-                <li class="breadcrumb-item active" aria-current="page" id="breadcrumbCat">Thực Phẩm Chức Năng</li>
+                <li class="breadcrumb-item active" aria-current="page" id="breadcrumbCat">Tăng đề kháng</li>
             </ol>
         </nav>
 
-        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
-            <h1 class="category-heading m-0 fs-3 fw-bold text-success" id="categoryHeading">Thực Phẩm Chức Năng</h1>
-            <select id="sortSelect" class="form-select form-select-sm" style="width: 190px;" onchange="applyFilters()">
-                <option value="default">Sắp xếp: Mặc định</option>
-                <option value="price-asc">Giá: Thấp đến cao</option>
-                <option value="price-desc">Giá: Cao đến thấp</option>
-                <option value="sold-desc">Bán chạy nhất</option>
-            </select>
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+            <div>
+                <h1 class="category-heading m-0 fs-3 fw-bold text-success" id="categoryHeading">Tăng đề kháng</h1>
+                <small class="text-muted" id="resultCount">Đang tải sản phẩm...</small>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <label class="small fw-semibold text-muted text-nowrap">Sắp xếp:</label>
+                <select id="sortSelect" class="form-select form-select-sm" style="width: 210px;" onchange="applyFilters()">
+                    <option value="default">Mặc định</option>
+                    <option value="sold-desc">Bán chạy nhất</option>
+                    <option value="discount-desc">Giảm giá nhiều nhất</option>
+                    <option value="price-asc">Giá: Thấp đến cao</option>
+                    <option value="price-desc">Giá: Cao đến thấp</option>
+                    <option value="rating-desc">Đánh giá cao nhất</option>
+                </select>
+            </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-3">
-                <div class="bg-white p-3 rounded border mb-3">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h6 class="fw-bold m-0">Bộ lọc</h6>
-                        <button class="btn btn-link btn-sm text-danger p-0 text-decoration-none" onclick="resetFilters()">Xóa lọc</button>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-4">
+                <div class="bg-white p-3 rounded border shadow-sm mb-3">
+                    <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">
+                        <h6 class="fw-bold m-0 text-dark">BỘ LỌC SẢN PHẨM</h6>
+                        <button class="btn btn-link btn-sm text-danger p-0 text-decoration-none fw-semibold" onclick="resetFilters()">Xóa lọc</button>
                     </div>
                     <div class="mb-3">
                         <label class="form-label small fw-semibold">Từ khóa</label>
-                        <input type="text" id="filterKeyword" class="form-control form-control-sm" placeholder="Tên sản phẩm..." oninput="applyFilters()">
+                        <input type="text" id="filterKeyword" class="form-control form-control-sm" placeholder="Tên hoặc mã sản phẩm..." oninput="applyFilters()">
                     </div>
                     <div class="mb-3">
                         <label class="form-label small fw-semibold">Danh mục</label>
                         <select id="filterCategory" class="form-select form-select-sm" onchange="applyFilters()">
                             <option value="all">Tất cả danh mục</option>
-                            <option value="Thực Phẩm Chức Năng">Thực Phẩm Chức Năng</option>
-                            <option value="Chăm Sóc Sắc Đẹp">Chăm Sóc Sắc Đẹp</option>
-                            <option value="Hỗ Trợ Xương Khớp">Hỗ Trợ Xương Khớp</option>
-                            <option value="Chăm Sóc Bé">Chăm Sóc Bé</option>
+                            <option value="Tăng đề kháng và Miễn dịch">Tăng đề kháng và Miễn dịch</option>
+                            <option value="Bổ não và Tăng cường trí nhớ">Bổ não và Tăng cường trí nhớ</option>
+                            <option value="Tiêu hóa và Sức khỏe đường ruột">Tiêu hóa và Sức khỏe đường ruột</option>
+                            <option value="Năng lượng và Thể lực">Năng lượng và Thể lực</option>
+                            <option value="Bổ mắt và Sức khỏe thị lực">Bổ mắt và Sức khỏe thị lực</option>
+                            <option value="Đẹp da, Tóc và Móng">Đẹp da, Tóc và Móng</option>
+                            <option value="Tim mạch và Tuần hoàn">Tim mạch và Tuần hoàn</option>
+                            <option value="Xương khớp và Cơ bắp">Xương khớp và Cơ bắp</option>
+                            <option value="Ngủ ngon và Giảm căng thẳng">Ngủ ngon và Giảm căng thẳng</option>
+                            <option value="Mẹ bầu và Em bé">Mẹ bầu và Em bé</option>
+                            <option value="Thể thao và Kiểm soát cân nặng">Thể thao và Kiểm soát cân nặng</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label small fw-semibold">Khoảng giá</label>
-                        <select id="filterPrice" class="form-select form-select-sm" onchange="applyFilters()">
-                            <option value="all">Tất cả</option>
+                        <label class="form-label small fw-semibold">Khoảng giá nhanh</label>
+                        <select id="filterPrice" class="form-select form-select-sm mb-2" onchange="onPresetPriceChange()">
+                            <option value="all">Tất cả mức giá</option>
                             <option value="under300">Dưới 300.000đ</option>
                             <option value="300to600">300.000đ - 600.000đ</option>
                             <option value="over600">Trên 600.000đ</option>
                         </select>
+                        <div class="d-flex align-items-center gap-1 mb-2">
+                            <input type="number" id="filterMinPrice" class="form-control form-control-sm" placeholder="Từ (đ)" min="0" step="10000">
+                            <span class="text-muted small">-</span>
+                            <input type="number" id="filterMaxPrice" class="form-control form-control-sm" placeholder="Đến (đ)" min="0" step="10000">
+                        </div>
+                        <button type="button" class="btn btn-outline-success btn-sm w-100 fw-semibold" onclick="applyCustomPriceRange()">Áp dụng khoảng giá</button>
                     </div>
                     <div class="mb-3">
                         <label class="form-label small fw-semibold">Thương hiệu</label>
                         <div id="brandFilterContainer"></div>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="filterInStock" onchange="applyFilters()">
-                        <label class="form-check-label small" for="filterInStock">Chỉ hiện còn hàng</label>
+                    <div class="border-top pt-3 d-flex flex-column gap-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="filterDiscountOnly" onchange="applyFilters()">
+                            <label class="form-check-label small fw-semibold" for="filterDiscountOnly">Đang giảm giá</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="filterInStock" onchange="applyFilters()">
+                            <label class="form-check-label small fw-semibold" for="filterInStock">Chỉ hiện còn hàng</label>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-9">
-                <div class="row g-3" id="categoryProductsGrid">
-                    <!-- Script tự động render từ kho hàng -->
-                </div>
+            <div class="col-lg-9 col-md-8">
+                <div id="activeFiltersBar" class="d-flex flex-wrap align-items-center gap-2 mb-3" style="display: none !important;"></div>
+                <div class="row g-3" id="categoryProductsGrid"></div>
+                <nav id="paginationNav" class="mt-4 d-flex justify-content-center" aria-label="Phân trang sản phẩm"></nav>
             </div>
         </div>
     </main>
 
-    <footer class="pt-5 pb-3">
-        <div class="container">
-            <div class="row g-4 pb-4 border-bottom">
-                <div class="col-md-4">
-                    <h6 class="fw-bold text-success mb-3">GIỚI THIỆU</h6>
-                    <p class="small text-muted mb-2">[TÊN THƯƠNG HIỆU] chuyên cung cấp thực phẩm chức năng, vitamin và sản phẩm chăm sóc sức khỏe chính hãng.</p>
-                    <ul class="list-unstyled small mb-0">
-                        <li class="mb-1">Điện thoại: <a href="tel:0914636373" class="text-decoration-none text-secondary fw-semibold">0914636373</a></li>
-                        <li class="mb-1">Email: <a href="mailto:110124073@st.tvu.edu.vn" class="text-decoration-none text-secondary fw-semibold">110124073@st.tvu.edu.vn</a></li>
-                        <li class="mb-1"><a href="gioithieu.html" class="text-decoration-none text-secondary">Về chúng tôi</a></li>
-                        <li><a href="lienhe.html" class="text-decoration-none text-secondary">Liên hệ &amp; Hỗ trợ</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h6 class="fw-bold text-success mb-3">DANH MỤC SẢN PHẨM</h6>
-                    <ul class="list-unstyled small mb-0">
-                        <li class="mb-1"><a href="sanpham.html" class="text-decoration-none text-secondary">Tất cả sản phẩm</a></li>
-                        <li class="mb-1"><a href="sanpham.html?cat=Thực+Phẩm+Chức+Năng" class="text-decoration-none text-secondary">Thực Phẩm Chức Năng</a></li>
-                        <li class="mb-1"><a href="sanpham.html?cat=Chăm+Sóc+Sắc+Đẹp" class="text-decoration-none text-secondary">Chăm Sóc Sắc Đẹp</a></li>
-                        <li class="mb-1"><a href="sanpham.html?cat=Hỗ+Trợ+Xương+Khớp" class="text-decoration-none text-secondary">Hỗ Trợ Xương Khớp</a></li>
-                        <li><a href="sanpham.html?cat=Chăm+Sóc+Bé" class="text-decoration-none text-secondary">Chăm Sóc Bé</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h6 class="fw-bold text-success mb-3">CHÍNH SÁCH</h6>
-                    <ul class="list-unstyled small mb-0">
-                        <li class="mb-1"><a href="chinhsach-doitra.html" class="text-decoration-none text-secondary">Chính sách đổi trả</a></li>
-                        <li class="mb-1"><a href="chinhsach-vanchuyen.html" class="text-decoration-none text-secondary">Chính sách vận chuyển</a></li>
-                        <li class="mb-1"><a href="chinhsach-baomat.html" class="text-decoration-none text-secondary">Chính sách bảo mật</a></li>
-                        <li><a href="chinhsach-thanhtoan.html" class="text-decoration-none text-secondary">Chính sách thanh toán</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="text-center pt-3">
-                <small>&copy; 2026 [TÊN THƯƠNG HIỆU]</small>
-            </div>
-        </div>
-    </footer>
+    <footer></footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="src/dulieu-sanpham.js"></script>
+    <script src="src/dungchung.js"></script>
     <script>
-        function initInventory() {
-            let inventory = JSON.parse(localStorage.getItem('inventoryProducts'));
-            if (!Array.isArray(inventory) || inventory.length === 0) {
-                inventory = [
-                    { id: 'SP01', name: 'Sản phẩm 01', brand: 'Chính hãng', category: 'Thực Phẩm Chức Năng', price: 555000, stock: 45, sold: 178, img: 'https://via.placeholder.com/200x160?text=SP+01', description: 'Thực phẩm chức năng hỗ trợ tăng cường sức khỏe toàn diện.' },
-                    { id: 'SP02', name: 'Sản phẩm 02', brand: 'Chính hãng', category: 'Thực Phẩm Chức Năng', price: 272000, stock: 30, sold: 170, img: 'https://via.placeholder.com/200x160?text=SP+02', description: 'Bổ sung vitamin và khoáng chất thiết yếu mỗi ngày.' },
-                    { id: 'SP03', name: 'Sản phẩm 03', brand: 'Chính hãng', category: 'Chăm Sóc Sắc Đẹp', price: 830000, stock: 12, sold: 182, img: 'https://via.placeholder.com/200x160?text=SP+03', description: 'Hỗ trợ làm đẹp da, bổ sung collagen và dưỡng chất.' },
-                    { id: 'SP04', name: 'Sản phẩm 04', brand: 'Chính hãng', category: 'Hỗ Trợ Xương Khớp', price: 649000, stock: 5, sold: 174, img: 'https://via.placeholder.com/200x160?text=SP+04', description: 'Hỗ trợ bôi trơn khớp, giúp xương khớp chắc khỏe.' }
-                ];
-                localStorage.setItem('inventoryProducts', JSON.stringify(inventory));
+        let showAllBrands = false;
+
+        function toggleBrandList() {
+            showAllBrands = !showAllBrands;
+            const extraItems = document.querySelectorAll('.brand-extra-item');
+            extraItems.forEach(el => el.classList.toggle('d-none', !showAllBrands));
+            const btn = document.getElementById('btnToggleBrands');
+            if (btn) {
+                const extraCount = extraItems.length;
+                btn.textContent = showAllBrands ? 'Thu gọn danh sách hãng' : `Xem thêm (+${extraCount} thương hiệu)`;
             }
-            return inventory;
         }
 
         function renderBrandFilters(products) {
             const container = document.getElementById('brandFilterContainer');
-            const brands = [...new Set(products.map(p => (p.brand || 'Chính hãng').trim()))];
-            container.innerHTML = '';
-            brands.forEach((b, idx) => {
-                container.innerHTML += `
-                    <div class="form-check mb-1">
+            const brandCounts = {};
+            products.forEach(p => {
+                const b = (p.brand || 'Chính hãng').trim();
+                brandCounts[b] = (brandCounts[b] || 0) + 1;
+            });
+            const sortedBrands = Object.keys(brandCounts).sort((a, b) => brandCounts[b] - brandCounts[a] || a.localeCompare(b));
+            const limit = 6;
+            let html = '<div style="max-height: 220px; overflow-y: auto; padding-right: 4px;">';
+            sortedBrands.forEach((b, idx) => {
+                const isExtra = idx >= limit;
+                html += `
+                    <div class="form-check mb-1 ${isExtra ? 'brand-extra-item d-none' : ''}">
                         <input class="form-check-input brand-checkbox" type="checkbox" value="${b}" id="brand_${idx}" onchange="applyFilters()">
-                        <label class="form-check-label small" for="brand_${idx}">${b}</label>
+                        <label class="form-check-label small" for="brand_${idx}">${b} <span class="text-muted">(${brandCounts[b]})</span></label>
                     </div>
                 `;
             });
+            html += '</div>';
+            if (sortedBrands.length > limit) {
+                html += `<button type="button" id="btnToggleBrands" class="btn btn-link btn-sm text-success p-0 mt-1 text-decoration-none fw-semibold" onclick="toggleBrandList()">Xem thêm (+${sortedBrands.length - limit} thương hiệu)</button>`;
+            }
+            container.innerHTML = html;
         }
 
-        function applyFilters() {
-            const products = initInventory();
+        function onPresetPriceChange() {
+            document.getElementById('filterMinPrice').value = '';
+            document.getElementById('filterMaxPrice').value = '';
+            applyFilters();
+        }
+
+        function applyCustomPriceRange() {
+            const minVal = parseInt(document.getElementById('filterMinPrice').value);
+            const maxVal = parseInt(document.getElementById('filterMaxPrice').value);
+            if (!isNaN(minVal) && !isNaN(maxVal) && minVal > maxVal) {
+                showSiteToast('Giá tối thiểu không được lớn hơn giá tối đa.', true);
+                return;
+            }
+            document.getElementById('filterPrice').value = 'all';
+            applyFilters();
+        }
+
+        function renderActiveFilterChips(chips) {
+            const bar = document.getElementById('activeFiltersBar');
+            if (!bar) return;
+            if (chips.length === 0) {
+                bar.style.setProperty('display', 'none', 'important');
+                bar.innerHTML = '';
+                return;
+            }
+            bar.style.setProperty('display', 'flex', 'important');
+            bar.innerHTML = `<span class="small text-muted fw-semibold">Đang lọc:</span>` +
+                chips.map(ch => `
+                    <span class="badge rounded-pill bg-success-subtle text-success border border-success-subtle d-inline-flex align-items-center gap-1 px-3 py-2 fw-semibold">
+                        <span>${ch.label}</span>
+                        <button type="button" class="btn-close" style="font-size: 0.55rem;" aria-label="Bỏ lọc" onclick="${ch.onRemove}"></button>
+                    </span>
+                `).join('') +
+                `<button type="button" class="btn btn-link btn-sm text-danger text-decoration-none p-0 ms-1 fw-semibold" onclick="resetFilters()">Xóa tất cả</button>`;
+        }
+
+        function clearFilterField(type, val = '') {
+            if (type === 'keyword') document.getElementById('filterKeyword').value = '';
+            else if (type === 'category') document.getElementById('filterCategory').value = 'all';
+            else if (type === 'price') {
+                document.getElementById('filterPrice').value = 'all';
+                document.getElementById('filterMinPrice').value = '';
+                document.getElementById('filterMaxPrice').value = '';
+            } else if (type === 'brand') {
+                document.querySelectorAll('.brand-checkbox').forEach(cb => {
+                    if (cb.value === val) cb.checked = false;
+                });
+            } else if (type === 'discount') document.getElementById('filterDiscountOnly').checked = false;
+            else if (type === 'stock') document.getElementById('filterInStock').checked = false;
+            applyFilters();
+        }
+
+        let currentPage = 1;
+        const PAGE_SIZE = 12;
+
+        function goToPage(pageNum) {
+            currentPage = pageNum;
+            applyFilters(false);
+            const grid = document.getElementById('categoryProductsGrid');
+            if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function renderPagination(totalItems) {
+            const nav = document.getElementById('paginationNav');
+            if (!nav) return;
+            const totalPages = Math.ceil(totalItems / PAGE_SIZE);
+            if (totalPages <= 1) {
+                nav.innerHTML = '';
+                return;
+            }
+            let itemsHtml = `
+                <li class="page-item ${currentPage <= 1 ? 'disabled' : ''}">
+                    <button type="button" class="page-link" onclick="goToPage(${currentPage - 1})">Trước</button>
+                </li>`;
+            for (let i = 1; i <= totalPages; i++) {
+                itemsHtml += `
+                    <li class="page-item ${i === currentPage ? 'active' : ''}">
+                        <button type="button" class="page-link" onclick="goToPage(${i})">${i}</button>
+                    </li>`;
+            }
+            itemsHtml += `
+                <li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}">
+                    <button type="button" class="page-link" onclick="goToPage(${currentPage + 1})">Sau</button>
+                </li>`;
+            nav.innerHTML = `<ul class="pagination pagination-sm mb-0">${itemsHtml}</ul>`;
+        }
+
+        function applyFilters(resetPage = true) {
+            if (resetPage) currentPage = 1;
+            const products = initInventoryCommon();
             const keyword = document.getElementById('filterKeyword').value.trim().toLowerCase();
             const category = document.getElementById('filterCategory').value;
             const priceRange = document.getElementById('filterPrice').value;
+            const minPrice = parseInt(document.getElementById('filterMinPrice').value);
+            const maxPrice = parseInt(document.getElementById('filterMaxPrice').value);
+            const hasCustomPrice = !isNaN(minPrice) || !isNaN(maxPrice);
+            const discountOnly = document.getElementById('filterDiscountOnly').checked;
             const inStockOnly = document.getElementById('filterInStock').checked;
             const sortBy = document.getElementById('sortSelect').value;
-            const selectedBrands = Array.from(document.querySelectorAll('.brand-checkbox:checked')).map(cb => cb.value.toLowerCase());
+            const selectedBrands = Array.from(document.querySelectorAll('.brand-checkbox:checked')).map(cb => cb.value);
+
+            const chips = [];
+            if (keyword) chips.push({ label: `Từ khóa: ${keyword}`, onRemove: `clearFilterField('keyword')` });
+            if (category !== 'all') chips.push({ label: category, onRemove: `clearFilterField('category')` });
+            if (hasCustomPrice) {
+                const minLbl = !isNaN(minPrice) ? minPrice.toLocaleString('vi-VN') + 'đ' : '0đ';
+                const maxLbl = !isNaN(maxPrice) ? maxPrice.toLocaleString('vi-VN') + 'đ' : 'Trở lên';
+                chips.push({ label: `Giá: ${minLbl} - ${maxLbl}`, onRemove: `clearFilterField('price')` });
+            } else if (priceRange !== 'all') {
+                const map = { under300: 'Dưới 300.000đ', '300to600': '300.000đ - 600.000đ', over600: 'Trên 600.000đ' };
+                chips.push({ label: `Giá: ${map[priceRange]}`, onRemove: `clearFilterField('price')` });
+            }
+            selectedBrands.forEach(b => chips.push({ label: `Hãng: ${b}`, onRemove: `clearFilterField('brand', '${b.replace(/'/g, "\\'")}')` }));
+            if (discountOnly) chips.push({ label: 'Đang giảm giá', onRemove: `clearFilterField('discount')` });
+            if (inStockOnly) chips.push({ label: 'Còn hàng', onRemove: `clearFilterField('stock')` });
+            renderActiveFilterChips(chips);
 
             let filtered = products.filter(item => {
                 if (keyword && !(item.name || '').toLowerCase().includes(keyword) && !(item.id || '').toLowerCase().includes(keyword)) return false;
                 if (category !== 'all' && item.category !== category) return false;
                 const price = parseInt(item.price) || 0;
-                if (priceRange === 'under300' && price >= 300000) return false;
-                if (priceRange === '300to600' && (price < 300000 || price > 600000)) return false;
-                if (priceRange === 'over600' && price <= 600000) return false;
-                if (selectedBrands.length > 0 && !selectedBrands.includes((item.brand || 'Chính hãng').trim().toLowerCase())) return false;
+                if (hasCustomPrice) {
+                    if (!isNaN(minPrice) && price < minPrice) return false;
+                    if (!isNaN(maxPrice) && price > maxPrice) return false;
+                } else {
+                    if (priceRange === 'under300' && price >= 300000) return false;
+                    if (priceRange === '300to600' && (price < 300000 || price > 600000)) return false;
+                    if (priceRange === 'over600' && price <= 600000) return false;
+                }
+                if (selectedBrands.length > 0 && !selectedBrands.map(x => x.toLowerCase()).includes((item.brand || 'Chính hãng').trim().toLowerCase())) return false;
+                if (discountOnly && (parseInt(item.discountPercent) || 0) <= 0) return false;
                 if (inStockOnly && (parseInt(item.stock) || 0) <= 0) return false;
                 return true;
             });
 
-            if (sortBy === 'price-asc') filtered.sort((a, b) => a.price - b.price);
-            else if (sortBy === 'price-desc') filtered.sort((a, b) => b.price - a.price);
-            else if (sortBy === 'sold-desc') filtered.sort((a, b) => (b.sold || 0) - (a.sold || 0));
+            if (sortBy === 'price-asc') filtered.sort((a, b) => (parseInt(a.price) || 0) - (parseInt(b.price) || 0));
+            else if (sortBy === 'price-desc') filtered.sort((a, b) => (parseInt(b.price) || 0) - (parseInt(a.price) || 0));
+            else if (sortBy === 'sold-desc') filtered.sort((a, b) => (parseInt(b.sold) || 0) - (parseInt(a.sold) || 0));
+            else if (sortBy === 'discount-desc') filtered.sort((a, b) => (parseInt(b.discountPercent) || 0) - (parseInt(a.discountPercent) || 0));
+            else if (sortBy === 'rating-desc') filtered.sort((a, b) => getProductRatingSummary(b.id).avg - getProductRatingSummary(a.id).avg);
+
+            const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+            if (currentPage > totalPages) currentPage = totalPages;
+            const startIdx = (currentPage - 1) * PAGE_SIZE;
+            const pageItems = filtered.slice(startIdx, startIdx + PAGE_SIZE);
 
             document.getElementById('categoryHeading').textContent = category !== 'all' ? category : 'Tất Cả Danh Mục';
             document.getElementById('breadcrumbCat').textContent = category !== 'all' ? category : 'Tất cả';
+            document.getElementById('resultCount').textContent = totalPages > 1
+                ? `Tìm thấy ${filtered.length} sản phẩm (Trang ${currentPage}/${totalPages})`
+                : `Tìm thấy ${filtered.length} sản phẩm`;
 
             const grid = document.getElementById('categoryProductsGrid');
             grid.innerHTML = '';
 
             if (filtered.length === 0) {
-                grid.innerHTML = `<div class="col-12"><div class="bg-white p-5 rounded border text-center text-muted">Không có sản phẩm nào phù hợp với bộ lọc.</div></div>`;
+                renderPagination(0);
+                grid.innerHTML = `
+                    <div class="col-12">
+                        <div class="bg-white p-5 rounded border text-center">
+                            <h5 class="text-muted mb-2">Không có sản phẩm nào phù hợp với bộ lọc</h5>
+                            <button class="btn btn-outline-success btn-sm fw-semibold mt-2" onclick="resetFilters()">Xem tất cả sản phẩm</button>
+                        </div>
+                    </div>`;
                 return;
             }
 
-            const favs = JSON.parse(localStorage.getItem('favoriteProducts')) || [];
-            filtered.forEach(item => {
-                const isFav = favs.includes(item.id);
-                const stockText = item.stock > 0
-                    ? `<span class="text-success small fw-semibold">Còn ${item.stock} sản phẩm</span>`
-                    : `<span class="text-danger small fw-bold">Hết hàng</span>`;
-
-                grid.innerHTML += `
-                    <div class="col-md-4 col-sm-6">
-                        <div class="product-card">
-                            <button type="button" class="btn-wishlist ${isFav ? 'active' : ''}" onclick="toggleFavorite('${item.id}', event)" title="${isFav ? 'Bỏ yêu thích' : 'Thêm vào yêu thích'}">&hearts;</button>
-                            <a href="chitiet.html?id=${encodeURIComponent(item.id)}" class="text-decoration-none">
-                                <img src="${item.img}" alt="${item.name}">
-                                <div class="product-name">${item.name}</div>
-                            </a>
-                            <div>
-                                <div class="product-price-main">${(parseInt(item.price) || 0).toLocaleString('vi-VN')}<u>đ</u></div>
-                                <div class="product-stock-info mt-1">${stockText}</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function toggleFavorite(prodId, event) {
-            if (event) { event.preventDefault(); event.stopPropagation(); }
-            let favs = JSON.parse(localStorage.getItem('favoriteProducts')) || [];
-            if (favs.includes(prodId)) favs = favs.filter(id => id !== prodId);
-            else favs.push(prodId);
-            localStorage.setItem('favoriteProducts', JSON.stringify(favs));
-            applyFilters();
+            grid.innerHTML = pageItems.map(item => renderProductCardHtml(item, { colClass: 'col-md-4 col-sm-6', onFavCb: '() => applyFilters(false)' })).join('');
+            renderPagination(filtered.length);
         }
 
         function resetFilters() {
             document.getElementById('filterKeyword').value = '';
             document.getElementById('filterCategory').value = 'all';
             document.getElementById('filterPrice').value = 'all';
+            document.getElementById('filterMinPrice').value = '';
+            document.getElementById('filterMaxPrice').value = '';
+            document.getElementById('filterDiscountOnly').checked = false;
             document.getElementById('filterInStock').checked = false;
             document.getElementById('sortSelect').value = 'default';
             document.querySelectorAll('.brand-checkbox').forEach(cb => cb.checked = false);
             applyFilters();
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const products = initInventory();
+        document.addEventListener('DOMContentLoaded', function() {
+            const products = initInventoryCommon();
             renderBrandFilters(products);
-
             const urlParams = new URLSearchParams(window.location.search);
             const cat = urlParams.get('cat') || 'all';
             const q = urlParams.get('q') || '';
@@ -274,93 +378,7 @@
                 if ([...catSelect.options].some(o => o.value === cat)) catSelect.value = cat;
             }
             applyFilters();
-
-            const searchInput = document.getElementById('headerSearchInput');
-            const suggestionsBox = document.getElementById('searchSuggestions');
-            const searchForm = document.getElementById('headerSearchForm');
-            if (searchInput && suggestionsBox) {
-                const renderSuggestions = () => {
-                    const kw = searchInput.value.trim().toLowerCase();
-                    if (!kw) { suggestionsBox.style.display = 'none'; suggestionsBox.innerHTML = ''; return; }
-                    const matches = initInventory().filter(p =>
-                        (p.name || '').toLowerCase().includes(kw) ||
-                        (p.id || '').toLowerCase().includes(kw) ||
-                        (p.category || '').toLowerCase().includes(kw)
-                    ).slice(0, 6);
-                    if (matches.length === 0) {
-                        suggestionsBox.innerHTML = `<div class="p-3 small text-muted text-center">Không tìm thấy sản phẩm phù hợp</div>`;
-                        suggestionsBox.style.display = 'block';
-                        return;
-                    }
-                    suggestionsBox.innerHTML = matches.map(p => `
-                        <a href="chitiet.html?id=${encodeURIComponent(p.id)}" class="search-suggestion-item">
-                            <img src="${p.img}" alt="${p.name}">
-                            <div class="flex-grow-1">
-                                <div class="fw-semibold small">${p.name}</div>
-                                <div class="text-muted" style="font-size: 11px;">${p.category} • ${p.stock > 0 ? 'Còn ' + p.stock : 'Hết hàng'}</div>
-                            </div>
-                            <span class="fw-bold text-success small">${(parseInt(p.price) || 0).toLocaleString('vi-VN')}đ</span>
-                        </a>
-                    `).join('');
-                    suggestionsBox.style.display = 'block';
-                };
-                searchInput.addEventListener('input', renderSuggestions);
-                searchInput.addEventListener('focus', renderSuggestions);
-                document.addEventListener('click', (e) => {
-                    if (!e.target.closest('.search-wrapper')) suggestionsBox.style.display = 'none';
-                });
-            }
-            if (searchForm) {
-                searchForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const kw = document.getElementById('headerSearchInput').value.trim();
-                    window.location.href = kw ? `sanpham.html?q=${encodeURIComponent(kw)}` : 'sanpham.html';
-                });
-            }
-
-            let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-            let userRole = localStorage.getItem('userRole');
-            let username = localStorage.getItem('username') || 'Khách';
-            let authContainer = document.getElementById('authContainer');
-            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-            let savedQty = cartItems.reduce((sum, item) => sum + (parseInt(item.qty) || 0), 0);
-            let favCount = (JSON.parse(localStorage.getItem('favoriteProducts')) || []).length;
-            const favBtn = `<a href="yeuthich.html" class="btn btn-outline-danger btn-sm me-1" title="Sản phẩm yêu thích">&hearts; (${favCount})</a>`;
-
-            if (!isLoggedIn) {
-                if (authContainer) {
-                    authContainer.innerHTML = `${favBtn}<a href="dangnhap.html" class="btn btn-success btn-sm px-3 fw-bold">Đăng nhập</a>`;
-                }
-            } else {
-                let adminBtn = (userRole === 'admin') ? `<a href="admin.html" class="btn btn-warning btn-sm fw-bold me-1">Quản Trị</a>` : '';
-                if (authContainer) {
-                    authContainer.innerHTML = `
-                        ${favBtn}
-                        ${adminBtn}
-                        <a href="giohang.html" class="btn btn-outline-success btn-sm me-1">Giỏ hàng (${savedQty})</a>
-                        <span class="fw-bold text-success small me-2">${username}</span>
-                        <button onclick="logout()" class="btn btn-outline-danger btn-sm">Thoát</button>
-                    `;
-                }
-            }
         });
-
-        function showSiteToast(msg, isError = false) {
-            document.querySelectorAll('.site-toast').forEach(el => el.remove());
-            const t = document.createElement('div');
-            t.className = 'site-toast' + (isError ? ' toast-error' : '');
-            t.textContent = msg;
-            document.body.appendChild(t);
-            setTimeout(() => { t.remove(); }, 2800);
-        }
-
-        function logout() {
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('userRole');
-            localStorage.removeItem('username');
-            showSiteToast('Đã đăng xuất tài khoản!');
-            setTimeout(() => { window.location.href = 'index.html'; }, 800);
-        }
     </script>
 </body>
 </html>

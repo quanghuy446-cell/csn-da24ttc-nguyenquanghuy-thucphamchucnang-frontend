@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liên Hệ - [TÊN THƯƠNG HIỆU]</title>
+    <title>Liên Hệ - An Tâm Mart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="src/giaodien.css">
 </head>
 <body>
     <div class="sticky-top shadow-sm">
@@ -13,7 +13,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-3">
-                        <a href="index.html" class="logo-text">[TÊN THƯƠNG HIỆU]</a>
+                        <a href="index.html" class="logo-text">An Tâm Mart</a>
                     </div>
                     <div class="col-lg-4 col-md-4 search-wrapper">
                         <form class="d-flex" id="headerSearchForm">
@@ -22,9 +22,7 @@
                         </form>
                         <div class="search-suggestions" id="searchSuggestions"></div>
                     </div>
-                    <div class="col-lg-5 col-md-5 d-flex align-items-center justify-content-end gap-2 flex-nowrap" id="authContainer">
-                        <!-- Script tự động render -->
-                    </div>
+                    <div class="col-lg-5 col-md-5 d-flex align-items-center justify-content-end gap-2 flex-nowrap" id="authContainer"></div>
                 </div>
             </div>
         </header>
@@ -35,10 +33,10 @@
                     <li class="nav-item"><a class="nav-link" href="index.html">Trang Chủ</a></li>
                     <li class="nav-item"><a class="nav-link" href="gioithieu.html">Giới Thiệu</a></li>
                     <li class="nav-item"><a class="nav-link" href="sanpham.html">Sản Phẩm</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=Thực+Phẩm+Chức+Năng">Thực Phẩm Chức Năng</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=Chăm+Sóc+Sắc+Đẹp">Chăm Sóc Sắc Đẹp</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=Hỗ+Trợ+Xương+Khớp">Hỗ Trợ Xương Khớp</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=Chăm+Sóc+Bé">Chăm Sóc Bé</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=T%C4%83ng%20%C4%91%E1%BB%81%20kh%C3%A1ng%20v%C3%A0%20Mi%E1%BB%85n%20d%E1%BB%8Bch">Tăng đề kháng</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=%C4%90%E1%BA%B9p%20da%2C%20T%C3%B3c%20v%C3%A0%20M%C3%B3ng">Đẹp da, Tóc, Móng</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=X%C6%B0%C6%A1ng%20kh%E1%BB%9Bp%20v%C3%A0%20C%C6%A1%20b%E1%BA%AFp">Xương khớp</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sanpham.html?cat=M%E1%BA%B9%20b%E1%BA%A7u%20v%C3%A0%20Em%20b%C3%A9">Mẹ bầu và Em bé</a></li>
                     <li class="nav-item"><a class="nav-link active" href="lienhe.html">Liên Hệ</a></li>
                 </ul>
             </div>
@@ -53,156 +51,186 @@
             </ol>
         </nav>
 
-        <div class="bg-white p-4 rounded border">
-            <h2 class="fw-bold text-success mb-3">Liên hệ với chúng tôi</h2>
-            <p class="text-secondary mb-4">Bạn có thắc mắc hoặc cần tư vấn về sản phẩm? Hãy để lại thông tin.</p>
-            <form id="contactForm" onsubmit="submitContactForm(event)">
-                <div class="mb-3">
-                    <label class="form-label small fw-bold">Họ và tên</label>
-                    <input type="text" class="form-control" placeholder="Nhập họ và tên..." required>
+        <div class="mb-4">
+            <h1 class="fs-2 fw-bold text-success mb-1">Liên Hệ Và Hỗ Trợ Khách Hàng</h1>
+            <p class="text-muted mb-0">Đội ngũ tư vấn của An Tâm Mart luôn sẵn sàng giải đáp thắc mắc về sản phẩm, đơn hàng và chính sách đổi trả.</p>
+        </div>
+
+        <!-- 4 THẺ THÔNG TIN LIÊN HỆ NHANH -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-3 col-sm-6">
+                <div class="bg-white p-3 rounded border h-100">
+                    <div class="small text-uppercase fw-bold text-success mb-1">Hotline tư vấn</div>
+                    <a href="tel:0914636373" class="fs-5 fw-bold text-dark text-decoration-none d-block mb-1">0914 636 373</a>
+                    <div class="small text-muted">Hỗ trợ nhanh qua điện thoại và Zalo</div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label small fw-bold">Nội dung</label>
-                    <textarea class="form-control" rows="3" required></textarea>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="bg-white p-3 rounded border h-100">
+                    <div class="small text-uppercase fw-bold text-success mb-1">Email hỗ trợ</div>
+                    <a href="mailto:110124073@st.tvu.edu.vn" class="fw-bold text-dark text-decoration-none d-block mb-1 text-break">110124073@st.tvu.edu.vn</a>
+                    <div class="small text-muted">Phản hồi trong vòng 2 đến 4 giờ làm việc</div>
                 </div>
-                <button type="submit" class="btn btn-success fw-bold px-4">Gửi thông tin</button>
-            </form>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="bg-white p-3 rounded border h-100">
+                    <div class="small text-uppercase fw-bold text-success mb-1">Địa chỉ cửa hàng</div>
+                    <div class="fw-semibold text-dark small mb-1">126 Nguyễn Thiện Thành, Phường 5, TP. Trà Vinh</div>
+                    <div class="small text-muted">Hỗ trợ nhận hàng trực tiếp tại quầy</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="bg-white p-3 rounded border h-100">
+                    <div class="small text-uppercase fw-bold text-success mb-1">Giờ làm việc</div>
+                    <div class="fw-semibold text-dark small mb-1">08:00 - 21:00 (Thứ 2 đến Chủ Nhật)</div>
+                    <div class="small text-muted">Kể cả ngày lễ lớn trong năm</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- BIỂU MẪU GỬI YÊU CẦU HỖ TRỢ -->
+            <div class="col-lg-6">
+                <div class="bg-white p-4 rounded border h-100">
+                    <h4 class="fw-bold text-success mb-2">Gửi Yêu Cầu Tư Vấn</h4>
+                    <p class="text-muted small mb-3">Vui lòng điền thông tin bên dưới để chuyên viên liên hệ hỗ trợ bạn sớm nhất.</p>
+                    <div id="contactError" class="alert alert-danger py-2 px-3 small d-none"></div>
+                    <form id="contactForm" onsubmit="submitContactForm(event)" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Họ và tên <span class="text-danger">*</span></label>
+                            <input type="text" id="contactName" class="form-control" placeholder="Nhập họ và tên của bạn" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label small fw-bold">Số điện thoại <span class="text-danger">*</span></label>
+                                <input type="tel" id="contactPhone" class="form-control" placeholder="Nhập số điện thoại" maxlength="10" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label small fw-bold">Email <span class="text-danger">*</span></label>
+                                <input type="email" id="contactEmail" class="form-control" placeholder="Nhập địa chỉ email" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Chủ đề cần hỗ trợ</label>
+                            <select id="contactTopic" class="form-select">
+                                <option value="Tư vấn chọn sản phẩm">Tư vấn chọn sản phẩm phù hợp</option>
+                                <option value="Kiểm tra đơn hàng">Kiểm tra tình trạng đơn hàng</option>
+                                <option value="Đổi trả sản phẩm">Yêu cầu đổi trả hoặc bảo hành</option>
+                                <option value="Góp ý dịch vụ">Góp ý cải thiện dịch vụ</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Nội dung chi tiết <span class="text-danger">*</span></label>
+                            <textarea id="contactMessage" class="form-control" rows="4" placeholder="Mô tả nhu cầu sức khỏe hoặc mã đơn hàng bạn cần hỗ trợ..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success fw-bold px-4 w-100 py-2">Gửi yêu cầu hỗ trợ</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- HỆ THỐNG CỬA HÀNG VÀ CÂU HỎI THƯỜNG GẶP -->
+            <div class="col-lg-6">
+                <div class="bg-white p-4 rounded border mb-4">
+                    <h5 class="fw-bold text-success mb-2">Vị Trí Cửa Hàng Chính</h5>
+                    <p class="small text-muted mb-3">126 Nguyễn Thiện Thành, Phường 5, Thành phố Trà Vinh, Tỉnh Trà Vinh (có bãi đỗ xe miễn phí và khu vực tư vấn riêng).</p>
+                    <div class="p-3 rounded-3 border bg-light d-flex flex-wrap justify-content-between align-items-center gap-2">
+                        <div class="small">
+                            <div class="fw-bold text-dark">Showroom An Tâm Mart</div>
+                            <div class="text-muted">Mở cửa từ 08:00 đến 21:00 hàng ngày</div>
+                        </div>
+                        <a href="https://maps.google.com/?q=126+Nguyen+Thien+Thanh+Tra+Vinh" target="_blank" rel="noopener noreferrer" class="btn btn-outline-success btn-sm fw-semibold">Mở chỉ đường trên Google Maps</a>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded border">
+                    <h5 class="fw-bold text-success mb-3">Câu Hỏi Thường Gặp (FAQ)</h5>
+                    <div class="accordion accordion-flush" id="contactFaq">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fw-semibold small" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    Làm sao kiểm tra sản phẩm có phải chính hãng không?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#contactFaq">
+                                <div class="accordion-body small text-muted">
+                                    Mỗi sản phẩm đều có tem niêm phong, nhãn phụ tiếng Việt rõ ràng và mã vạch kiểm tra nguồn gốc. Khách hàng được kiểm tra hàng trước khi thanh toán.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fw-semibold small" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    Thời gian giao hàng toàn quốc mất bao lâu?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#contactFaq">
+                                <div class="accordion-body small text-muted">
+                                    Khu vực nội thành giao từ 1 đến 2 ngày làm việc, các tỉnh thành khác từ 2 đến 4 ngày làm việc. Miễn phí vận chuyển cho đơn hàng từ 500.000đ.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fw-semibold small" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    Chính sách đổi trả sản phẩm áp dụng như thế nào?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#contactFaq">
+                                <div class="accordion-body small text-muted">
+                                    Hỗ trợ đổi trả trong vòng 7 ngày kể từ khi nhận hàng nếu sản phẩm bị lỗi bao bì, móp méo do vận chuyển hoặc giao sai sản phẩm.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
-    <footer class="pt-5 pb-3">
-        <div class="container">
-            <div class="row g-4 pb-4 border-bottom">
-                <div class="col-md-4">
-                    <h6 class="fw-bold text-success mb-3">GIỚI THIỆU</h6>
-                    <p class="small text-muted mb-2">[TÊN THƯƠNG HIỆU] chuyên cung cấp thực phẩm chức năng, vitamin và sản phẩm chăm sóc sức khỏe chính hãng.</p>
-                    <ul class="list-unstyled small mb-0">
-                        <li class="mb-1">Điện thoại: <a href="tel:0914636373" class="text-decoration-none text-secondary fw-semibold">0914636373</a></li>
-                        <li class="mb-1">Email: <a href="mailto:110124073@st.tvu.edu.vn" class="text-decoration-none text-secondary fw-semibold">110124073@st.tvu.edu.vn</a></li>
-                        <li class="mb-1"><a href="gioithieu.html" class="text-decoration-none text-secondary">Về chúng tôi</a></li>
-                        <li><a href="lienhe.html" class="text-decoration-none text-secondary">Liên hệ &amp; Hỗ trợ</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h6 class="fw-bold text-success mb-3">DANH MỤC SẢN PHẨM</h6>
-                    <ul class="list-unstyled small mb-0">
-                        <li class="mb-1"><a href="sanpham.html" class="text-decoration-none text-secondary">Tất cả sản phẩm</a></li>
-                        <li class="mb-1"><a href="sanpham.html?cat=Thực+Phẩm+Chức+Năng" class="text-decoration-none text-secondary">Thực Phẩm Chức Năng</a></li>
-                        <li class="mb-1"><a href="sanpham.html?cat=Chăm+Sóc+Sắc+Đẹp" class="text-decoration-none text-secondary">Chăm Sóc Sắc Đẹp</a></li>
-                        <li class="mb-1"><a href="sanpham.html?cat=Hỗ+Trợ+Xương+Khớp" class="text-decoration-none text-secondary">Hỗ Trợ Xương Khớp</a></li>
-                        <li><a href="sanpham.html?cat=Chăm+Sóc+Bé" class="text-decoration-none text-secondary">Chăm Sóc Bé</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h6 class="fw-bold text-success mb-3">CHÍNH SÁCH</h6>
-                    <ul class="list-unstyled small mb-0">
-                        <li class="mb-1"><a href="chinhsach-doitra.html" class="text-decoration-none text-secondary">Chính sách đổi trả</a></li>
-                        <li class="mb-1"><a href="chinhsach-vanchuyen.html" class="text-decoration-none text-secondary">Chính sách vận chuyển</a></li>
-                        <li class="mb-1"><a href="chinhsach-baomat.html" class="text-decoration-none text-secondary">Chính sách bảo mật</a></li>
-                        <li><a href="chinhsach-thanhtoan.html" class="text-decoration-none text-secondary">Chính sách thanh toán</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="text-center pt-3">
-                <small>&copy; 2026 [TÊN THƯƠNG HIỆU]</small>
-            </div>
-        </div>
-    </footer>
+    <footer></footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="src/dulieu-sanpham.js"></script>
+    <script src="src/dungchung.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const searchInput = document.getElementById('headerSearchInput');
-            const suggestionsBox = document.getElementById('searchSuggestions');
-            const searchForm = document.getElementById('headerSearchForm');
-            if (searchInput && suggestionsBox) {
-                const renderSuggestions = () => {
-                    const kw = searchInput.value.trim().toLowerCase();
-                    if (!kw) { suggestionsBox.style.display = 'none'; suggestionsBox.innerHTML = ''; return; }
-                    const list = JSON.parse(localStorage.getItem('inventoryProducts')) || [];
-                    const matches = list.filter(p =>
-                        (p.name || '').toLowerCase().includes(kw) ||
-                        (p.id || '').toLowerCase().includes(kw) ||
-                        (p.category || '').toLowerCase().includes(kw)
-                    ).slice(0, 6);
-                    if (matches.length === 0) {
-                        suggestionsBox.innerHTML = `<div class="p-3 small text-muted text-center">Không tìm thấy sản phẩm phù hợp</div>`;
-                        suggestionsBox.style.display = 'block';
-                        return;
-                    }
-                    suggestionsBox.innerHTML = matches.map(p => `
-                        <a href="chitiet.html?id=${encodeURIComponent(p.id)}" class="search-suggestion-item">
-                            <img src="${p.img}" alt="${p.name}">
-                            <div class="flex-grow-1">
-                                <div class="fw-semibold small">${p.name}</div>
-                                <div class="text-muted" style="font-size: 11px;">${p.category} • ${p.stock > 0 ? 'Còn ' + p.stock : 'Hết hàng'}</div>
-                            </div>
-                            <span class="fw-bold text-success small">${(parseInt(p.price) || 0).toLocaleString('vi-VN')}đ</span>
-                        </a>
-                    `).join('');
-                    suggestionsBox.style.display = 'block';
-                };
-                searchInput.addEventListener('input', renderSuggestions);
-                searchInput.addEventListener('focus', renderSuggestions);
-                document.addEventListener('click', (e) => {
-                    if (!e.target.closest('.search-wrapper')) suggestionsBox.style.display = 'none';
-                });
-            }
-            if (searchForm) {
-                searchForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const kw = document.getElementById('headerSearchInput').value.trim();
-                    window.location.href = kw ? `sanpham.html?q=${encodeURIComponent(kw)}` : 'sanpham.html';
-                });
-            }
-            let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-            let userRole = localStorage.getItem('userRole');
-            let username = localStorage.getItem('username') || 'Khách';
-            let authContainer = document.getElementById('authContainer');
-            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-            let savedQty = cartItems.reduce((sum, item) => sum + (parseInt(item.qty) || 0), 0);
-            let favCount = (JSON.parse(localStorage.getItem('favoriteProducts')) || []).length;
-            const favBtn = `<a href="yeuthich.html" class="btn btn-outline-danger btn-sm me-1" title="Sản phẩm yêu thích">&hearts; (${favCount})</a>`;
-
-            if (!isLoggedIn) {
-                if (authContainer) {
-                    authContainer.innerHTML = `${favBtn}<a href="dangnhap.html" class="btn btn-success btn-sm px-3 fw-bold">Đăng nhập</a>`;
-                }
-            } else {
-                let adminBtn = (userRole === 'admin') ? `<a href="admin.html" class="btn btn-warning btn-sm fw-bold me-1">Quản Trị</a>` : '';
-                if (authContainer) {
-                    authContainer.innerHTML = `
-                        ${favBtn}
-                        ${adminBtn}
-                        <a href="giohang.html" class="btn btn-outline-success btn-sm me-1">Giỏ hàng (${savedQty})</a>
-                        <span class="fw-bold text-success small me-2">${username}</span>
-                        <button onclick="logout()" class="btn btn-outline-danger btn-sm">Thoát</button>
-                    `;
-                }
-            }
-        });
-
-        function showSiteToast(msg, isError = false) {
-            document.querySelectorAll('.site-toast').forEach(el => el.remove());
-            const t = document.createElement('div');
-            t.className = 'site-toast' + (isError ? ' toast-error' : '');
-            t.textContent = msg;
-            document.body.appendChild(t);
-            setTimeout(() => { t.remove(); }, 2800);
-        }
-
         function submitContactForm(e) {
             e.preventDefault();
-            showSiteToast('Đã gửi thông tin liên hệ thành công! Chúng tôi sẽ phản hồi sớm nhất.');
-            e.target.reset();
-        }
+            const errBox = document.getElementById('contactError');
+            errBox.classList.add('d-none');
 
-        function logout() {
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('userRole');
-            localStorage.removeItem('username');
-            showSiteToast('Đã đăng xuất tài khoản!');
-            setTimeout(() => { window.location.href = 'index.html'; }, 800);
+            const name = document.getElementById('contactName').value.trim();
+            const phone = document.getElementById('contactPhone').value.trim();
+            const email = document.getElementById('contactEmail').value.trim();
+            const topic = document.getElementById('contactTopic').value;
+            const message = document.getElementById('contactMessage').value.trim();
+
+            if (name.length < 2) {
+                errBox.textContent = 'Vui lòng nhập họ và tên hợp lệ!';
+                errBox.classList.remove('d-none');
+                return;
+            }
+            if (!isValidVietnamPhone10(phone)) {
+                errBox.textContent = 'Vui lòng nhập đủ 10 số.';
+                errBox.classList.remove('d-none');
+                return;
+            }
+            if (!isValidEmailStrict(email)) {
+                errBox.textContent = 'Vui lòng nhập email hợp lệ.';
+                errBox.classList.remove('d-none');
+                return;
+            }
+            if (message.length < 10) {
+                errBox.textContent = 'Vui lòng nhập nội dung chi tiết (tối thiểu 10 ký tự)!';
+                errBox.classList.remove('d-none');
+                return;
+            }
+
+            const requests = JSON.parse(localStorage.getItem('contactRequests')) || [];
+            requests.push({ name, phone, email, topic, message, createdAt: new Date().toLocaleString('vi-VN') });
+            localStorage.setItem('contactRequests', JSON.stringify(requests));
+
+            showSiteToast('Đã gửi yêu cầu liên hệ thành công! Chúng tôi sẽ phản hồi sớm nhất.');
+            e.target.reset();
         }
     </script>
 </body>
